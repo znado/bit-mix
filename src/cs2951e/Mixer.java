@@ -14,43 +14,30 @@ public class Mixer {
 
     private String bitcoinSourceAddress;
     private double mixAmount;
-    private PeerDiscoveryService peerDiscoveryService;
-    private MixerNetworkClient localClient;
-    private Wallet wallet;
-    private NetworkParameters networkParams;
+    private MixerNetworkManager networkManager;
+    private MixerWallet wallet;
 
-    public Mixer(String bitcoinSourceAddress, double mixAmount) {
-        this.bitcoinSourceAddress = bitcoinSourceAddress;
+    public Mixer(NetworkParameters networkParams, MixerWallet wallet, double mixAmount) {
+        this.wallet = wallet;
         this.mixAmount = mixAmount;
-        peerDiscoveryService = new PeerDiscoveryService();
 
-        networkParams = NetworkParameters.fromID(NetworkParameters.ID_MAINNET);
-
-        File walletFile = new File(Config.WALLET_SAVE_FILE);
-        if(!walletFile.exists()) {
-            wallet = new Wallet(networkParams);
-        } else {
-            try {
-                wallet = Wallet.loadFromFile(walletFile);
-            } catch (UnreadableWalletException e) {
-                System.out.println("ERROR: could not read wallet file.");
+        networkManager = new MixerNetworkManager(networkParams, wallet);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                networkManager.run();
+                return;
             }
-        }
-        wallet.autosaveToFile(walletFile, 100, TimeUnit.MILLISECONDS, null);
-
-        // add the key we want to mix from
-//        wallet.
-
-        localClient = new MixerNetworkClient(true, wallet.currentReceiveAddress(), );
+        }).start();
     }
 
     public void mix() {
         // find two ready peers
-        ArrayList<MixerNetworkClient> peers = new ArrayList<>();
-        for(int i=0; i<Config.MIX_PEER_COUNT; i++) {
-            peers.add(peerDiscoveryService.findAblePeer());
+        ArrayList<MixerNetworkClient> peers = networkManager.getPeers(Config.MIX_PEER_COUNT);
+        // if peers == null then don't have enough peers to mix with
+        if(peers != null) {
+            networkManager.setCanMix(false);
         }
-
 
         // get address our mixed bitcoins will arrive at
         Address mixerReceivingAddress = wallet.currentReceiveAddress();
@@ -59,5 +46,12 @@ public class Mixer {
 
         // make transaction with all three as input users and three output scripts that pay out according to the above permutation
 
+
+        networkManager.setCanMix(true);
+        System.out.println("done");
+    }
+
+    public void stop() {
+        networkManager.stop();
     }
 }
