@@ -25,7 +25,8 @@ public class MixerPeerServer {
     public MixerPeerServer() {
         peerList = new HashMap<>();
 
-        peerList.put(new MixerNetworkAddress("localhost", 6969), null);
+        peerList.put(new MixerNetworkAddress("127.0.0.1", 6969), null);
+        peerList.put(new MixerNetworkAddress("127.0.0.1", 16969), null);
 
         try {
             serverSocket = new ServerSocket(Config.SERVER_PORT);
@@ -74,30 +75,24 @@ public class MixerPeerServer {
                         return "{'error' : false, 'peers' : " + new JSONArray(peerList.keySet()).toString() + "}";
                     case "disconnect":
                         peerList.remove(clientAddress);
-                        return generateSuccess();
+                        return Util.generateSuccess();
                 }
             } catch (JSONException e) {
                 String err = "Server error: missing key in client JSON message: " + request;
                 System.out.println(err);
                 e.printStackTrace();
-                return generateError(err);
+                return Util.generateError(err);
             }
         } catch (JSONException e) {
             String err = "Server error parsing client JSON message.";
             System.out.println(err);
             e.printStackTrace();
-            return generateError(err);
+            return Util.generateError(err);
         }
-        return generateError("An unknown error occurred.");
+        return Util.generateError("An unknown error occurred.");
     }
 
-    private String generateError(String msg) {
-        return "{'error' : true, 'msg' : " + msg + "}";
-    }
 
-    private String generateSuccess() {
-        return "{'error' : false}";
-    }
 
 
     public void stop() {

@@ -54,6 +54,13 @@ public class Main {
         NetworkParameters networkParams = NetworkParameters.fromID(NetworkParameters.ID_MAINNET);
         MixerWallet wallet = new MixerWallet(networkParams);
         Mixer mixer = new Mixer(networkParams, wallet, mixAmount);
+
+        System.out.println("Type mix to start mixing, else exit.");
+        String startMixString = terminalInput.nextLine();
+        if(!startMixString.equals("mix")) {
+            return;
+        }
+
         mixer.mix();
 
 

@@ -20,4 +20,12 @@ public class MixerNetworkClient {
     public void updateBitcoinReceiveAddress(Address bitcoinReceiveAddress) {
         this.bitcoinReceiveAddress = bitcoinReceiveAddress;
     }
+
+    @Override
+    public String toString() {
+        return "MixerNetworkClient{" +
+                "bitcoinReceiveAddress=" + Util.bytesToHex(bitcoinReceiveAddress.getHash160()) +
+                ", publicNetworkAddress=" + publicNetworkAddress +
+                '}';
+    }
 }

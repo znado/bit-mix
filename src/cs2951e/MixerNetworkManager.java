@@ -62,7 +62,11 @@ public class MixerNetworkManager {
                 JSONArray peersJson = peersResponseJson.getJSONArray("peers");
                 int peerCount = peersJson.length();
                 for (int i = 0; i < peerCount; i++) {
-                    peersList.put(new MixerNetworkAddress(peersJson.getJSONObject(i)), null);
+                    // don't include self in the list
+                    MixerNetworkAddress peerNetworkAddress = new MixerNetworkAddress(peersJson.getJSONObject(i));
+                    if(peerNetworkAddress.getPort() != Config.CLIENT_PORT || !peerNetworkAddress.getIpAddress().equals(Config.CLIENT_PUBLIC_ADDRESS)) {
+                        peersList.put(peerNetworkAddress, null);
+                    }
                 }
                 System.out.println("join success");
             }
@@ -79,7 +83,7 @@ public class MixerNetworkManager {
     }
 
     private Optional<String> addPeer (MixerNetworkAddress peerAddress) {
-        System.out.println("addPeer start");
+        System.out.println("addPeer start, testing " + peerAddress.toJSONString());
         Socket querySocket = new Socket();
         try {
             querySocket.connect(new InetSocketAddress(peerAddress.getIpAddress(), peerAddress.getPort()), Config.PEER_TIMEOUT_MS);
@@ -93,6 +97,10 @@ public class MixerNetworkManager {
             e.printStackTrace();
             peersList.remove(peerAddress);
             return Optional.absent();
+        } catch (ConnectException e) {
+            System.out.println("Error connecting to peer.");
+            e.printStackTrace();
+            return Optional.absent();
         } catch (IOException e) {
             System.out.println("Error querying peer.");
             e.printStackTrace();
@@ -100,30 +108,42 @@ public class MixerNetworkManager {
         }
     }
 
-    public ArrayList<MixerNetworkClient> getPeers(int numPeersNeeded) {
-        System.out.println("getPeers start");
+    public ArrayList<MixerNetworkClient> findMixingPeers(int numPeersNeeded) {
+        System.out.println("findMixingPeers start");
         ArrayList<MixerNetworkClient> randomAvailablePeers = new ArrayList<>();
         ArrayList<MixerNetworkAddress> allPeers = new ArrayList<>(peersList.keySet());
-        Set<Integer> triedIndexes = new LinkedHashSet<>();
+        System.out.println(Arrays.toString(peersList.keySet().toArray()));
+        Set<Integer> failedIndexes = new LinkedHashSet<>();
         int totalPeers = peersList.size();
         if(totalPeers < numPeersNeeded) {
             return null;
         }
         while (randomAvailablePeers.size() < numPeersNeeded) {
-            Integer next = rng.nextInt(totalPeers) + 1;
+            Integer next = rng.nextInt(totalPeers);
             MixerNetworkAddress peerNetworkAddress = allPeers.get(next);
             Optional<String> peerQueryResult = addPeer(peerNetworkAddress);
-            if(peerQueryResult.isPresent()) {
+            System.out.println("peerQueryResult present? " + peerQueryResult.isPresent());
+            if (peerQueryResult.isPresent()) {
                 try {
-                    JSONObject peerResult = new JSONObject(peerQueryResult.get());
-                    if(peerResult.getBoolean("available")) {
+                    String peerResultString = peerQueryResult.get();
+                    System.out.println("got peerResultString " + peerResultString);
+                    JSONObject peerResult = new JSONObject(peerResultString);
+                    if (peerResult.getBoolean("available")) {
+                        byte[] peerAddressBytes = Util.hexToBytes(peerResult.getString("bitcoinAddress"));
+//                        System.out.println(Arrays.toString(peerAddressBytes));
                         randomAvailablePeers.add(
                                 new MixerNetworkClient(
                                         new Address(
                                                 params,
                                                 Config.BITCOIN_PROTOCOL_VERSION,
-                                                peerResult.getString("bitcoinAddress").getBytes()),
+                                                peerAddressBytes),
                                         peerNetworkAddress));
+                    } else {
+                        System.out.println("peer unavailable");
+                        failedIndexes.add(next);
+                        if (failedIndexes.size() > totalPeers - numPeersNeeded) {
+                            return null;
+                        }
                     }
                 } catch (JSONException e) {
                     System.out.println("Error parsing peer query result into JSON: " + peerQueryResult.get());
@@ -132,14 +152,20 @@ public class MixerNetworkManager {
                     System.out.println("Error parsing peer query address: " + peerQueryResult.get());
                     e.printStackTrace();
                 }
-            }
-            triedIndexes.add(next);
-            if(triedIndexes.size() > totalPeers - numPeersNeeded) {
-                return null;
+            } else {
+                failedIndexes.add(next);
+                allPeers.remove(peerNetworkAddress);
+                if (failedIndexes.size() > totalPeers - numPeersNeeded) {
+                    return null;
+                }
             }
         }
         return randomAvailablePeers;
     }
+
+
+
+
 
     // RUN ON A BACKGROUND THREAD
     public synchronized void run() {
@@ -156,27 +182,39 @@ public class MixerNetworkManager {
                 BufferedReader inFromClient = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 DataOutputStream outToClient = new DataOutputStream(clientSocket.getOutputStream());
                 clientMessage = inFromClient.readLine();
-                try {
-                    JSONObject clientJson = new JSONObject(clientMessage);
-                    switch (clientJson.getString("action")) {
-                        case "query":
-                            if(canMix) {
-                                outToClient.writeBytes("{'available' : true, 'bitcoinAddress' : " + new String(wallet.currentReceiveAddress().getHash160()) + "}\n");
-                                canMix = false;
-                            } else {
-                                outToClient.writeBytes("{'available' : false}\n");
-                            }
-                            break;
-                    }
-                } catch (JSONException e) {
-                    System.out.println("Server error parsing client JSON message.");
-                    e.printStackTrace();
-                }
+                System.out.println("got peer request " + clientMessage);
+                String response = generateResponse(clientMessage);
+                System.out.println("response " + response);
+                outToClient.writeBytes(response + "\n");
             } catch (IOException e) {
                 System.out.println("Server error accepting client connection.");
                 e.printStackTrace();
             }
         }
+    }
+
+
+    private String generateResponse(String request) {
+        try {
+            JSONObject clientJson = new JSONObject(request);
+            switch (clientJson.getString("action")) {
+                case "query":
+                    if(canMix) {
+                        canMix = false;
+                        byte[] addressBytes = wallet.currentReceiveAddress().getHash160();
+//                        System.out.println(Arrays.toString(addressBytes));
+                        return "{'available' : true, 'bitcoinAddress' : '" + Util.bytesToHex(addressBytes) + "'}";
+                    } else {
+                        return "{'available' : false}";
+                    }
+            }
+        } catch (JSONException e) {
+            String err = "Server error parsing client JSON message.";
+            System.out.println(err);
+            e.printStackTrace();
+            return Util.generateError(err);
+        }
+        return Util.generateError("An unknown error occurred.");
     }
 
 

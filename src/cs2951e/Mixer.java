@@ -7,6 +7,7 @@ import org.bitcoinj.store.UnreadableWalletException;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 // the main class for the actual mixer
@@ -34,7 +35,12 @@ public class Mixer {
     public void mix() {
         System.out.println("mixing start");
         // find two ready peers
-        ArrayList<MixerNetworkClient> peers = networkManager.getPeers(Config.MIX_PEER_COUNT);
+        ArrayList<MixerNetworkClient> peers = networkManager.findMixingPeers(Config.MIX_PEER_COUNT);
+        if(peers != null) {
+            System.out.println("got mixing peers: " + Arrays.toString(peers.toArray()));
+        } else {
+            System.out.println("got mixing peers: null");
+        }
         // if peers == null then don't have enough peers to mix with
         if(peers != null) {
             networkManager.setCanMix(false);
