@@ -32,6 +32,7 @@ public class Mixer {
     }
 
     public void mix() {
+        System.out.println("mixing start");
         // find two ready peers
         ArrayList<MixerNetworkClient> peers = networkManager.getPeers(Config.MIX_PEER_COUNT);
         // if peers == null then don't have enough peers to mix with

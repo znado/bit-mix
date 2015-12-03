@@ -12,10 +12,7 @@ import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.InetSocketAddress;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.net.SocketTimeoutException;
+import java.net.*;
 import java.util.*;
 
 // listen for network requests/activity
@@ -48,23 +45,30 @@ public class MixerNetworkManager {
             System.out.println("Server error listening to port.");
             e.printStackTrace();
         }
-
+        System.out.println("join start");
         // get a list of peers and announce our presence
         Socket joinSocket = new Socket();
         String joinResponse = "undefined";
         try {
             joinSocket.connect(new InetSocketAddress(Config.SERVER_ADDRESS, Config.SERVER_PORT), Config.PEER_TIMEOUT_MS);
-            DataOutputStream outToPeer = new DataOutputStream(joinSocket.getOutputStream());
-            BufferedReader inFromPeer = new BufferedReader(new InputStreamReader(joinSocket.getInputStream()));
+            DataOutputStream outToServer = new DataOutputStream(joinSocket.getOutputStream());
+            BufferedReader inFromServer = new BufferedReader(new InputStreamReader(joinSocket.getInputStream()));
             // send peer query message and check for response
-            outToPeer.writeBytes("{'action' : 'join', 'port' : " + Config.CLIENT_PORT + "}");
-            joinResponse = inFromPeer.readLine();
+            outToServer.writeBytes("{'action' : 'join', 'port' : " + Config.CLIENT_PORT + "}\n");
+            joinResponse = inFromServer.readLine();
             System.out.println("Network manager error parsing server join response peers list: " + joinResponse);
-            JSONArray peersJson = new JSONArray(joinResponse);
-            int peerCount = peersJson.length();
-            for(int i=0; i<peerCount; i++) {
-                peersList.put(new MixerNetworkAddress(peersJson.getJSONObject(i)), null);
+            if(joinResponse != null) {
+                JSONObject peersResponseJson = new JSONObject(joinResponse);
+                JSONArray peersJson = peersResponseJson.getJSONArray("peers");
+                int peerCount = peersJson.length();
+                for (int i = 0; i < peerCount; i++) {
+                    peersList.put(new MixerNetworkAddress(peersJson.getJSONObject(i)), null);
+                }
+                System.out.println("join success");
             }
+        } catch (SocketException e) {
+            System.out.println("Network manager error server connection reset.");
+            e.printStackTrace();
         } catch (IOException e) {
             System.out.println("Network manager error while connecting to server.");
             e.printStackTrace();
@@ -75,13 +79,14 @@ public class MixerNetworkManager {
     }
 
     private Optional<String> addPeer (MixerNetworkAddress peerAddress) {
+        System.out.println("addPeer start");
         Socket querySocket = new Socket();
         try {
             querySocket.connect(new InetSocketAddress(peerAddress.getIpAddress(), peerAddress.getPort()), Config.PEER_TIMEOUT_MS);
             DataOutputStream outToPeer = new DataOutputStream(querySocket.getOutputStream());
             BufferedReader inFromPeer = new BufferedReader(new InputStreamReader(querySocket.getInputStream()));
             // send peer query message and check for response
-            outToPeer.writeBytes("{'action' : 'query'}");
+            outToPeer.writeBytes("{'action' : 'query'}\n");
             return Optional.of(inFromPeer.readLine());
         } catch (SocketTimeoutException e) {
             System.out.println("Querying peer timed out.");
@@ -96,6 +101,7 @@ public class MixerNetworkManager {
     }
 
     public ArrayList<MixerNetworkClient> getPeers(int numPeersNeeded) {
+        System.out.println("getPeers start");
         ArrayList<MixerNetworkClient> randomAvailablePeers = new ArrayList<>();
         ArrayList<MixerNetworkAddress> allPeers = new ArrayList<>(peersList.keySet());
         Set<Integer> triedIndexes = new LinkedHashSet<>();
@@ -155,10 +161,10 @@ public class MixerNetworkManager {
                     switch (clientJson.getString("action")) {
                         case "query":
                             if(canMix) {
-                                outToClient.writeBytes("{'available' : true, 'bitcoinAddress' : " + new String(wallet.currentReceiveAddress().getHash160()) + "}");
+                                outToClient.writeBytes("{'available' : true, 'bitcoinAddress' : " + new String(wallet.currentReceiveAddress().getHash160()) + "}\n");
                                 canMix = false;
                             } else {
-                                outToClient.writeBytes("{'available' : false}");
+                                outToClient.writeBytes("{'available' : false}\n");
                             }
                             break;
                     }

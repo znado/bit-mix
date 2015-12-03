@@ -18,7 +18,7 @@ public class Main {
                            " |____/_____|  |_|  |_|  |_|_____/_/ \\_\\\n");
 
         Scanner terminalInput = new Scanner(System.in);
-        System.out.print("Run as server [y/N]?:");
+        System.out.println("Run as server [y/N]?:");
         String runAsServerAnswer = terminalInput.nextLine();
         if(runAsServerAnswer.equals("y") || runAsServerAnswer.equals("Y")) {
             Thread serverThread = new Thread(new Runnable() {
@@ -40,10 +40,15 @@ public class Main {
             return;
         }
 
-        System.out.println("Enter source wallet credentials:");
-        System.out.println("Source key address: ");
+        System.out.println("Client port: [" + Config.CLIENT_PORT + "]");
+        String portString = terminalInput.nextLine();
+        if(!portString.equals("")) {
+            Config.CLIENT_PORT = Integer.parseInt(portString);
+        }
+        //System.out.println("Enter source wallet credentials:");
+        //System.out.println("Source key address: ");
         String sourceKeyAddress = "17kEiACFE1PRt5BXUADA5RMevFuk28jKDT";//terminalInput.nextLine();
-        System.out.println("Amount of BTC to mix (in BTC): [0.0001]\r\n");
+        //System.out.println("Amount of BTC to mix (in BTC): [0.0001]\r\n");
         double mixAmount = 0.0001;//Double.parseDouble(terminalInput.nextLine());
 
         NetworkParameters networkParams = NetworkParameters.fromID(NetworkParameters.ID_MAINNET);

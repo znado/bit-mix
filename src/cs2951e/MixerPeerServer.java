@@ -24,6 +24,9 @@ public class MixerPeerServer {
 
     public MixerPeerServer() {
         peerList = new HashMap<>();
+
+        peerList.put(new MixerNetworkAddress("localhost", 6969), null);
+
         try {
             serverSocket = new ServerSocket(Config.SERVER_PORT);
         } catch (IOException e) {
@@ -39,14 +42,15 @@ public class MixerPeerServer {
         while(!serverSocket.isClosed()) {
             try {
                 Socket clientSocket = serverSocket.accept();
+                System.out.println("got server connection");
                 BufferedReader inFromClient = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 DataOutputStream outToClient = new DataOutputStream(clientSocket.getOutputStream());
                 clientSocketAddress = (InetSocketAddress)clientSocket.getRemoteSocketAddress();
                 clientAddress = new MixerNetworkAddress(clientSocketAddress.getAddress().getHostAddress(), clientSocketAddress.getPort());
                 String request = inFromClient.readLine();
-                System.out.println("got server connection: " + request);
+                System.out.println("got server req: " + request);
                 String response = generateResponse(clientAddress, request);
-                outToClient.writeBytes(response);
+                outToClient.writeBytes(response + "\n");
             } catch (SocketException e) {
                 return; // the server was closed
             } catch (IOException e) {
@@ -61,12 +65,13 @@ public class MixerPeerServer {
             JSONObject clientJson = new JSONObject(request);
             try {
                 String clientAction = clientJson.getString("action");
+                System.out.println("client action = " + clientAction);
                 switch (clientAction) {
                     case "join":
                         int port = clientJson.getInt("port");
                         clientAddress.setPort(port);
                         peerList.put(clientAddress, null);
-                        return "{'error' : false, 'peers' : " + new JSONArray(peerList).toString() + "}";
+                        return "{'error' : false, 'peers' : " + new JSONArray(peerList.keySet()).toString() + "}";
                     case "disconnect":
                         peerList.remove(clientAddress);
                         return generateSuccess();
