@@ -1,6 +1,7 @@
 package cs2951e;
 
 import org.bitcoinj.core.NetworkParameters;
+import org.slf4j.LoggerFactory;
 
 import java.util.Scanner;
 
@@ -48,6 +49,8 @@ public class Main {
         //System.out.println("Enter source wallet credentials:");
         //System.out.println("Amount of BTC to mix (in BTC): [0.0001]\r\n");
         double mixAmount = 0.0001;//Double.parseDouble(terminalInput.nextLine());
+
+
 
         NetworkParameters networkParams = NetworkParameters.fromID(NetworkParameters.ID_MAINNET);
         MixerWallet wallet = new MixerWallet(networkParams);
