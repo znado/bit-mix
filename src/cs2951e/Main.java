@@ -46,13 +46,14 @@ public class Main {
             Config.CLIENT_PORT = Integer.parseInt(portString);
         }
         //System.out.println("Enter source wallet credentials:");
-        //System.out.println("Source key address: ");
-        String sourceKeyAddress = "17kEiACFE1PRt5BXUADA5RMevFuk28jKDT";//terminalInput.nextLine();
         //System.out.println("Amount of BTC to mix (in BTC): [0.0001]\r\n");
         double mixAmount = 0.0001;//Double.parseDouble(terminalInput.nextLine());
 
         NetworkParameters networkParams = NetworkParameters.fromID(NetworkParameters.ID_MAINNET);
         MixerWallet wallet = new MixerWallet(networkParams);
+        System.out.println(wallet.toString());
+        System.out.println("reciving bitcoin at " + wallet.currentReceiveAddress().toString());
+
         Mixer mixer = new Mixer(networkParams, wallet, mixAmount);
 
         System.out.println("Type mix to start mixing, else exit.");

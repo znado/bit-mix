@@ -1,9 +1,7 @@
 package cs2951e;
 
 import com.google.common.base.Optional;
-import org.bitcoinj.core.Address;
-import org.bitcoinj.core.NetworkParameters;
-import org.bitcoinj.core.WrongNetworkException;
+import org.bitcoinj.core.*;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -56,7 +54,7 @@ public class MixerNetworkManager {
             // send peer query message and check for response
             outToServer.writeBytes("{'action' : 'join', 'port' : " + Config.CLIENT_PORT + "}\n");
             joinResponse = inFromServer.readLine();
-            System.out.println("Network manager error parsing server join response peers list: " + joinResponse);
+            System.out.println("peers list: " + joinResponse);
             if(joinResponse != null) {
                 JSONObject peersResponseJson = new JSONObject(joinResponse);
                 JSONArray peersJson = peersResponseJson.getJSONArray("peers");
@@ -129,15 +127,21 @@ public class MixerNetworkManager {
                     System.out.println("got peerResultString " + peerResultString);
                     JSONObject peerResult = new JSONObject(peerResultString);
                     if (peerResult.getBoolean("available")) {
-                        byte[] peerAddressBytes = Util.hexToBytes(peerResult.getString("bitcoinAddress"));
-//                        System.out.println(Arrays.toString(peerAddressBytes));
-                        randomAvailablePeers.add(
-                                new MixerNetworkClient(
-                                        new Address(
-                                                params,
-                                                Config.BITCOIN_PROTOCOL_VERSION,
-                                                peerAddressBytes),
-                                        peerNetworkAddress));
+                        byte[] peerAddressBytes;
+                        try {
+                            peerAddressBytes = Base58.decode(peerResult.getString("bitcoinAddress"));
+                            //System.out.println(Arrays.toString(peerAddressBytes));
+                            randomAvailablePeers.add(
+                                    new MixerNetworkClient(
+                                            new Address(
+                                                    params,
+                                                    Config.BITCOIN_PROTOCOL_VERSION,
+                                                    peerAddressBytes),
+                                            peerNetworkAddress));
+                        } catch (AddressFormatException e) {
+                            System.out.println("Invalid peer bitcoin address.");
+                            e.printStackTrace();
+                        }
                     } else {
                         System.out.println("peer unavailable");
                         failedIndexes.add(next);
@@ -147,9 +151,6 @@ public class MixerNetworkManager {
                     }
                 } catch (JSONException e) {
                     System.out.println("Error parsing peer query result into JSON: " + peerQueryResult.get());
-                    e.printStackTrace();
-                } catch (WrongNetworkException e) {
-                    System.out.println("Error parsing peer query address: " + peerQueryResult.get());
                     e.printStackTrace();
                 }
             } else {
@@ -203,7 +204,7 @@ public class MixerNetworkManager {
                         canMix = false;
                         byte[] addressBytes = wallet.currentReceiveAddress().getHash160();
 //                        System.out.println(Arrays.toString(addressBytes));
-                        return "{'available' : true, 'bitcoinAddress' : '" + Util.bytesToHex(addressBytes) + "'}";
+                        return "{'available' : true, 'bitcoinAddress' : '" + Base58.encode(addressBytes) + "'}";
                     } else {
                         return "{'available' : false}";
                     }

@@ -1,6 +1,7 @@
 package cs2951e;
 
 import org.bitcoinj.core.Address;
+import org.bitcoinj.core.Base58;
 
 // simple bitcoin address and network pair
 public class MixerNetworkClient {
@@ -24,7 +25,7 @@ public class MixerNetworkClient {
     @Override
     public String toString() {
         return "MixerNetworkClient{" +
-                "bitcoinReceiveAddress=" + Util.bytesToHex(bitcoinReceiveAddress.getHash160()) +
+                "bitcoinReceiveAddress=" + Base58.encode(bitcoinReceiveAddress.getHash160()) +
                 ", publicNetworkAddress=" + publicNetworkAddress +
                 '}';
     }
