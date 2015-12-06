@@ -1,0 +1,7 @@
+*.class
+.mtj.tmp/
+*.jar
+*.war
+*.ear
+out
+hs_err_pid*
