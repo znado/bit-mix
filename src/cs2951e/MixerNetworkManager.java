@@ -20,6 +20,7 @@ public class MixerNetworkManager {
     private Random rng;
     private NetworkParameters params;
     private MixerWallet wallet;
+    private ECKey sigKey;
 
     private HashMap<MixerNetworkAddress, Void> peersList;
 
@@ -29,9 +30,10 @@ public class MixerNetworkManager {
         this.canMix = canMix;
     }
 
-    public MixerNetworkManager(NetworkParameters params, MixerWallet wallet) {
+    public MixerNetworkManager(NetworkParameters params, MixerWallet wallet, ECKey sigKey) {
         this.params = params;
         this.wallet = wallet;
+        this.sigKey = sigKey;
 
         rng = new Random();
         peersList = new HashMap<>();
@@ -110,7 +112,6 @@ public class MixerNetworkManager {
         System.out.println("findMixingPeers start");
         ArrayList<MixerNetworkClient> randomAvailablePeers = new ArrayList<>();
         ArrayList<MixerNetworkAddress> allPeers = new ArrayList<>(peersList.keySet());
-        System.out.println(Arrays.toString(peersList.keySet().toArray()));
         Set<Integer> failedIndexes = new LinkedHashSet<>();
         int totalPeers = peersList.size();
         if(totalPeers < numPeersNeeded) {
@@ -120,23 +121,21 @@ public class MixerNetworkManager {
             Integer next = rng.nextInt(totalPeers);
             MixerNetworkAddress peerNetworkAddress = allPeers.get(next);
             Optional<String> peerQueryResult = addPeer(peerNetworkAddress);
-            System.out.println("peerQueryResult present? " + peerQueryResult.isPresent());
             if (peerQueryResult.isPresent()) {
                 try {
                     String peerResultString = peerQueryResult.get();
-                    System.out.println("got peerResultString " + peerResultString);
                     JSONObject peerResult = new JSONObject(peerResultString);
                     if (peerResult.getBoolean("available")) {
                         byte[] peerAddressBytes;
                         try {
                             peerAddressBytes = Base58.decode(peerResult.getString("bitcoinAddress"));
-                            //System.out.println(Arrays.toString(peerAddressBytes));
                             randomAvailablePeers.add(
                                     new MixerNetworkClient(
                                             new Address(
                                                     params,
                                                     Config.BITCOIN_PROTOCOL_VERSION,
                                                     peerAddressBytes),
+                                            ECKey.fromPublicOnly(Util.hexToBytes(peerResult.getString("pubKey"))),
                                             peerNetworkAddress));
                         } catch (AddressFormatException e) {
                             System.out.println("Invalid peer bitcoin address.");
@@ -203,11 +202,16 @@ public class MixerNetworkManager {
                     if(canMix) {
                         canMix = false;
                         byte[] addressBytes = wallet.currentReceiveAddress().getHash160();
-//                        System.out.println(Arrays.toString(addressBytes));
-                        return "{'available' : true, 'bitcoinAddress' : '" + Base58.encode(addressBytes) + "'}";
+                        return "{" +
+                                "'available' : true," +
+                                "'bitcoinAddress' : '" + Base58.encode(addressBytes) + "'," +
+                                "'pubKey' : '" + sigKey.getPublicKeyAsHex() + "'" +
+                                "}";
                     } else {
                         return "{'available' : false}";
                     }
+                case "sign":
+
             }
         } catch (JSONException e) {
             String err = "Server error parsing client JSON message.";

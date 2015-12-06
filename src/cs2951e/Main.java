@@ -47,8 +47,9 @@ public class Main {
             Config.CLIENT_PORT = Integer.parseInt(portString);
         }
         //System.out.println("Enter source wallet credentials:");
-        //System.out.println("Amount of BTC to mix (in BTC): [0.0001]\r\n");
-        double mixAmount = 0.0001;//Double.parseDouble(terminalInput.nextLine());
+        //System.out.println("Amount of BTC to mix (in satoshi): [100]\r\n");
+        // in satoshi's (0.00000001 BTC)
+        int mixAmount = 15460;//Double.parseDouble(terminalInput.nextLine());
 
 
 

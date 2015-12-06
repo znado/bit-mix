@@ -8,6 +8,8 @@ import org.bitcoinj.core.Transaction;
 public class MixerTransaction extends Transaction {
     public MixerTransaction(NetworkParameters params) {
         super(params);
+
+
     }
 
 
