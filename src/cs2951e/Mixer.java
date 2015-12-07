@@ -17,13 +17,13 @@ public class Mixer {
     private MixerNetworkManager networkManager;
     private MixerWallet wallet;
     private NetworkParameters networkParams;
-    private ECKey sigKey;
     private int mixAmount;
+    private ECKey sigKey;
 
-    public Mixer(NetworkParameters networkParams, MixerWallet wallet, int mixAmount) {
+    public Mixer(NetworkParameters networkParams, MixerWallet wallet, int mixAmount, ECKey sigKey) {
         this.networkParams = networkParams;
         this.wallet = wallet;
-        this.sigKey = new ECKey();
+        this.sigKey = sigKey;
         this.mixAmount = mixAmount;
 
         networkManager = new MixerNetworkManager(networkParams, wallet, this.sigKey, mixAmount);
@@ -57,9 +57,7 @@ public class Mixer {
             mixingTransaction.addOutput(Coin.valueOf(mixAmount), destination);
         }
         Wallet.SendRequest request = Wallet.SendRequest.forTx(mixingTransaction);
-        request.shuffleOutputs = false;
-//        request.signInputs = false;
-        if(!wallet.completeTx(request, Coin.valueOf(mixAmount*peersList.size()))) {
+        if(!wallet.completeTx(mixingTransaction, mixingDestinations.get(0))) {
             return;
         }
         TransactionOutput changeOutput = request.tx.getOutput(request.tx.getOutputs().size() - 1);
@@ -72,7 +70,7 @@ public class Mixer {
         for(int i=0; i<peersList.size(); i++) {
             MixerNetworkClient peer = peersList.get(i);
             System.out.println("to get change outputs, sending transaction to: " + peer.getPublicNetworkAddress().getPort());
-            Optional<Transaction> optionalPeerSig = networkManager.sendToPeerToAddChangeOutputs(peer.getPublicNetworkAddress(), request.tx, peersList.size()*mixAmount + changeCoins);
+            Optional<Transaction> optionalPeerSig = networkManager.sendToPeerToAddChangeOutputs(peer.getPublicNetworkAddress(), request.tx, mixingDestinations.get(i + 1));
             if(optionalPeerSig.isPresent()) {
                 request.tx = optionalPeerSig.get();
                 // only if we added another output (a change tx) should we increment our change tx value

@@ -158,7 +158,7 @@ public class MixerNetworkManager {
         return randomAvailablePeers;
     }
 
-    public Optional<Transaction> sendToPeerToAddChangeOutputs(MixerNetworkAddress peerAddress, Transaction mixingTransaction, long fakeCoins) {
+    public Optional<Transaction> sendToPeerToAddChangeOutputs(MixerNetworkAddress peerAddress, Transaction mixingTransaction, Address addr) {
         try {
             Socket querySocket = new Socket();
             querySocket.connect(new InetSocketAddress(peerAddress.getIpAddress(), peerAddress.getPort()), Config.PEER_TIMEOUT_MS);
@@ -166,7 +166,7 @@ public class MixerNetworkManager {
             BufferedReader inFromPeer = new BufferedReader(new InputStreamReader(querySocket.getInputStream()));
             outToPeer.writeBytes("{" +
                     "'action' : 'addChangeOutputs'," +
-                    "'fakeCoins' : " + fakeCoins + "," +
+                    "'addr' : " + Util.bytesToHex(addr.getHash160()) + "," +
                     "'mixingTx' : '" + Util.bytesToHex(mixingTransaction.bitcoinSerialize()) + "'" +
                     "}\n");
             JSONObject responseJson = new JSONObject(inFromPeer.readLine());
@@ -268,16 +268,11 @@ public class MixerNetworkManager {
                     }
                 case "addChangeOutputs":
                     Transaction mixingTransaction = new Transaction(networkParams, Util.hexToBytes(requestJson.getString("mixingTx")));
-                    int fakeCoins = requestJson.getInt("fakeCoins");
-                    System.out.println("RECEIVED TO ADD INPUT TO: " + mixingTransaction + " with " + fakeCoins + " fake coin val");
-                    Wallet.SendRequest walletRequest = Wallet.SendRequest.forTx(mixingTransaction);
-                    walletRequest.shuffleOutputs = false;
-                    if(!wallet.completeTx(walletRequest, Coin.valueOf(fakeCoins))) {
+                    Address addr = new Address(networkParams, Util.hexToBytes(requestJson.getString("addr")));
+                    if(!wallet.completeTx(mixingTransaction, addr)) {
                         return generateResponse("Insufficient peer coins.");
                     }
-                    TransactionOutput changeOutput = walletRequest.tx.getOutput(walletRequest.tx.getOutputs().size() - 1);
-                    System.out.println("tx changeOutput: " + changeOutput);
-                    response = "{'error' : false, 'multisigTx' : '" + Util.bytesToHex(walletRequest.tx.bitcoinSerialize()) + "'}";
+                    response = "{'error' : false, 'multisigTx' : '" + Util.bytesToHex(mixingTransaction.bitcoinSerialize()) + "'}";
                     return response;
                 case "signInputs":
                     Transaction mixingTx = new Transaction(networkParams, Util.hexToBytes(requestJson.getString("tx")));

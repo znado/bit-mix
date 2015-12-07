@@ -28,8 +28,12 @@ public class MixerWallet {
     private NetworkParameters networkParams;
     private Thread peerGroupThread;
     private Collection<TransactionOutput> gathered;
+    private int mixAmount;
+    private ECKey sigKey;
 
-    public MixerWallet(NetworkParameters networkParams) {
+    public MixerWallet(NetworkParameters networkParams, int mixAmount, ECKey sigKey) {
+        this.sigKey= sigKey;
+        this.mixAmount = mixAmount;
         this.networkParams = networkParams;
         walletFile = new File(Config.WALLET_SAVE_FILE + "-" + Config.CLIENT_PORT);
         if(!walletFile.exists()) {
@@ -106,18 +110,20 @@ public class MixerWallet {
         return wallet.toString();
     }
 
-    public boolean completeTx(Wallet.SendRequest request, Coin fakeInputCoins) {
-        try {
-            System.out.println("adding input with " + fakeInputCoins.value + " fake input");
-            request.signInputs = false;
-            wallet.completeTx(request, fakeInputCoins);
-            //System.out.println("GATHERED COIN INPUTS: " + Arrays.toString(gathered.toArray()));
-            return true;
-        } catch (InsufficientMoneyException e) {
-            System.out.println("Insufficient funds for mixing.");
-            e.printStackTrace();
-        }
-        return false;
+    public boolean completeTx(Transaction tx, Address addr) {
+        Transaction temp = new Transaction(networkParams);
+        temp.addOutput(Coin.valueOf(mixAmount), addr);
+        TransactionOutput out = temp.getOutput(0);
+        Script outScript = out.getScriptPubKey();
+        Sha256Hash sighash = temp.hashForSignature(0, outScript, Transaction.SigHash.ALL, false);
+        ECKey.ECDSASignature mySignature = sigKey.sign(sighash);
+        Script sigScript = ScriptBuilder.createInputScript(new TransactionSignature(mySignature, Transaction.SigHash.ALL, false));
+        TransactionInput in = tx.addInput(out);
+        in.setScriptSig(sigScript);
+        in.verify(out);
+
+        //System.out.println("GATHERED COIN INPUTS: " + Arrays.toString(gathered.toArray()));
+        return true;
     }
 
     public void signTx(Wallet.SendRequest req) {

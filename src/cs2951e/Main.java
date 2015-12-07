@@ -1,5 +1,6 @@
 package cs2951e;
 
+import org.bitcoinj.core.ECKey;
 import org.bitcoinj.core.NetworkParameters;
 import org.slf4j.LoggerFactory;
 
@@ -54,13 +55,14 @@ public class Main {
         int mixAmount = 15460 + 8000;//Double.parseDouble(terminalInput.nextLine());
 
 
+        ECKey sigKey = new ECKey();
 
         NetworkParameters networkParams = NetworkParameters.fromID(NetworkParameters.ID_MAINNET);
-        MixerWallet wallet = new MixerWallet(networkParams);
+        MixerWallet wallet = new MixerWallet(networkParams, mixAmount, sigKey);
         System.out.println(wallet.toString());
         System.out.println("receiving bitcoin at " + wallet.currentReceiveAddress().toString());// + ", bytes = " + Arrays.toString(wallet.currentReceiveAddress().getHash160()));
 
-        Mixer mixer = new Mixer(networkParams, wallet, mixAmount);
+        Mixer mixer = new Mixer(networkParams, wallet, mixAmount, sigKey);
 
         System.out.println("Type mix to start mixing, else exit.");
         String startMixString = terminalInput.nextLine();
