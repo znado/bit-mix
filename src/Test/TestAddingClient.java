@@ -1,10 +1,10 @@
 package Test;
 
-import main.AdditionClient;
-import main.AdditionCommon;
-import main.ProtocolClient;
-import main.Program;
-import util.StopWatch;
+import main.FirstProtocolClient;
+import main.value.FirstProtocolInput;
+
+import java.math.BigInteger;
+import java.util.Random;
 
 
 /**
@@ -12,12 +12,19 @@ import util.StopWatch;
  * @version 1.1
  */
 public class TestAddingClient {
-  public static void main(String[] args) throws Exception {
-    StopWatch.pointTimeStamp("Starting program");
-    ProtocolClient.serverIPname = "localhost";
-    Program.iterCount = 1;
+  public static final BigInteger g = BigInteger.valueOf(2);
+  public static final BigInteger m = BigInteger.probablePrime(15, new Random(100));
+  public static final BigInteger r_A = new BigInteger(15, new Random(101)).mod(m);
+  public static final BigInteger s_A = BigInteger.valueOf(15);
 
-    AdditionClient client = new AdditionClient(AdditionCommon.Y);
-    client.run();
+  public static void main(String[] args) throws Exception {
+    FirstProtocolClient client = new FirstProtocolClient("localhost", 1234);
+    System.out.println("Client random value: " + r_A);
+    client.run(FirstProtocolInput.builder()
+        .setG_rb(g)
+        .setModulus(m)
+        .setSecretAddress(s_A)
+        .setSecretRandom(r_A)
+        .build());
   }
 }

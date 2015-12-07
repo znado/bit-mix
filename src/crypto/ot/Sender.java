@@ -16,6 +16,10 @@ public abstract class Sender {
   protected ObjectInputStream ois;
   protected ObjectOutputStream oos;
 
+  public int getNumOfPairs() {
+    return numOfPairs;
+  }
+
   public Sender(int numOfPairs, int msgBitLength, ObjectInputStream in, ObjectOutputStream out) {
     this.numOfPairs = numOfPairs;
     this.msgBitLength = msgBitLength;

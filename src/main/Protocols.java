@@ -1,8 +1,11 @@
 package main;
 
 import circuit.Circuit;
+import circuit.Wire;
+import util.Utils;
 
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.List;
 
 

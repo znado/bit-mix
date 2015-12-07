@@ -1,6 +1,5 @@
 package main.wrap;
 
-import main.AdditionCommon;
 import circuit.CompositeCircuit;
 
 

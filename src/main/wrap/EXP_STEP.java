@@ -6,7 +6,6 @@ import circuit.CompositeCircuit;
 import circuit.core.MUX_2Lplus1_L;
 import circuit.mod.MOD_MULT_4N_N;
 import circuit.mod.MOD_SQUARE_3N_N;
-import main.AdditionCommon;
 
 
 /*

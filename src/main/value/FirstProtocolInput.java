@@ -36,20 +36,24 @@ public class FirstProtocolInput {
 
     }
 
-    public void setModulus(final BigInteger modulus) {
+    public Builder setModulus(final BigInteger modulus) {
       this.modulus = modulus;
+      return this;
     }
 
-    public void setG_rb(final BigInteger g_rb) {
+    public Builder setG_rb(final BigInteger g_rb) {
       this.g_rb = g_rb;
+      return this;
     }
 
-    public void setSecretRandom(final BigInteger secretRandom) {
+    public Builder setSecretRandom(final BigInteger secretRandom) {
       this.secretRandom = secretRandom;
+      return this;
     }
 
-    public void setSecretAddress(final BigInteger secretAddress) {
+    public Builder setSecretAddress(final BigInteger secretAddress) {
       this.secretAddress = secretAddress;
+      return this;
     }
 
     public FirstProtocolInput build() {
