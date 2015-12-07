@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f6986a66-fecd-4926-87ef-3a411f0a483d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/FirstProtocolServer.java" afterPath="$PROJECT_DIR$/src/main/FirstProtocolServer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/wrap/Selector.java" afterPath="$PROJECT_DIR$/src/main/wrap/Selector.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/SecondProtocol.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/SecondProtocolClient.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/value/SecondProtocolClientInput.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/SecondProtocolServer.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/value/SecondProtocolServerInput.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="bit-mix.iws" />
@@ -28,11 +31,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Selector.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/wrap/Selector.java">
+      <file leaf-file-name="TestC.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/TestC.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="466" max-vertical-offset="1173">
-              <caret line="36" column="35" selection-start-line="36" selection-start-column="35" selection-end-line="36" selection-end-column="35" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="279" max-vertical-offset="816">
+              <caret line="21" column="29" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -40,14 +43,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FirstProtocolServer.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/FirstProtocolServer.java">
+      <file leaf-file-name="TestB.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/TestB.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.30041152" vertical-offset="432" max-vertical-offset="918">
-              <caret line="34" column="27" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.13802436" vertical-offset="0" max-vertical-offset="739">
+              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TestA.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/TestA.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="58" max-vertical-offset="544">
+              <caret line="24" column="46" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -65,17 +76,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/circuit/core/bool/AND_2_1.java" />
-        <option value="$PROJECT_DIR$/src/circuit/Circuit.java" />
-        <option value="$PROJECT_DIR$/src/main/Connection.java" />
-        <option value="$PROJECT_DIR$/src/circuit/CompositeCircuit.java" />
-        <option value="$PROJECT_DIR$/src/circuit/core/bool/ADD_3_2.java" />
-        <option value="$PROJECT_DIR$/src/circuit/core/bool/GT_3_1.java" />
-        <option value="$PROJECT_DIR$/src/circuit/core/bool/MUX_3_1.java" />
-        <option value="$PROJECT_DIR$/src/circuit/core/bool/OR_2_1.java" />
-        <option value="$PROJECT_DIR$/src/circuit/core/bool/XOR_2_1.java" />
-        <option value="$PROJECT_DIR$/src/circuit/core/bool/SimpleCircuit_2_1.java" />
-        <option value="$PROJECT_DIR$/src/circuit/core/MUX_2Lplus1_L.java" />
         <option value="$PROJECT_DIR$/src/circuit/core/OR_L_1.java" />
         <option value="$PROJECT_DIR$/src/circuit/core/XOR_2L_L.java" />
         <option value="$PROJECT_DIR$/src/circuit/arith/ADD_2L_L.java" />
@@ -116,6 +116,17 @@
         <option value="$PROJECT_DIR$/src/Test/TestAddingClient.java" />
         <option value="$PROJECT_DIR$/src/main/wrap/Selector.java" />
         <option value="$PROJECT_DIR$/src/main/FirstProtocolServer.java" />
+        <option value="$PROJECT_DIR$/src/main/value/SecondProtocolServerInput.java" />
+        <option value="$PROJECT_DIR$/src/main/SecondProtocolServer.java" />
+        <option value="$PROJECT_DIR$/src/main/SecondProtocol.java" />
+        <option value="$PROJECT_DIR$/src/test/TestAddingServer.java" />
+        <option value="$PROJECT_DIR$/src/test/TestAddingClient.java" />
+        <option value="$PROJECT_DIR$/src/test/TestConstants.java" />
+        <option value="$PROJECT_DIR$/src/test/TestA.java" />
+        <option value="$PROJECT_DIR$/src/test/TestB.java" />
+        <option value="$PROJECT_DIR$/src/main/value/SecondProtocolClientInput.java" />
+        <option value="$PROJECT_DIR$/src/test/TestC.java" />
+        <option value="$PROJECT_DIR$/src/main/SecondProtocolClient.java" />
       </list>
     </option>
   </component>
@@ -241,7 +252,7 @@
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Test" />
+              <option name="myItemId" value="test" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -400,7 +411,13 @@
     <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="test" />
+      <recent name="main.value" />
+      <recent name="main" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\nschank\Documents\course\CSCI2951e\proj\src\main" />
       <recent name="C:\Users\nschank\Documents\course\CSCI2951e\proj" />
       <recent name="C:\Users\nschank\Documents\course\CSCI2951e\proj\src\util" />
     </key>
@@ -408,7 +425,7 @@
       <recent name="main.wrap" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.TestAddingClient">
+  <component name="RunManager">
     <configuration default="false" name="Main" type="Application" factoryName="Application" temporary="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="cs2951e.Main" />
@@ -426,9 +443,9 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <configuration default="false" name="TestAddingServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="TestC" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="Test.TestAddingServer" />
+      <option name="MAIN_CLASS_NAME" value="test.TestC" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" />
@@ -443,9 +460,26 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <configuration default="false" name="TestAddingClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="TestA" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="Test.TestAddingClient" />
+      <option name="MAIN_CLASS_NAME" value="test.TestA" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="bit-mix" />
+      <envs />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="TestB" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="test.TestB" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" />
@@ -563,16 +597,18 @@
       <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
       <method />
     </configuration>
-    <list size="3">
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="Application.Main" />
-      <item index="1" class="java.lang.String" itemvalue="Application.TestAddingServer" />
-      <item index="2" class="java.lang.String" itemvalue="Application.TestAddingClient" />
+      <item index="1" class="java.lang.String" itemvalue="Application.TestC" />
+      <item index="2" class="java.lang.String" itemvalue="Application.TestA" />
+      <item index="3" class="java.lang.String" itemvalue="Application.TestB" />
     </list>
     <recent_temporary>
-      <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Application.TestAddingClient" />
-        <item index="1" class="java.lang.String" itemvalue="Application.TestAddingServer" />
-        <item index="2" class="java.lang.String" itemvalue="Application.Main" />
+      <list size="4">
+        <item index="0" class="java.lang.String" itemvalue="Application.TestA" />
+        <item index="1" class="java.lang.String" itemvalue="Application.TestC" />
+        <item index="2" class="java.lang.String" itemvalue="Application.TestB" />
+        <item index="3" class="java.lang.String" itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -618,7 +654,11 @@
       <created>1449482912526</created>
       <updated>1449482912526</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="First protocol functional">
+      <created>1449483431380</created>
+      <updated>1449483431380</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -642,7 +682,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.136875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32985657" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32985657" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -675,7 +715,9 @@
     <MESSAGE value="First test of framework ready" />
     <MESSAGE value="Debugging framework test" />
     <MESSAGE value="First protocol complete, pre-testing" />
-    <option name="LAST_COMMIT_MESSAGE" value="First protocol complete, pre-testing" />
+    <MESSAGE value="First protocol functional" />
+    <MESSAGE value="Second protocol, pre test&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Second protocol, pre test&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -685,56 +727,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/circuit/core/bool/GT_3_1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3328823" vertical-offset="162" max-vertical-offset="901">
-          <caret line="24" column="64" selection-start-line="24" selection-start-column="64" selection-end-line="24" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/circuit/core/bool/MUX_3_1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8159675" vertical-offset="43" max-vertical-offset="782">
-          <caret line="38" column="3" selection-start-line="38" selection-start-column="3" selection-end-line="38" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/circuit/core/bool/OR_2_1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.17320703" vertical-offset="808" max-vertical-offset="1802">
-          <caret line="44" column="18" selection-start-line="44" selection-start-column="18" selection-end-line="44" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/circuit/core/bool/XOR_2_1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0351827" vertical-offset="0" max-vertical-offset="1598">
-          <caret line="47" column="24" selection-start-line="47" selection-start-column="24" selection-end-line="47" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/circuit/core/bool/SimpleCircuit_2_1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43707713" vertical-offset="0" max-vertical-offset="2482">
-          <caret line="27" column="33" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/circuit/core/MUX_2Lplus1_L.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.40189445" vertical-offset="281" max-vertical-offset="1020">
-          <caret line="35" column="9" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/circuit/core/OR_L_1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41407308" vertical-offset="0" max-vertical-offset="739">
-          <caret line="19" column="63" selection-start-line="19" selection-start-column="63" selection-end-line="19" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/circuit/arith/ADD_2L_L.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.056833558" vertical-offset="281" max-vertical-offset="1020">
@@ -998,14 +990,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/ProtocolClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.50317127" vertical-offset="867" max-vertical-offset="1428">
-          <caret line="75" column="7" selection-start-line="75" selection-start-column="7" selection-end-line="75" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/wrap/RUN_MULT.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.51028806" vertical-offset="619" max-vertical-offset="1224">
@@ -1042,24 +1026,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Test/TestAddingServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.47530866" vertical-offset="143" max-vertical-offset="663">
-          <caret line="22" column="54" selection-start-line="22" selection-start-column="54" selection-end-line="23" selection-end-column="54" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Test/TestAddingClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6646091" vertical-offset="0" max-vertical-offset="578">
-          <caret line="24" column="52" selection-start-line="24" selection-start-column="52" selection-end-line="24" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/ProtocolServer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.41975307" vertical-offset="34" max-vertical-offset="2397">
@@ -1070,9 +1036,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/value/SecondProtocolServerInput.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.81893" vertical-offset="0" max-vertical-offset="1088">
+          <caret line="52" column="33" selection-start-line="52" selection-start-column="33" selection-end-line="52" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/wrap/Selector.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="466" max-vertical-offset="1173">
+        <state vertical-scroll-proportion="0.30041152" vertical-offset="466" max-vertical-offset="1173">
           <caret line="36" column="35" selection-start-line="36" selection-start-column="35" selection-end-line="36" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1087,6 +1063,84 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/SecondProtocol.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6152263" vertical-offset="823" max-vertical-offset="1309">
+          <caret line="74" column="39" selection-start-line="74" selection-start-column="39" selection-end-line="74" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/TestConstants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6646091" vertical-offset="0" max-vertical-offset="486">
+          <caret line="19" column="105" selection-start-line="19" selection-start-column="105" selection-end-line="19" selection-end-column="105" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/value/SecondProtocolClientInput.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.6090535" vertical-offset="0" max-vertical-offset="1394">
+          <caret line="46" column="26" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/TestA.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="58" max-vertical-offset="544">
+          <caret line="24" column="46" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/TestC.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="279" max-vertical-offset="816">
+          <caret line="21" column="29" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/ProtocolClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.47325101" vertical-offset="926" max-vertical-offset="1428">
+          <caret line="78" column="43" selection-start-line="78" selection-start-column="43" selection-end-line="78" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/SecondProtocolClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5596708" vertical-offset="136" max-vertical-offset="714">
+          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/SecondProtocolServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.75514406" vertical-offset="7" max-vertical-offset="782">
+          <caret line="29" column="3" selection-start-line="29" selection-start-column="3" selection-end-line="29" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/TestB.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13802436" vertical-offset="0" max-vertical-offset="739">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

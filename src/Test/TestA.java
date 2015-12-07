@@ -1,4 +1,4 @@
-package Test;
+package test;
 
 import main.FirstProtocol;
 import main.FirstProtocolClient;
@@ -12,20 +12,18 @@ import java.util.Random;
  * @author nschank (Nicolas Schank)
  * @version 1.1
  */
-public class TestAddingClient {
-  public static final BigInteger g = BigInteger.valueOf(2);
-  public static final BigInteger m = BigInteger.probablePrime(FirstProtocol.BIT_LENGTH, new Random(100));
-  public static final BigInteger r_A = new BigInteger(FirstProtocol.BIT_LENGTH, new Random(101)).mod(m);
+public class TestA {
+  public static final BigInteger r_A = new BigInteger(FirstProtocol.BIT_LENGTH, new Random(101)).mod(TestConstants.m);
   public static final BigInteger s_A = BigInteger.valueOf(15);
 
   public static void main(String[] args) throws Exception {
     FirstProtocolClient client = new FirstProtocolClient("localhost", 1234);
-    System.out.println("Modulus: " + m);
-    System.out.println("Client random value: " + r_A);
-    System.out.println("Server secret value: " + s_A);
+    System.out.println("Modulus: " + TestConstants.m);
+    System.out.println("r_A: " + r_A);
+    System.out.println("s_A: " + s_A);
     client.run(FirstProtocolInput.builder()
-        .setG_rb(g)
-        .setModulus(m)
+        .setG_rb(TestConstants.g.modPow(TestB.r_B, TestConstants.m))
+        .setModulus(TestConstants.m)
         .setSecretAddress(s_A)
         .setSecretRandom(r_A)
         .build());
