@@ -43,7 +43,6 @@ public class FirstProtocolServer extends ProtocolServer<FirstProtocolInput, Pair
 
   @Override
   protected Pair<BigInteger, BigInteger> interpretResult(final BigInteger result) {
-    return Pair.of(result, BigInteger.ZERO);
-    //return Pair.of(result.mod(BigInteger.ZERO.setBit(FirstProtocol.BITLENGTH+1)), result.shiftRight(FirstProtocol.BITLENGTH));
+    return Pair.of(result.mod(BigInteger.ZERO.setBit(FirstProtocol.BIT_LENGTH)), result.shiftRight(FirstProtocol.BIT_LENGTH));
   }
 }

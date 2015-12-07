@@ -2,6 +2,7 @@ package main.wrap;
 
 import circuit.CompositeCircuit;
 import circuit.core.MUX_2Lplus1_L;
+import circuit.core.bool.XOR_2_1;
 import circuit.mod.MOD_SQUARE_3N_N;
 
 
@@ -33,7 +34,7 @@ public class Selector extends CompositeCircuit {
   }
 
   protected void createSubCircuits(final boolean isForGarbling) {
-    subCircuits[XOR] = new MOD_SQUARE_3N_N(bitLength);
+    subCircuits[XOR] = new XOR_2_1();
     subCircuits[SEL1] = new MUX_2Lplus1_L(bitLength);
     subCircuits[SEL2] = new MUX_2Lplus1_L(bitLength);
   }

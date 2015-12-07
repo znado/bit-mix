@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f6986a66-fecd-4926-87ef-3a411f0a483d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/wrap/Selector.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/FirstProtocol.java" afterPath="$PROJECT_DIR$/src/main/FirstProtocol.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/FirstProtocolClient.java" afterPath="$PROJECT_DIR$/src/main/FirstProtocolClient.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/FirstProtocolServer.java" afterPath="$PROJECT_DIR$/src/main/FirstProtocolServer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/ProtocolClient.java" afterPath="$PROJECT_DIR$/src/main/ProtocolClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/ProtocolServer.java" afterPath="$PROJECT_DIR$/src/main/ProtocolServer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Test/TestAddingClient.java" afterPath="$PROJECT_DIR$/src/Test/TestAddingClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Test/TestAddingServer.java" afterPath="$PROJECT_DIR$/src/Test/TestAddingServer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/wrap/Selector.java" afterPath="$PROJECT_DIR$/src/main/wrap/Selector.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="bit-mix.iws" />
@@ -33,7 +27,32 @@
     <favorites_list name="bit-mix" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="Selector.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/wrap/Selector.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="466" max-vertical-offset="1173">
+              <caret line="36" column="35" selection-start-line="36" selection-start-column="35" selection-end-line="36" selection-end-column="35" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FirstProtocolServer.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/FirstProtocolServer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.30041152" vertical-offset="432" max-vertical-offset="918">
+              <caret line="34" column="27" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -90,13 +109,13 @@
         <option value="$PROJECT_DIR$/src/main/wrap/RUN_MULT.java" />
         <option value="$PROJECT_DIR$/src/crypto/ot/OTExtSender.java" />
         <option value="$PROJECT_DIR$/src/main/FirstProtocolClient.java" />
-        <option value="$PROJECT_DIR$/src/main/FirstProtocolServer.java" />
         <option value="$PROJECT_DIR$/src/main/ProtocolServer.java" />
         <option value="$PROJECT_DIR$/src/main/ProtocolClient.java" />
-        <option value="$PROJECT_DIR$/src/main/wrap/Selector.java" />
         <option value="$PROJECT_DIR$/src/main/FirstProtocol.java" />
         <option value="$PROJECT_DIR$/src/Test/TestAddingServer.java" />
         <option value="$PROJECT_DIR$/src/Test/TestAddingClient.java" />
+        <option value="$PROJECT_DIR$/src/main/wrap/Selector.java" />
+        <option value="$PROJECT_DIR$/src/main/FirstProtocolServer.java" />
       </list>
     </option>
   </component>
@@ -595,12 +614,16 @@
       <created>1449480294148</created>
       <updated>1449480294148</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="First protocol complete, pre-testing">
+      <created>1449482912526</created>
+      <updated>1449482912526</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -619,7 +642,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.136875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32985657" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32985657" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -651,7 +674,8 @@
     <MESSAGE value="Much of the server framework completed" />
     <MESSAGE value="First test of framework ready" />
     <MESSAGE value="Debugging framework test" />
-    <option name="LAST_COMMIT_MESSAGE" value="Debugging framework test" />
+    <MESSAGE value="First protocol complete, pre-testing" />
+    <option name="LAST_COMMIT_MESSAGE" value="First protocol complete, pre-testing" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1000,16 +1024,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/wrap/Selector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.0987654" vertical-offset="0" max-vertical-offset="1156">
-          <caret line="60" column="3" selection-start-line="60" selection-start-column="3" selection-end-line="60" selection-end-column="3" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/wrap/EXP_STEP.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7201646" vertical-offset="1078" max-vertical-offset="1564">
@@ -1048,8 +1062,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/ProtocolServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0493827" vertical-offset="34" max-vertical-offset="2397">
-          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.41975307" vertical-offset="34" max-vertical-offset="2397">
+          <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/wrap/Selector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="466" max-vertical-offset="1173">
+          <caret line="36" column="35" selection-start-line="36" selection-start-column="35" selection-end-line="36" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1058,8 +1082,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/FirstProtocolServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30041152" vertical-offset="449" max-vertical-offset="935">
-          <caret line="35" column="43" selection-start-line="35" selection-start-column="43" selection-end-line="35" selection-end-column="43" />
+        <state vertical-scroll-proportion="0.30041152" vertical-offset="432" max-vertical-offset="918">
+          <caret line="34" column="27" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
