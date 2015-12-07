@@ -5,6 +5,8 @@ import org.bitcoinj.core.Base58;
 import org.bitcoinj.core.ECKey;
 import org.spongycastle.math.ec.ECPoint;
 
+import java.util.Arrays;
+
 // simple bitcoin address, pub key, and network pair
 public class MixerNetworkClient {
 
@@ -30,10 +32,14 @@ public class MixerNetworkClient {
         return pubkey;
     }
 
+    public MixerNetworkAddress getPublicNetworkAddress() {
+        return publicNetworkAddress;
+    }
+
     @Override
     public String toString() {
         return "MixerNetworkClient{" +
-                "bitcoinReceiveAddress=" + Base58.encode(bitcoinReceiveAddress.getHash160()) +
+                "bitcoinReceiveAddress=" + bitcoinReceiveAddress +// ", addr bytes = " + Arrays.toString(bitcoinReceiveAddress.getHash160()) +
                 ", pubKey" + pubkey +
                 ", publicNetworkAddress=" + publicNetworkAddress +
                 '}';

@@ -3,6 +3,7 @@ package cs2951e;
 import org.bitcoinj.core.NetworkParameters;
 import org.slf4j.LoggerFactory;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 // the command line class
@@ -56,7 +57,7 @@ public class Main {
         NetworkParameters networkParams = NetworkParameters.fromID(NetworkParameters.ID_MAINNET);
         MixerWallet wallet = new MixerWallet(networkParams);
         System.out.println(wallet.toString());
-        System.out.println("reciving bitcoin at " + wallet.currentReceiveAddress().toString());
+        System.out.println("receiving bitcoin at " + wallet.currentReceiveAddress().toString());// + ", bytes = " + Arrays.toString(wallet.currentReceiveAddress().getHash160()));
 
         Mixer mixer = new Mixer(networkParams, wallet, mixAmount);
 

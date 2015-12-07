@@ -1,5 +1,6 @@
 package cs2951e;
 
+import com.google.common.util.concurrent.ListenableFuture;
 import org.bitcoinj.core.*;
 import org.bitcoinj.net.discovery.DnsDiscovery;
 import org.bitcoinj.script.Script;
@@ -88,7 +89,11 @@ public class MixerWallet {
         }
     }
 
-    public TransactionBroadcast broadcastTransaction(Transaction tx) {
-        return peerGroup.broadcastTransaction(tx);
+    public ListenableFuture<Transaction> broadcastTransaction(Transaction tx) {
+        return peerGroup.broadcastTransaction(tx).future();
+    }
+
+    public void commitTx(Transaction tx) {
+        wallet.commitTx(tx);
     }
 }

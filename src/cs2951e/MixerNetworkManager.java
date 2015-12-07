@@ -6,10 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.*;
 import java.util.*;
 
@@ -18,22 +15,26 @@ public class MixerNetworkManager {
     private ServerSocket serverSocket;
     private boolean running;
     private Random rng;
-    private NetworkParameters params;
     private MixerWallet wallet;
     private ECKey sigKey;
+    private Address shuffleAddress;
+    private int mixAmount;
+    private NetworkParameters networkParams;
+
 
     private HashMap<MixerNetworkAddress, Void> peersList;
 
     private boolean canMix = true;
 
-    public synchronized void setCanMix(boolean canMix) {
+    public void setCanMix(boolean canMix) {
         this.canMix = canMix;
     }
 
-    public MixerNetworkManager(NetworkParameters params, MixerWallet wallet, ECKey sigKey) {
-        this.params = params;
+    public MixerNetworkManager(NetworkParameters params, MixerWallet wallet, ECKey sigKey, int mixAmount) {
         this.wallet = wallet;
         this.sigKey = sigKey;
+        this.mixAmount = mixAmount;
+        this.networkParams = params;
 
         rng = new Random();
         peersList = new HashMap<>();
@@ -45,7 +46,6 @@ public class MixerNetworkManager {
             System.out.println("Server error listening to port.");
             e.printStackTrace();
         }
-        System.out.println("join start");
         // get a list of peers and announce our presence
         Socket joinSocket = new Socket();
         String joinResponse = "undefined";
@@ -56,7 +56,6 @@ public class MixerNetworkManager {
             // send peer query message and check for response
             outToServer.writeBytes("{'action' : 'join', 'port' : " + Config.CLIENT_PORT + "}\n");
             joinResponse = inFromServer.readLine();
-            System.out.println("peers list: " + joinResponse);
             if(joinResponse != null) {
                 JSONObject peersResponseJson = new JSONObject(joinResponse);
                 JSONArray peersJson = peersResponseJson.getJSONArray("peers");
@@ -69,6 +68,7 @@ public class MixerNetworkManager {
                     }
                 }
                 System.out.println("join success");
+                System.out.println("peers list: " + Arrays.toString(peersList.keySet().toArray()));
             }
         } catch (SocketException e) {
             System.out.println("Network manager error server connection reset.");
@@ -82,10 +82,20 @@ public class MixerNetworkManager {
         }
     }
 
+
+    public void setShuffleAddress(Address shuffleAddress) {
+        this.shuffleAddress = shuffleAddress;
+    }
+
+    public Transaction addShuffleOutput(Transaction tx) {
+        tx.addOutput(Coin.valueOf(mixAmount), shuffleAddress);
+        return tx;
+    }
+
+
     private Optional<String> addPeer (MixerNetworkAddress peerAddress) {
-        System.out.println("addPeer start, testing " + peerAddress.toJSONString());
-        Socket querySocket = new Socket();
         try {
+            Socket querySocket = new Socket();
             querySocket.connect(new InetSocketAddress(peerAddress.getIpAddress(), peerAddress.getPort()), Config.PEER_TIMEOUT_MS);
             DataOutputStream outToPeer = new DataOutputStream(querySocket.getOutputStream());
             BufferedReader inFromPeer = new BufferedReader(new InputStreamReader(querySocket.getInputStream()));
@@ -98,8 +108,7 @@ public class MixerNetworkManager {
             peersList.remove(peerAddress);
             return Optional.absent();
         } catch (ConnectException e) {
-            System.out.println("Error connecting to peer.");
-            e.printStackTrace();
+            System.out.println("Error connecting to peer: " + peerAddress);
             return Optional.absent();
         } catch (IOException e) {
             System.out.println("Error querying peer.");
@@ -109,34 +118,37 @@ public class MixerNetworkManager {
     }
 
     public ArrayList<MixerNetworkClient> findMixingPeers(int numPeersNeeded) {
-        System.out.println("findMixingPeers start");
         ArrayList<MixerNetworkClient> randomAvailablePeers = new ArrayList<>();
         ArrayList<MixerNetworkAddress> allPeers = new ArrayList<>(peersList.keySet());
         Set<Integer> failedIndexes = new LinkedHashSet<>();
-        int totalPeers = peersList.size();
-        if(totalPeers < numPeersNeeded) {
+        Set<Integer> usedIndexes = new LinkedHashSet<>();
+        int originalPeerCount = peersList.size();
+        if(originalPeerCount < numPeersNeeded) {
             return null;
         }
         while (randomAvailablePeers.size() < numPeersNeeded) {
-            Integer next = rng.nextInt(totalPeers);
+            Integer next = rng.nextInt(allPeers.size());
+            if(usedIndexes.contains(next)) {
+                continue;
+            }
+            System.out.println("next = " + next + ", peersList = " + Arrays.toString(allPeers.toArray()));
             MixerNetworkAddress peerNetworkAddress = allPeers.get(next);
+            System.out.println("QUERYING " + peerNetworkAddress);
             Optional<String> peerQueryResult = addPeer(peerNetworkAddress);
             if (peerQueryResult.isPresent()) {
                 try {
                     String peerResultString = peerQueryResult.get();
                     JSONObject peerResult = new JSONObject(peerResultString);
                     if (peerResult.getBoolean("available")) {
-                        byte[] peerAddressBytes;
                         try {
-                            peerAddressBytes = Base58.decode(peerResult.getString("bitcoinAddress"));
                             randomAvailablePeers.add(
                                     new MixerNetworkClient(
                                             new Address(
-                                                    params,
-                                                    Config.BITCOIN_PROTOCOL_VERSION,
-                                                    peerAddressBytes),
+                                                    networkParams,
+                                                    peerResult.getString("bitcoinAddress")),
                                             ECKey.fromPublicOnly(Util.hexToBytes(peerResult.getString("pubKey"))),
                                             peerNetworkAddress));
+                            usedIndexes.add(next);
                         } catch (AddressFormatException e) {
                             System.out.println("Invalid peer bitcoin address.");
                             e.printStackTrace();
@@ -144,7 +156,7 @@ public class MixerNetworkManager {
                     } else {
                         System.out.println("peer unavailable");
                         failedIndexes.add(next);
-                        if (failedIndexes.size() > totalPeers - numPeersNeeded) {
+                        if (failedIndexes.size() > originalPeerCount - numPeersNeeded) {
                             return null;
                         }
                     }
@@ -154,8 +166,9 @@ public class MixerNetworkManager {
                 }
             } else {
                 failedIndexes.add(next);
+                peersList.remove(peerNetworkAddress);
                 allPeers.remove(peerNetworkAddress);
-                if (failedIndexes.size() > totalPeers - numPeersNeeded) {
+                if (failedIndexes.size() > originalPeerCount - numPeersNeeded) {
                     return null;
                 }
             }
@@ -164,11 +177,36 @@ public class MixerNetworkManager {
     }
 
 
+    public Optional<Transaction> sendToPeerToGetOutput(MixerNetworkAddress peerAddress, Transaction tx) {
+        try {
+            Socket querySocket = new Socket();
+            querySocket.connect(new InetSocketAddress(peerAddress.getIpAddress(), peerAddress.getPort()), Config.PEER_TIMEOUT_MS);
+            DataOutputStream outToPeer = new DataOutputStream(querySocket.getOutputStream());
+            BufferedReader inFromPeer = new BufferedReader(new InputStreamReader(querySocket.getInputStream()));
+            // send peer query message and check for response
+            outToPeer.writeBytes("{'action' : 'getOutput', 'tx' : '" + Util.bytesToHex(tx.bitcoinSerialize()) + "'}\n");
+            JSONObject responseJson = new JSONObject(inFromPeer.readLine());
+            return Optional.of(new Transaction(networkParams, Util.hexToBytes(responseJson.getString("tx"))));
+        } catch (SocketTimeoutException e) {
+            System.out.println("Getting output from peer timed out.");
+            e.printStackTrace();
+            peersList.remove(peerAddress);
+        } catch (ConnectException e) {
+            System.out.println("Error connecting to peer while getting output: " + peerAddress);
+        } catch (IOException e) {
+            System.out.println("Error with I/O while getting output from peer.");
+            e.printStackTrace();
+        } catch (JSONException e) {
+            System.out.println("Malformed response during peer output retrieval.");
+            e.printStackTrace();
+        }
+        return Optional.absent();
+    }
 
 
 
     // RUN ON A BACKGROUND THREAD
-    public synchronized void run() {
+    public void run() {
         if(serverSocket == null) {
             System.out.println("Null server socket.");
             return;
@@ -186,8 +224,10 @@ public class MixerNetworkManager {
                 String response = generateResponse(clientMessage);
                 System.out.println("response " + response);
                 outToClient.writeBytes(response + "\n");
+            } catch (SocketException e) {
+                System.out.println("P2P shutdown.");
             } catch (IOException e) {
-                System.out.println("Server error accepting client connection.");
+                System.out.println("P2P server error accepting client connection.");
                 e.printStackTrace();
             }
         }
@@ -196,25 +236,30 @@ public class MixerNetworkManager {
 
     private String generateResponse(String request) {
         try {
-            JSONObject clientJson = new JSONObject(request);
-            switch (clientJson.getString("action")) {
+            JSONObject requestJson = new JSONObject(request);
+            switch (requestJson.getString("action")) {
                 case "query":
                     if(canMix) {
                         canMix = false;
-                        byte[] addressBytes = wallet.currentReceiveAddress().getHash160();
                         return "{" +
                                 "'available' : true," +
-                                "'bitcoinAddress' : '" + Base58.encode(addressBytes) + "'," +
+                                "'bitcoinAddress' : '" + wallet.currentReceiveAddress() + "'," +
                                 "'pubKey' : '" + sigKey.getPublicKeyAsHex() + "'" +
                                 "}";
                     } else {
                         return "{'available' : false}";
                     }
-                case "sign":
-
+                case "getOutput":
+                    Transaction tx = new Transaction(networkParams, Util.hexToBytes(requestJson.getString("tx")));
+                    int txFee = 1000;
+                    Coin amount1 = Coin.valueOf(this.mixAmount - txFee);
+                    tx.addOutput(amount1, shuffleAddress);
+                    String json = "{'error' : false, 'tx' : '" + Util.bytesToHex(tx.bitcoinSerialize()) + "'}";
+                    System.out.println(json);
+                    return json;
             }
         } catch (JSONException e) {
-            String err = "Server error parsing client JSON message.";
+            String err = "P2P server error parsing client JSON message.";
             System.out.println(err);
             e.printStackTrace();
             return Util.generateError(err);

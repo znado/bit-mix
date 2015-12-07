@@ -1,5 +1,6 @@
 package cs2951e;
 
+import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import com.mysql.fabric.xmlrpc.base.Array;
 import org.bitcoinj.core.*;
@@ -13,13 +14,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 // the main class for the actual mixer
 public class Mixer {
 
-    private String bitcoinSourceAddress;
-    private int mixAmount;
     private MixerNetworkManager networkManager;
     private MixerWallet wallet;
     private NetworkParameters networkParams;
@@ -29,9 +29,8 @@ public class Mixer {
         this.networkParams = networkParams;
         this.wallet = wallet;
         this.sigKey = new ECKey();
-        this.mixAmount = mixAmount;
 
-        networkManager = new MixerNetworkManager(networkParams, wallet, this.sigKey);
+        networkManager = new MixerNetworkManager(networkParams, wallet, this.sigKey, mixAmount);
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -39,10 +38,12 @@ public class Mixer {
                 return;
             }
         }).start();
+
+        // TODO TESTING ONLY NEED TO REMOVE
+        networkManager.setShuffleAddress(wallet.currentReceiveAddress());
     }
 
     public void mix() {
-        System.out.println("mixing start");
         // find two ready peers
         ArrayList<MixerNetworkClient> peersList = networkManager.findMixingPeers(Config.MIX_PEER_COUNT);
         if(peersList != null) {
@@ -53,9 +54,45 @@ public class Mixer {
             return;
         }
 
+        Address shuffleDestinationAddress = peersList.get(0).getBitcoinReceiveAddress();
+        networkManager.setShuffleAddress(shuffleDestinationAddress);
+
+        Transaction testTransaction = new Transaction(networkParams);
+        testTransaction = networkManager.addShuffleOutput(testTransaction);
+
+
+        // send to each peer so they can add their output
+        for(MixerNetworkClient peer : peersList) {
+            System.out.println("sending transaction to: " + peer.getPublicNetworkAddress().getPort());
+            Optional<Transaction> modifiedTransaction = networkManager.sendToPeerToGetOutput(peer.getPublicNetworkAddress(), testTransaction);
+            if(modifiedTransaction.isPresent()) {
+                testTransaction = modifiedTransaction.get();
+                System.out.println("got modified transaction!");
+                System.out.println(testTransaction);
+            } else {
+                System.out.println("didnt get modified transaction!");
+            }
+        }
+        System.out.println(testTransaction);
+
+//        Wallet.SendRequest request = Wallet.SendRequest.forTx(testTransaction);
+//        wallet.completeTx(request);
+//        System.out.println("completed");
+//        wallet.commitTx(request.tx);
+//        System.out.println("committed");
+//        try {
+//            Transaction sentTransaction = wallet.broadcastTransaction(request.tx).get();
+//            System.out.println("sent: " + sentTransaction);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        } catch (ExecutionException e) {
+//            e.printStackTrace();
+//        }
+
+
+
         // get address our mixed bitcoins will arrive at
-        Address mixerReceivingAddress = wallet.currentReceiveAddress();
-        Address peerMixerDestinationAddress = new Shuffler().shuffle();
+        /*Address peerMixerDestinationAddress = new Shuffler().shuffle();
         ECKey serverKey = null;
         for(MixerNetworkClient peer : peersList) {
             if(peer.getBitcoinReceiveAddress().equals(peerMixerDestinationAddress)) {
@@ -77,13 +114,13 @@ public class Mixer {
 
 
         Transaction mixTransaction = new Transaction(networkParams);
-        mixTransaction.addInput(inputContract.getOutput(0));
         for(ECKey key : keys) {
             mixTransaction.addOutput(singleAmount, key);
         }
         //Wallet.SendRequest req = Wallet.SendRequest.forTx(contract);
         //wallet.completeTx(req);
         //wallet.broadcastTransaction(req.tx);
+        */
 
 
 
