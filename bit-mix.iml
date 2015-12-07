@@ -19,6 +19,7 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="commons-io-1.4" level="project" />
+    <orderEntry type="library" name="java-json (2)" level="project" />
   </component>
 </module>
 

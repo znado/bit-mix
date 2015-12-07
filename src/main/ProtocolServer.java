@@ -32,8 +32,10 @@ public abstract class ProtocolServer<I, O> implements AutoCloseable {
   }
 
   private static Sender initializeOT(Connection connection) throws IOException {
-    return new OTExtSender(connection.getOis()
-        .readInt(), Wire.labelBitLength, connection);
+    System.out.println("initialize");
+    int ots = connection.getOis().readInt();
+    System.out.println("help");
+    return new OTExtSender(ots, Wire.labelBitLength, connection);
   }
 
   private static BigInteger[][] labelPairs(final int numOfPairs) {
@@ -79,9 +81,12 @@ public abstract class ProtocolServer<I, O> implements AutoCloseable {
 
   private static State sendLocal(final Connection connection, final BigInteger[][] serverLabelPairs,
       final BigInteger localState) throws IOException {
+    System.out.println("At sent local");
     BigInteger[] zeros = new BigInteger[serverLabelPairs.length];
     connection.getOos()
         .writeInt(serverLabelPairs.length);
+    connection.flush();
+    System.out.println("Local sent: " + serverLabelPairs.length);
     for (int i = 0; i < serverLabelPairs.length; i++) {
       int bit = localState.testBit(i) ? 1 : 0;
 
@@ -110,8 +115,11 @@ public abstract class ProtocolServer<I, O> implements AutoCloseable {
 
   public final O run(I input) throws IOException {
     try (Connection connection = Connection.serverInstance(sock.accept())) {
+      System.out.println("0. Started");
       List<Circuit> circuits = createCircuits(input);
       Protocols.buildCircuits(circuits, connection);
+
+      System.out.println("1. Built circuits");
 
       Sender sender = initializeOT(connection);
       int inputLength = inputLength(input);
@@ -122,7 +130,10 @@ public abstract class ProtocolServer<I, O> implements AutoCloseable {
       State fakeLocal = sendLocal(connection, serverLabelPairs, localState);
       State fakeRemote = doOT(sender, clientLabelPairs);
 
+      System.out.println("2. OT Done");
+
       State fakeOutput = execCircuit(circuits, connection, fakeLocal, fakeRemote);
+      System.out.println("3. Executed");
       return interpretResult(receiveFinal(connection, fakeOutput));
     }
   }

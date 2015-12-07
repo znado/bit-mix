@@ -35,7 +35,12 @@ public class OTExtSender extends Sender {
   }
 
   public void execProtocol(BigInteger[][] msgPairs) throws IOException {
-    BigInteger[][] cphPairs = (BigInteger[][]) ois.readObject();
+    BigInteger[][] cphPairs;
+    try {
+      cphPairs = (BigInteger[][]) ois.readObject();
+    } catch (ClassNotFoundException e) {
+      throw new IOException(e);
+    }
     int bytelength;
 
     BitMatrix Q = new BitMatrix(numOfPairs, SecurityParameter.k1);

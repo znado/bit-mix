@@ -33,7 +33,7 @@ public class FirstProtocolServer extends ProtocolServer<FirstProtocolInput, Pair
   @Override
   protected State execCircuit(final List<Circuit> circuits, final Connection connection, final State local,
       final State remote) {
-    return FirstProtocol.execute(circuits, connection, remote, local);
+    return FirstProtocol.execute(circuits, remote, local);
   }
 
   @Override

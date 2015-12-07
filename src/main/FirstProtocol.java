@@ -15,7 +15,7 @@ import java.util.List;
  * @version 1.1
  */
 public final class FirstProtocol {
-  public static final int BITLENGTH = 15;//162;
+  public static final int BITLENGTH = 16;//162;
   private static final int FIRST_EXP = 1;
   private static final int MULT = 0;
   private static final int NORMAL_EXP = 2;
@@ -24,7 +24,7 @@ public final class FirstProtocol {
     throw new AssertionError("Not meant to be instantiated");
   }
 
-  public static State execute(final List<Circuit> circuits, final Connection connection, final State clientSide,
+  public static State execute(final List<Circuit> circuits, final State clientSide,
       final State serverSide) {
     BigInteger[] lbs = new BigInteger[BITLENGTH * 2];
     BigInteger[] clbs = clientSide.toLabels();

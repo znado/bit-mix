@@ -2,14 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f6986a66-fecd-4926-87ef-3a411f0a483d" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\nschank\Documents\course\CSCI2951e\proj\src\main\wrap\Wrapper.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\nschank\Documents\course\CSCI2951e\proj\src\main\wrap\Wrappers.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/wrap/EXP_STEP.java" afterPath="$PROJECT_DIR$/src/main/wrap/EXP_STEP.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/NPOTKey" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/java_json__2_.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/FirstProtocol.java" afterPath="$PROJECT_DIR$/src/main/FirstProtocol.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/FirstProtocolClient.java" afterPath="$PROJECT_DIR$/src/main/FirstProtocolClient.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/FirstProtocolServer.java" afterPath="$PROJECT_DIR$/src/main/FirstProtocolServer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/wrap/RUN_MULT.java" afterPath="$PROJECT_DIR$/src/main/wrap/RUN_MULT.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/crypto/ot/OTExtSender.java" afterPath="$PROJECT_DIR$/src/crypto/ot/OTExtSender.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/ProtocolClient.java" afterPath="$PROJECT_DIR$/src/main/ProtocolClient.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/ProtocolServer.java" afterPath="$PROJECT_DIR$/src/main/ProtocolServer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Test/TestAddingClient.java" afterPath="$PROJECT_DIR$/src/Test/TestAddingClient.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Test/TestAddingServer.java" afterPath="$PROJECT_DIR$/src/Test/TestAddingServer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bit-mix.iml" afterPath="$PROJECT_DIR$/bit-mix.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="bit-mix.iws" />
@@ -33,30 +36,50 @@
     <favorites_list name="bit-mix" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="FirstProtocol.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/FirstProtocol.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="196" max-vertical-offset="1088">
-              <caret line="55" column="28" selection-start-line="55" selection-start-column="28" selection-end-line="55" selection-end-column="28" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TestAddingClient.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Test/TestAddingClient.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.41407308" vertical-offset="0" max-vertical-offset="739">
-              <caret line="22" column="34" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf>
+          <file leaf-file-name="FirstProtocolServer.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/FirstProtocolServer.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0" vertical-offset="449" max-vertical-offset="935">
+                  <caret line="35" column="43" selection-start-line="35" selection-start-column="43" selection-end-line="35" selection-end-column="43" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ProtocolServer.java" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/main/ProtocolServer.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.7484144" vertical-offset="428" max-vertical-offset="2465">
+                  <caret line="46" column="3" selection-start-line="46" selection-start-column="3" selection-end-line="46" selection-end-column="3" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="ProtocolClient.java" pinned="false" current="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/main/ProtocolClient.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.54756874" vertical-offset="370" max-vertical-offset="1462">
+                  <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -93,7 +116,6 @@
         <option value="$PROJECT_DIR$/src/circuit/mod/MOD_MULT_4N_N.java" />
         <option value="$PROJECT_DIR$/src/circuit/mod/MOD_SQUARE_3N_N.java" />
         <option value="$PROJECT_DIR$/src/circuit/mod/MOD_SUB_MULT_4Nplus1_N.java" />
-        <option value="$PROJECT_DIR$/src/crypto/ot/OTExtSender.java" />
         <option value="$PROJECT_DIR$/src/crypto/ot/Receiver.java" />
         <option value="$PROJECT_DIR$/src/crypto/ot/NPOTReceiver.java" />
         <option value="$PROJECT_DIR$/src/crypto/ot/NPOTSender.java" />
@@ -106,20 +128,21 @@
         <option value="$PROJECT_DIR$/src/circuit/State.java" />
         <option value="$PROJECT_DIR$/src/main/Program.java" />
         <option value="$PROJECT_DIR$/src/main/ProgClient.java" />
-        <option value="$PROJECT_DIR$/src/main/ProtocolClient.java" />
         <option value="$PROJECT_DIR$/src/main/ProgServer.java" />
         <option value="$PROJECT_DIR$/src/crypto/ot/Sender.java" />
         <option value="$PROJECT_DIR$/src/main/AdditionServer.java" />
         <option value="$PROJECT_DIR$/src/main/Protocols.java" />
-        <option value="$PROJECT_DIR$/src/main/ProtocolServer.java" />
         <option value="$PROJECT_DIR$/src/main/value/FirstProtocolInput.java" />
-        <option value="$PROJECT_DIR$/src/Test/TestAddingClient.java" />
-        <option value="$PROJECT_DIR$/src/Test/TestAddingServer.java" />
-        <option value="$PROJECT_DIR$/src/main/FirstProtocolClient.java" />
-        <option value="$PROJECT_DIR$/src/main/FirstProtocolServer.java" />
         <option value="$PROJECT_DIR$/src/main/wrap/EXP_STEP.java" />
         <option value="$PROJECT_DIR$/src/main/wrap/RUN_MULT.java" />
+        <option value="$PROJECT_DIR$/src/crypto/ot/OTExtSender.java" />
+        <option value="$PROJECT_DIR$/src/Test/TestAddingClient.java" />
+        <option value="$PROJECT_DIR$/src/Test/TestAddingServer.java" />
         <option value="$PROJECT_DIR$/src/main/FirstProtocol.java" />
+        <option value="$PROJECT_DIR$/src/main/FirstProtocolClient.java" />
+        <option value="$PROJECT_DIR$/src/main/FirstProtocolServer.java" />
+        <option value="$PROJECT_DIR$/src/main/ProtocolClient.java" />
+        <option value="$PROJECT_DIR$/src/main/ProtocolServer.java" />
       </list>
     </option>
   </component>
@@ -401,13 +424,15 @@
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
     <property name="LayoutCode.rearrangeEntries" value="true" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\nschank\Documents\course\CSCI2951e\proj" />
       <recent name="C:\Users\nschank\Documents\course\CSCI2951e\proj\src\util" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.TestAddingClient">
     <configuration default="false" name="Main" type="Application" factoryName="Application" temporary="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="cs2951e.Main" />
@@ -416,6 +441,40 @@
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="bit-mix" />
+      <envs />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="TestAddingServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="Test.TestAddingServer" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="bit-mix" />
+      <envs />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="TestAddingClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="Test.TestAddingClient" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <option name="ENABLE_SWING_INSPECTOR" value="false" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
@@ -528,9 +587,18 @@
       <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
       <method />
     </configuration>
-    <list size="1">
+    <list size="3">
       <item index="0" class="java.lang.String" itemvalue="Application.Main" />
+      <item index="1" class="java.lang.String" itemvalue="Application.TestAddingServer" />
+      <item index="2" class="java.lang.String" itemvalue="Application.TestAddingClient" />
     </list>
+    <recent_temporary>
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="Application.TestAddingClient" />
+        <item index="1" class="java.lang.String" itemvalue="Application.TestAddingServer" />
+        <item index="2" class="java.lang.String" itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
   <component name="SvnConfiguration">
@@ -562,7 +630,11 @@
       <created>1449477651494</created>
       <updated>1449477651494</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="First test of framework ready">
+      <created>1449478976214</created>
+      <updated>1449478976214</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -586,7 +658,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.136875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32985657" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -616,19 +688,17 @@
     <MESSAGE value="More cleanup; most of the program and circuit-level cleanup is good, and no global variables remain" />
     <MESSAGE value="Split between client and server; client-side base largely implemented" />
     <MESSAGE value="Much of the server framework completed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Much of the server framework completed" />
+    <MESSAGE value="First test of framework ready" />
+    <option name="LAST_COMMIT_MESSAGE" value="First test of framework ready" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/circuit/core/bool/G_AND_2_1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.092016235" vertical-offset="0" max-vertical-offset="739">
-          <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/circuit/core/bool/G_OR_2_1.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.092016235" vertical-offset="0" max-vertical-offset="739">
@@ -810,21 +880,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/crypto/ot/OTExtSender.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.4952638" vertical-offset="0" max-vertical-offset="1258">
-          <caret line="76" column="15" selection-start-line="76" selection-start-column="15" selection-end-line="76" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/crypto/ot/NPOTReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5060893" vertical-offset="272" max-vertical-offset="1564">
-          <caret line="44" column="41" selection-start-line="44" selection-start-column="41" selection-end-line="47" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/crypto/ot/NPOTSender.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="2.0933695" vertical-offset="357" max-vertical-offset="2295">
@@ -912,39 +967,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/ProtocolClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.18403247" vertical-offset="408" max-vertical-offset="1326">
-          <caret line="26" column="44" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/circuit/Wire.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3328823" vertical-offset="213" max-vertical-offset="1513">
           <caret line="28" column="29" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/ProtocolServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41407308" vertical-offset="0" max-vertical-offset="2278">
-          <caret line="18" column="34" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/value/FirstProtocolInput.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.67794317" vertical-offset="434" max-vertical-offset="1241">
-          <caret line="55" column="18" selection-start-line="55" selection-start-column="18" selection-end-line="55" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -966,26 +993,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/FirstProtocolServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.79296345" vertical-offset="179" max-vertical-offset="935">
-          <caret line="45" column="44" selection-start-line="45" selection-start-column="44" selection-end-line="45" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/FirstProtocolClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5060893" vertical-offset="0" max-vertical-offset="799">
-          <caret line="22" column="88" selection-start-line="22" selection-start-column="88" selection-end-line="22" selection-end-column="88" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/wrap/EXP_STEP.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3328823" vertical-offset="825" max-vertical-offset="1564">
@@ -994,10 +1001,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Test/TestAddingServer.java">
+    <entry file="file://$PROJECT_DIR$/src/cs2951e/MixerNetworkManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.59810555" vertical-offset="0" max-vertical-offset="739">
-          <caret line="26" column="18" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
+        <state vertical-scroll-proportion="0.3148148" vertical-offset="0" max-vertical-offset="4165">
+          <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/crypto/ot/OTExtSender.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334" vertical-offset="348" max-vertical-offset="1343">
+          <caret line="41" column="31" selection-start-line="41" selection-start-column="31" selection-end-line="41" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/value/FirstProtocolInput.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.0308642" vertical-offset="434" max-vertical-offset="1241">
+          <caret line="55" column="18" selection-start-line="55" selection-start-column="18" selection-end-line="55" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1006,8 +1029,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/FirstProtocol.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="196" max-vertical-offset="1088">
-          <caret line="55" column="28" selection-start-line="55" selection-start-column="28" selection-end-line="55" selection-end-column="28" />
+        <state vertical-scroll-proportion="0.50617284" vertical-offset="196" max-vertical-offset="1088">
+          <caret line="26" column="58" selection-start-line="26" selection-start-column="58" selection-end-line="26" selection-end-column="58" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1016,9 +1039,65 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Test/TestAddingClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41407308" vertical-offset="0" max-vertical-offset="739">
-          <caret line="22" column="34" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.41975307" vertical-offset="0" max-vertical-offset="544">
+          <caret line="16" column="56" selection-start-line="16" selection-start-column="56" selection-end-line="16" selection-end-column="56" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Test/TestAddingServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2654321" vertical-offset="126" max-vertical-offset="612">
+          <caret line="15" column="54" selection-start-line="15" selection-start-column="54" selection-end-line="15" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/FirstProtocolClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.51028806" vertical-offset="313" max-vertical-offset="799">
+          <caret line="33" column="42" selection-start-line="33" selection-start-column="42" selection-end-line="33" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/FirstProtocolServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="449" max-vertical-offset="935">
+          <caret line="35" column="43" selection-start-line="35" selection-start-column="43" selection-end-line="35" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/ProtocolClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.54756874" vertical-offset="370" max-vertical-offset="1462">
+          <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/crypto/ot/NPOTReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.54756874" vertical-offset="132" max-vertical-offset="1564">
+          <caret line="29" column="3" selection-start-line="29" selection-start-column="3" selection-end-line="29" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/ProtocolServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7484144" vertical-offset="428" max-vertical-offset="2465">
+          <caret line="46" column="3" selection-start-line="46" selection-start-column="3" selection-end-line="46" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

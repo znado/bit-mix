@@ -28,8 +28,10 @@ public abstract class ProtocolClient<I> {
   }
 
   private static State getRemoteState(Connection connection) throws IOException {
+    System.out.println("At sent local");
     int remoteSize = connection.getOis()
         .readInt();
+    System.out.println("Remote received: " + remoteSize);
     BigInteger[] serverLabels = new BigInteger[remoteSize];
 
     for (int i = 0; i < remoteSize; i++) {
@@ -63,8 +65,11 @@ public abstract class ProtocolClient<I> {
 
   public final void run(I input) throws IOException {
     try (Connection connection = Connection.clientInstance(socket)) {
+      System.out.println("0. Started");
       List<Circuit> circuits = createCircuits(input);
       Protocols.buildCircuits(circuits, connection);
+
+      System.out.println("1. Built circuits");
 
       BigInteger inputAsBits = convert(input);
       int inputLength = inputLength(input);
@@ -76,7 +81,10 @@ public abstract class ProtocolClient<I> {
       State remoteState = getRemoteState(connection);
       State localState = getLocalState(receiver, inputAsBits);
 
+      System.out.println("2. OT Done");
+
       State outputState = execCircuit(circuits, connection, localState, remoteState);
+      System.out.println("3. Executed");
       transmitOutput(connection, outputState);
     }
   }

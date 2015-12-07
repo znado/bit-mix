@@ -13,8 +13,8 @@ import java.util.Random;
  */
 public class TestAddingClient {
   public static final BigInteger g = BigInteger.valueOf(2);
-  public static final BigInteger m = BigInteger.probablePrime(15, new Random(100));
-  public static final BigInteger r_A = new BigInteger(15, new Random(101)).mod(m);
+  public static final BigInteger m = BigInteger.probablePrime(16, new Random(100));
+  public static final BigInteger r_A = new BigInteger(16, new Random(101)).mod(m);
   public static final BigInteger s_A = BigInteger.valueOf(15);
 
   public static void main(String[] args) throws Exception {

@@ -31,7 +31,7 @@ public class FirstProtocolClient extends ProtocolClient<FirstProtocolInput> {
   @Override
   protected State execCircuit(final List<Circuit> circuits, final Connection connection, final State local,
       final State remote) {
-    return FirstProtocol.execute(circuits, connection, local, remote);
+    return FirstProtocol.execute(circuits, local, remote);
   }
 
   @Override
