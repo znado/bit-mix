@@ -16,7 +16,7 @@ import java.util.List;
  * @version 1.1
  */
 public final class SecondProtocol {
-  public static final int BIT_LENGTH = 16;//162;
+  public static final int BIT_LENGTH = FirstProtocol.BIT_LENGTH;//162;
   private static final int FIRST_EXP = 1;
   private static final int MULT = 0;
   private static final int NORMAL_EXP = 2;
