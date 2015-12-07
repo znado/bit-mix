@@ -37,9 +37,9 @@ public abstract class Circuit implements TransitiveObserver {
 
   protected abstract void compute();
 
-  protected void createInputWires() {
+  protected void createInputWires(Connection connection) {
     for (int i = 0; i < inDegree; i++) {
-      inputWires[i] = new Wire();
+      inputWires[i] = new Wire(connection);
     }
   }
 

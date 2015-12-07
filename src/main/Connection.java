@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 /**
@@ -15,6 +16,7 @@ public class Connection implements AutoCloseable {
   private final ObjectOutputStream oos;              // socket output stream
   private final Socket sock;
   private final boolean forGarbling;
+  private AtomicInteger K = new AtomicInteger(0);
 
   public static Connection serverInstance(Socket sock) throws IOException {
     return new Connection(sock, true);
@@ -52,5 +54,9 @@ public class Connection implements AutoCloseable {
     sock.close();
     oos.close();
     ois.close();
+  }
+
+  public int wireSerial() {
+    return K.getAndIncrement();
   }
 }

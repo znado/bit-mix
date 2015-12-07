@@ -37,6 +37,6 @@ public class SecondProtocolClient extends ProtocolClient<SecondProtocolClientInp
 
   @Override
   protected int inputLength(final SecondProtocolClientInput input) {
-    return SecondProtocol.BIT_LENGTH * 3;
+    return SecondProtocol.BIT_LENGTH*3;
   }
 }

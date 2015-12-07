@@ -4,7 +4,6 @@ package crypto.ot;
 
 import crypto.Cipher;
 import main.Connection;
-import util.StopWatch;
 
 import java.io.File;
 import java.io.FileInputStream;

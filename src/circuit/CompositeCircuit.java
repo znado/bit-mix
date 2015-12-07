@@ -23,7 +23,7 @@ public abstract class CompositeCircuit extends Circuit {
 
   @Override
   public void build(Connection connection) throws IOException {
-    createInputWires();
+    createInputWires(connection);
     createSubCircuits(connection.isForGarbling());
     buildSubCircuits(connection);
     connectWires();

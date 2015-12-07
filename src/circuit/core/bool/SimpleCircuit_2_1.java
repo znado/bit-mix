@@ -23,13 +23,13 @@ public abstract class SimpleCircuit_2_1 extends Circuit {
   }
 
   public void build(Connection connection) throws IOException {
-    createInputWires();
-    createOutputWires();
+    createInputWires(connection);
+    createOutputWires(connection);
     this.connection = connection;
   }
 
-  protected void createInputWires() {
-    super.createInputWires();
+  protected void createInputWires(Connection connection) {
+    super.createInputWires(connection);
 
     for (int i = 0; i < inDegree; i++) {
       inputWires[i].addObserver(this, new TransitiveObservable.OSocket(inputWires, i));
@@ -74,8 +74,8 @@ public abstract class SimpleCircuit_2_1 extends Circuit {
 
   protected abstract boolean collapse();
 
-  protected void createOutputWires() {
-    outputWires[0] = new Wire();
+  protected void createOutputWires(Connection connection) {
+    outputWires[0] = new Wire(connection);
   }
 
   protected void encryptTruthTable() {

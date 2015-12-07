@@ -26,6 +26,7 @@ public class SecondProtocolServer extends ProtocolServer<SecondProtocolServerInp
 
   @Override
   public List<Circuit> createCircuits(final SecondProtocolServerInput input) {
+    System.out.println("-g^r_A: " + input.g_ra.modInverse(input.modulus));
     return SecondProtocol.getSecondProtocolCircuit(input.modulus, input.g_ra.modInverse(input.modulus));
   }
 

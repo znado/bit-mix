@@ -2,6 +2,8 @@
 
 package circuit;
 
+import main.Connection;
+
 import java.math.BigInteger;
 import java.security.SecureRandom;
 
@@ -10,7 +12,6 @@ public class Wire extends TransitiveObservable {
   public static final int UNKNOWN_SIG = -1;
 
   // These four fields are for garbling
-  public static int K = 0;
   private static final SecureRandom rnd = new SecureRandom();
   public static final int labelBitLength = 80;
 
@@ -21,8 +22,8 @@ public class Wire extends TransitiveObservable {
   public BigInteger lbl;
   public boolean invd = false;
 
-  public Wire() {
-    serialNum = K++;
+  public Wire(Connection connection) {
+    serialNum = connection.wireSerial();
     lbl = new BigInteger(labelBitLength, rnd);
   }
 

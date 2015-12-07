@@ -20,8 +20,8 @@ class TestC {
   public static void main(String[] args) throws Exception {
     FirstProtocolServer server = new FirstProtocolServer(1234);
     System.out.println("Modulus: " + TestConstants.m);
-    System.out.println("Server random value: " + r_C);
-    System.out.println("Server secret value: " + s_C);
+    System.out.println("r_C: " + r_C);
+    System.out.println("s_C: " + s_C);
     Pair<BigInteger, BigInteger> pair = server.run(FirstProtocolInput.builder()
         .setG_rb(TestConstants.g.modPow(TestB.r_B, TestConstants.m))
         .setModulus(TestConstants.m)
@@ -31,9 +31,11 @@ class TestC {
     System.out.println("First value: " + pair.first);
     System.out.println("Second value: " + pair.second);
 
+    BigInteger g_r_A = TestConstants.g.modPow(TestA.r_A, TestConstants.m);
+    System.out.println("g^r_A: " + g_r_A);
     SecondProtocolClient client = new SecondProtocolClient("localhost", 2345);
     client.run(SecondProtocolClientInput.builder()
-        .setG_ra(TestConstants.g.modPow(TestA.r_A, TestConstants.m))
+        .setG_ra(g_r_A)
         .setModulus(TestConstants.m)
         .setX1(pair.first)
         .setX2(pair.second)

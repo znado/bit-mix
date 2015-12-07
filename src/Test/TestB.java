@@ -20,8 +20,10 @@ class TestB {
     System.out.println("Modulus: " + TestConstants.m);
     System.out.println("r_B: " + r_B);
     System.out.println("s_B: " + s_B);
+    BigInteger g_r_A = TestConstants.g.modPow(TestA.r_A, TestConstants.m);
+    System.out.println("g^r_A: " + g_r_A);
     Pair<BigInteger, BigInteger> pair = server.run(SecondProtocolServerInput.builder()
-        .setG_ra(TestConstants.g.modPow(TestA.r_A, TestConstants.m))
+        .setG_ra(g_r_A)
         .setModulus(TestConstants.m)
         .setSecretRandom(r_B)
         .build());
