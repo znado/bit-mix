@@ -23,7 +23,6 @@ class TestB {
     BigInteger g_r_A = TestConstants.g.modPow(TestA.r_A, TestConstants.m);
     System.out.println("g^r_A: " + g_r_A);
     Pair<BigInteger, BigInteger> pair = server.run(SecondProtocolServerInput.builder()
-        .setG_ra(g_r_A)
         .setModulus(TestConstants.m)
         .setSecretRandom(r_B)
         .build());

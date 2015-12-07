@@ -5,7 +5,7 @@ package test;
 import main.FirstProtocol;
 import main.FirstProtocolServer;
 import main.SecondProtocolClient;
-import main.value.FirstProtocolInput;
+import main.value.FirstProtocolServerInput;
 import main.value.SecondProtocolClientInput;
 import util.Pair;
 
@@ -22,8 +22,7 @@ class TestC {
     System.out.println("Modulus: " + TestConstants.m);
     System.out.println("r_C: " + r_C);
     System.out.println("s_C: " + s_C);
-    Pair<BigInteger, BigInteger> pair = server.run(FirstProtocolInput.builder()
-        .setG_rb(TestConstants.g.modPow(TestB.r_B, TestConstants.m))
+    Pair<BigInteger, BigInteger> pair = server.run(FirstProtocolServerInput.builder()
         .setModulus(TestConstants.m)
         .setSecretAddress(s_C)
         .setSecretRandom(r_C)
@@ -31,15 +30,16 @@ class TestC {
     System.out.println("First value: " + pair.first);
     System.out.println("Second value: " + pair.second);
 
-    BigInteger g_r_A = TestConstants.g.modPow(TestA.r_A, TestConstants.m);
-    System.out.println("g^r_A: " + g_r_A);
+    BigInteger negGAC = TestConstants.g.modPow(TestA.r_A, TestConstants.m)
+        .modPow(r_C, TestConstants.m)
+        .modInverse(TestConstants.m);
+    System.out.println("g^-AC: " + negGAC);
     SecondProtocolClient client = new SecondProtocolClient("localhost", 2345);
     client.run(SecondProtocolClientInput.builder()
-        .setG_ra(g_r_A)
+        .setNegGAC(negGAC)
         .setModulus(TestConstants.m)
         .setX1(pair.first)
         .setX2(pair.second)
-        .setSecretRandom(r_C)
         .build());
   }
 }
