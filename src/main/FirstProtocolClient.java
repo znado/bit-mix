@@ -20,7 +20,7 @@ public class FirstProtocolClient extends ProtocolClient<FirstProtocolInput> {
 
   @Override
   protected BigInteger convert(final FirstProtocolInput input) {
-    return input.secretRandom.shiftLeft(FirstProtocol.BITLENGTH).add(input.secretAddress);
+    return input.secretAddress.shiftLeft(FirstProtocol.BITLENGTH).add(input.secretRandom);
   }
 
   @Override

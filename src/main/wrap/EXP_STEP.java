@@ -6,6 +6,9 @@ import circuit.CompositeCircuit;
 import circuit.core.MUX_2Lplus1_L;
 import circuit.mod.MOD_MULT_4N_N;
 import circuit.mod.MOD_SQUARE_3N_N;
+import util.BigIntegers;
+
+import java.math.BigInteger;
 
 
 /*
@@ -15,10 +18,16 @@ import circuit.mod.MOD_SQUARE_3N_N;
  */
 public class EXP_STEP extends CompositeCircuit {
   private final boolean first;
+  private final int bitLength;
+  private final BigInteger base;
+  private final BigInteger modulus;
 
-  public EXP_STEP(boolean first) {
-    super(first ? 1 : AdditionCommon.BIT_LENGTH + 1, AdditionCommon.BIT_LENGTH, 3, "EXP STEP");
+  public EXP_STEP(boolean first, int bitLength, BigInteger base, BigInteger modulus) {
+    super(first ? 1 : bitLength + 1, bitLength, 3, "EXP STEP");
     this.first = first;
+    this.bitLength = bitLength;
+    this.base = base;
+    this.modulus = modulus;
   }
 
   private static final int SQUARE = 0;
@@ -33,16 +42,14 @@ public class EXP_STEP extends CompositeCircuit {
     return 0;
   }
 
-  protected void createSubCircuits(final boolean isForGarbling) throws Exception {
-    subCircuits[SQUARE] = new MOD_SQUARE_3N_N(AdditionCommon.BIT_LENGTH);
-    subCircuits[MULT] = new MOD_MULT_4N_N(AdditionCommon.BIT_LENGTH);
-    subCircuits[SEL] = new MUX_2Lplus1_L(AdditionCommon.BIT_LENGTH);
-
-    super.createSubCircuits(isForGarbling);
+  protected void createSubCircuits(final boolean isForGarbling) {
+    subCircuits[SQUARE] = new MOD_SQUARE_3N_N(bitLength);
+    subCircuits[MULT] = new MOD_MULT_4N_N(bitLength);
+    subCircuits[SEL] = new MUX_2Lplus1_L(bitLength);
   }
 
   protected void connectWires() {
-    for (int i = 0; i < AdditionCommon.BIT_LENGTH; i++) {
+    for (int i = 0; i < bitLength; i++) {
       if (!first) {
         inputWire(X(i)).connectTo(subCircuits[SQUARE].inputWires, MOD_SQUARE_3N_N.X(i));
       }
@@ -50,29 +57,32 @@ public class EXP_STEP extends CompositeCircuit {
       subCircuits[SQUARE].outputWire(i).connectTo(subCircuits[SEL].inputWires, MUX_2Lplus1_L.X(i));
       subCircuits[MULT].outputWire(i).connectTo(subCircuits[SEL].inputWires, MUX_2Lplus1_L.Y(i));
     }
-    inputWire(Y()).connectTo(subCircuits[SEL].inputWires, MUX_2Lplus1_L.C(AdditionCommon.BIT_LENGTH));
+    inputWire(Y()).connectTo(subCircuits[SEL].inputWires, MUX_2Lplus1_L.C(bitLength));
   }
 
   @Override
   protected void defineOutputWires() {
-    System.arraycopy(subCircuits[SEL].outputWires, 0, outputWires, 0, AdditionCommon.BIT_LENGTH);
+    System.arraycopy(subCircuits[SEL].outputWires, 0, outputWires, 0, bitLength);
   }
 
   @Override
   protected void fixInternalWires() {
-    for (int i = 0; i < AdditionCommon.BIT_LENGTH; i++) {
+    BigInteger modMinusOne = modulus.subtract(BigInteger.ONE);
+    BigInteger modNeg = BigIntegers.negative(modulus);
+
+    for (int i = 0; i < bitLength; i++) {
       subCircuits[SQUARE].inputWire(MOD_SQUARE_3N_N.mMinusOne(i))
-          .fixWire(AdditionCommon.MOD_MINUS_ONE.testBit(i) ? 1 : 0);
+          .fixWire(modMinusOne.testBit(i) ? 1 : 0);
       subCircuits[MULT].inputWire(MOD_MULT_4N_N.mMinusOne(i))
-          .fixWire(AdditionCommon.MOD_MINUS_ONE.testBit(i) ? 1 : 0);
+          .fixWire(modMinusOne.testBit(i) ? 1 : 0);
 
       subCircuits[SQUARE].inputWire(MOD_SQUARE_3N_N.invM(i))
-          .fixWire(AdditionCommon.MOD_NEG.testBit(i) ? 1 : 0);
+          .fixWire(modNeg.testBit(i) ? 1 : 0);
       subCircuits[MULT].inputWire(MOD_MULT_4N_N.invM(i))
-          .fixWire(AdditionCommon.MOD_NEG.testBit(i) ? 1 : 0);
+          .fixWire(modNeg.testBit(i) ? 1 : 0);
 
       subCircuits[MULT].inputWire(MOD_MULT_4N_N.Y(i))
-          .fixWire(AdditionCommon.BASE.testBit(i) ? 1 : 0);
+          .fixWire(base.testBit(i) ? 1 : 0);
 
       if (first) {
         subCircuits[SQUARE].inputWire(MOD_SQUARE_3N_N.X(i)).fixWire(i == 0 ? 1 : 0);

@@ -2,28 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f6986a66-fecd-4926-87ef-3a411f0a483d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/FirstProtocolServer.java" />
-      <change type="DELETED" beforePath="C:\Users\nschank\Documents\course\CSCI2951e\proj\src\main\AdditionClient.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\nschank\Documents\course\CSCI2951e\proj\src\main\AdditionCommon.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\nschank\Documents\course\CSCI2951e\proj\src\main\AdditionServer.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\nschank\Documents\course\CSCI2951e\proj\src\main\wrap\RUN_ADD.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\nschank\Documents\course\CSCI2951e\proj\src\main\wrap\RUN_ADD1.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\nschank\Documents\course\CSCI2951e\proj\src\main\wrap\RUN_COND_ADD.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\nschank\Documents\course\CSCI2951e\proj\src\main\wrap\RUN_DOUBLE.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\nschank\Documents\course\CSCI2951e\proj\src\main\wrap\RUN_EXP.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\nschank\Documents\course\CSCI2951e\proj\src\main\wrap\RUN_SQUARE.java" afterPath="" />
-      <change type="MOVED" beforePath="C:\Users\nschank\Documents\course\CSCI2951e\proj\src\main\ProgServer.java" afterPath="$PROJECT_DIR$/src/main/ProtocolServer.java" />
+      <change type="DELETED" beforePath="C:\Users\nschank\Documents\course\CSCI2951e\proj\src\main\wrap\Wrapper.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\nschank\Documents\course\CSCI2951e\proj\src\main\wrap\Wrappers.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/wrap/EXP_STEP.java" afterPath="$PROJECT_DIR$/src/main/wrap/EXP_STEP.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/FirstProtocol.java" afterPath="$PROJECT_DIR$/src/main/FirstProtocol.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/FirstProtocolClient.java" afterPath="$PROJECT_DIR$/src/main/FirstProtocolClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/value/FirstProtocolInput.java" afterPath="$PROJECT_DIR$/src/main/value/FirstProtocolInput.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/Protocols.java" afterPath="$PROJECT_DIR$/src/main/Protocols.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/FirstProtocolServer.java" afterPath="$PROJECT_DIR$/src/main/FirstProtocolServer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/wrap/RUN_MULT.java" afterPath="$PROJECT_DIR$/src/main/wrap/RUN_MULT.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/crypto/ot/Sender.java" afterPath="$PROJECT_DIR$/src/crypto/ot/Sender.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Test/TestAddingClient.java" afterPath="$PROJECT_DIR$/src/Test/TestAddingClient.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Test/TestAddingServer.java" afterPath="$PROJECT_DIR$/src/Test/TestAddingServer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/wrap/Wrapper.java" afterPath="$PROJECT_DIR$/src/main/wrap/Wrapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/wrap/Wrappers.java" afterPath="$PROJECT_DIR$/src/main/wrap/Wrappers.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="bit-mix.iws" />
@@ -48,12 +34,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="FirstProtocolClient.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/FirstProtocolClient.java">
+      <file leaf-file-name="FirstProtocol.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/FirstProtocol.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="799">
-              <caret line="3" column="21" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="196" max-vertical-offset="1088">
+              <caret line="55" column="28" selection-start-line="55" selection-start-column="28" selection-end-line="55" selection-end-column="28" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -61,33 +49,9 @@
       <file leaf-file-name="TestAddingClient.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Test/TestAddingClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.39106902" vertical-offset="0" max-vertical-offset="739">
-              <caret line="21" column="49" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
+            <state vertical-scroll-proportion="0.41407308" vertical-offset="0" max-vertical-offset="739">
+              <caret line="22" column="34" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FirstProtocolServer.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/FirstProtocolServer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="918">
-              <caret line="35" column="70" selection-start-line="35" selection-start-column="70" selection-end-line="35" selection-end-column="70" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FirstProtocol.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/FirstProtocol.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="349" max-vertical-offset="1088">
-              <caret line="30" column="86" selection-start-line="30" selection-start-column="86" selection-end-line="30" selection-end-column="86" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -105,9 +69,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/net/Protocol.java" />
-        <option value="$PROJECT_DIR$/src/net/AbstractProtocolServer.java" />
-        <option value="$PROJECT_DIR$/src/circuit/TransitiveObservable.java" />
         <option value="$PROJECT_DIR$/src/circuit/Wire.java" />
         <option value="$PROJECT_DIR$/src/circuit/core/bool/AND_2_1.java" />
         <option value="$PROJECT_DIR$/src/circuit/Circuit.java" />
@@ -151,11 +112,14 @@
         <option value="$PROJECT_DIR$/src/main/AdditionServer.java" />
         <option value="$PROJECT_DIR$/src/main/Protocols.java" />
         <option value="$PROJECT_DIR$/src/main/ProtocolServer.java" />
-        <option value="$PROJECT_DIR$/src/main/FirstProtocolServer.java" />
-        <option value="$PROJECT_DIR$/src/main/FirstProtocol.java" />
-        <option value="$PROJECT_DIR$/src/main/FirstProtocolClient.java" />
         <option value="$PROJECT_DIR$/src/main/value/FirstProtocolInput.java" />
         <option value="$PROJECT_DIR$/src/Test/TestAddingClient.java" />
+        <option value="$PROJECT_DIR$/src/Test/TestAddingServer.java" />
+        <option value="$PROJECT_DIR$/src/main/FirstProtocolClient.java" />
+        <option value="$PROJECT_DIR$/src/main/FirstProtocolServer.java" />
+        <option value="$PROJECT_DIR$/src/main/wrap/EXP_STEP.java" />
+        <option value="$PROJECT_DIR$/src/main/wrap/RUN_MULT.java" />
+        <option value="$PROJECT_DIR$/src/main/FirstProtocol.java" />
       </list>
     </option>
   </component>
@@ -594,29 +558,33 @@
       <created>1449472457287</created>
       <updated>1449472457287</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Much of the server framework completed">
+      <created>1449477651494</created>
+      <updated>1449477651494</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32985657" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32985657" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.136875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -647,36 +615,13 @@
     <MESSAGE value="Cleanup of the library's actually godawful server/client code" />
     <MESSAGE value="More cleanup; most of the program and circuit-level cleanup is good, and no global variables remain" />
     <MESSAGE value="Split between client and server; client-side base largely implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="Split between client and server; client-side base largely implemented" />
+    <MESSAGE value="Much of the server framework completed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Much of the server framework completed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/Connection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7239513" vertical-offset="247" max-vertical-offset="1054">
-          <caret line="46" column="15" selection-start-line="46" selection-start-column="15" selection-end-line="46" selection-end-column="15" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/circuit/core/bool/E_AND_2_1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39106902" vertical-offset="0" max-vertical-offset="739">
-          <caret line="21" column="10" selection-start-line="21" selection-start-column="10" selection-end-line="21" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/circuit/core/bool/E_OR_2_1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16102841" vertical-offset="0" max-vertical-offset="739">
-          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/circuit/core/bool/G_AND_2_1.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.092016235" vertical-offset="0" max-vertical-offset="739">
@@ -993,34 +938,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/FirstProtocolServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="918">
-          <caret line="35" column="70" selection-start-line="35" selection-start-column="70" selection-end-line="35" selection-end-column="70" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/FirstProtocol.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="349" max-vertical-offset="1088">
-          <caret line="30" column="86" selection-start-line="30" selection-start-column="86" selection-end-line="30" selection-end-column="86" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/FirstProtocolClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="799">
-          <caret line="3" column="21" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/value/FirstProtocolInput.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.67794317" vertical-offset="434" max-vertical-offset="1241">
@@ -1031,10 +948,76 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/BigIntegers.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.26522326" vertical-offset="315" max-vertical-offset="1054">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/wrap/RUN_MULT.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.12584573" vertical-offset="213" max-vertical-offset="1224">
+          <caret line="18" column="30" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/FirstProtocolServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.79296345" vertical-offset="179" max-vertical-offset="935">
+          <caret line="45" column="44" selection-start-line="45" selection-start-column="44" selection-end-line="45" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/FirstProtocolClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5060893" vertical-offset="0" max-vertical-offset="799">
+          <caret line="22" column="88" selection-start-line="22" selection-start-column="88" selection-end-line="22" selection-end-column="88" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/wrap/EXP_STEP.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3328823" vertical-offset="825" max-vertical-offset="1564">
+          <caret line="69" column="40" selection-start-line="69" selection-start-column="40" selection-end-line="69" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Test/TestAddingServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.59810555" vertical-offset="0" max-vertical-offset="739">
+          <caret line="26" column="18" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/FirstProtocol.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="196" max-vertical-offset="1088">
+          <caret line="55" column="28" selection-start-line="55" selection-start-column="28" selection-end-line="55" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Test/TestAddingClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39106902" vertical-offset="0" max-vertical-offset="739">
-          <caret line="21" column="49" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
+        <state vertical-scroll-proportion="0.41407308" vertical-offset="0" max-vertical-offset="739">
+          <caret line="22" column="34" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
           <folding />
         </state>
       </provider>

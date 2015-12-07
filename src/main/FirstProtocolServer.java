@@ -21,8 +21,8 @@ public class FirstProtocolServer extends ProtocolServer<FirstProtocolInput, Pair
 
   @Override
   protected BigInteger convert(final FirstProtocolInput input) {
-    return input.secretRandom.shiftLeft(FirstProtocol.BITLENGTH)
-        .add(input.secretAddress);
+    return input.secretAddress.shiftLeft(FirstProtocol.BITLENGTH)
+        .add(input.secretRandom);
   }
 
   @Override
@@ -43,6 +43,7 @@ public class FirstProtocolServer extends ProtocolServer<FirstProtocolInput, Pair
 
   @Override
   protected Pair<BigInteger, BigInteger> interpretResult(final BigInteger result) {
-    return Pair.of(result.mod(BigInteger.ZERO.setBit(FirstProtocol.BITLENGTH+1)), result.shiftRight(FirstProtocol.BITLENGTH));
+    return Pair.of(result, BigInteger.ZERO);
+    //return Pair.of(result.mod(BigInteger.ZERO.setBit(FirstProtocol.BITLENGTH+1)), result.shiftRight(FirstProtocol.BITLENGTH));
   }
 }
