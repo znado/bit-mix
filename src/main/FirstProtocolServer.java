@@ -21,7 +21,7 @@ public class FirstProtocolServer extends ProtocolServer<FirstProtocolInput, Pair
 
   @Override
   protected BigInteger convert(final FirstProtocolInput input) {
-    return input.secretAddress.shiftLeft(FirstProtocol.BITLENGTH)
+    return input.secretAddress.shiftLeft(FirstProtocol.BIT_LENGTH)
         .add(input.secretRandom);
   }
 
@@ -38,7 +38,7 @@ public class FirstProtocolServer extends ProtocolServer<FirstProtocolInput, Pair
 
   @Override
   protected int inputLength(final FirstProtocolInput input) {
-    return FirstProtocol.BITLENGTH * 2;
+    return FirstProtocol.BIT_LENGTH * 2;
   }
 
   @Override

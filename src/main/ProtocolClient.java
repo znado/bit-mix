@@ -28,10 +28,8 @@ public abstract class ProtocolClient<I> {
   }
 
   private static State getRemoteState(Connection connection) throws IOException {
-    System.out.println("At sent local");
     int remoteSize = connection.getOis()
         .readInt();
-    System.out.println("Remote received: " + remoteSize);
     BigInteger[] serverLabels = new BigInteger[remoteSize];
 
     for (int i = 0; i < remoteSize; i++) {
