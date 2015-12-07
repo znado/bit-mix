@@ -10,7 +10,7 @@ import circuit.Wire;
 import java.math.BigInteger;
 
 
-public class AdditionClient extends ProgClient {
+public class AdditionClient extends ProtocolClient {
   private BigInteger cBits;
   private BigInteger[] sBitslbs, cBitslbs;
 

@@ -43,7 +43,7 @@ public class State {
     plainValue = null;
   }
 
-  public static State concatenate(State s1, State s2) {
+  public static State concatenate(State s2, State s1) {
     int width = s1.getWidth() + s2.getWidth();
     State res = new State(width);
     for (int i = 0; i < width; i++) {

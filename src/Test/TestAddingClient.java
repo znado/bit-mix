@@ -2,7 +2,7 @@ package Test;
 
 import main.AdditionClient;
 import main.AdditionCommon;
-import main.ProgClient;
+import main.ProtocolClient;
 import main.Program;
 import util.StopWatch;
 
@@ -14,7 +14,7 @@ import util.StopWatch;
 public class TestAddingClient {
   public static void main(String[] args) throws Exception {
     StopWatch.pointTimeStamp("Starting program");
-    ProgClient.serverIPname = "localhost";
+    ProtocolClient.serverIPname = "localhost";
     Program.iterCount = 1;
 
     AdditionClient client = new AdditionClient(AdditionCommon.Y);
