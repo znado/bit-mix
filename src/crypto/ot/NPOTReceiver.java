@@ -4,6 +4,7 @@ package crypto.ot;
 
 import crypto.Cipher;
 
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.math.BigInteger;
@@ -22,25 +23,29 @@ public class NPOTReceiver extends Receiver {
 
   private BigInteger[] keys;
 
-  public NPOTReceiver(int numOfChoices, ObjectInputStream in, ObjectOutputStream out) throws Exception {
+  public NPOTReceiver(int numOfChoices, ObjectInputStream in, ObjectOutputStream out) throws IOException {
     super(numOfChoices, in, out);
 
     initialize();
   }
 
-  public void execProtocol(BigInteger choices) throws Exception {
+  public void execProtocol(BigInteger choices) throws IOException {
     super.execProtocol(choices);
 
     step1();
     step2();
   }
 
-  private void initialize() throws Exception {
-    C = (BigInteger) ois.readObject();
-    p = (BigInteger) ois.readObject();
-    q = (BigInteger) ois.readObject();
-    g = (BigInteger) ois.readObject();
-    gr = (BigInteger) ois.readObject();
+  private void initialize() throws IOException {
+    try {
+      C = (BigInteger) ois.readObject();
+      p = (BigInteger) ois.readObject();
+      q = (BigInteger) ois.readObject();
+      g = (BigInteger) ois.readObject();
+      gr = (BigInteger) ois.readObject();
+    } catch (ClassNotFoundException e) {
+      throw new IOException("Received an unknown class type", e);
+    }
     msgBitLength = ois.readInt();
 
     gk = new BigInteger[numOfChoices];
@@ -55,7 +60,7 @@ public class NPOTReceiver extends Receiver {
     }
   }
 
-  private void step1() throws Exception {
+  private void step1() throws IOException {
     pk = new BigInteger[numOfChoices][2];
     BigInteger[] pk0 = new BigInteger[numOfChoices];
     for (int i = 0; i < numOfChoices; i++) {
@@ -70,8 +75,13 @@ public class NPOTReceiver extends Receiver {
     oos.flush();
   }
 
-  private void step2() throws Exception {
-    BigInteger[][] msg = (BigInteger[][]) ois.readObject();
+  private void step2() throws IOException {
+    BigInteger[][] msg;
+    try {
+      msg = (BigInteger[][]) ois.readObject();
+    } catch (ClassNotFoundException e) {
+      throw new IOException("Received class of unknown type", e);
+    }
 
     data = new BigInteger[numOfChoices];
     for (int i = 0; i < numOfChoices; i++) {

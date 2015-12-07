@@ -3,11 +3,13 @@
 package crypto.ot;
 
 import crypto.Cipher;
+import main.Connection;
 import util.StopWatch;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.math.BigInteger;
@@ -25,32 +27,38 @@ public class NPOTSender extends Sender {
   private BigInteger p, q, g, C, r;
   private BigInteger Cr, gr;
 
-  public NPOTSender(int numOfPairs, int msgBitLength, ObjectInputStream in, ObjectOutputStream out) throws Exception {
-    super(numOfPairs, msgBitLength, in, out);
-
-    StopWatch.pointTimeStamp("right before NPOT public key generation");
-    initialize();
-    StopWatch.taskTimeStamp("NPOT public key generation");
+  public NPOTSender(int numOfPairs, int msgBitLength, Connection connection) throws IOException {
+    this(numOfPairs, msgBitLength, connection.getOis(), connection.getOos());
   }
 
-  public void execProtocol(BigInteger[][] msgPairs) throws Exception {
+  public NPOTSender(int numOfPairs, int msgBitLength, ObjectInputStream in, ObjectOutputStream out) throws IOException {
+    super(numOfPairs, msgBitLength, in, out);
+
+    initialize();
+  }
+
+  public void execProtocol(BigInteger[][] msgPairs) throws IOException {
     super.execProtocol(msgPairs);
 
     step1();
   }
 
-  private void initialize() throws Exception {
+  private void initialize() throws IOException {
     File keyfile = new File("NPOTKey");
     if (keyfile.exists()) {
       FileInputStream fin = new FileInputStream(keyfile);
       ObjectInputStream fois = new ObjectInputStream(fin);
 
-      C = (BigInteger) fois.readObject();
-      p = (BigInteger) fois.readObject();
-      q = (BigInteger) fois.readObject();
-      g = (BigInteger) fois.readObject();
-      gr = (BigInteger) fois.readObject();
-      r = (BigInteger) fois.readObject();
+      try {
+        C = (BigInteger) fois.readObject();
+        p = (BigInteger) fois.readObject();
+        q = (BigInteger) fois.readObject();
+        g = (BigInteger) fois.readObject();
+        gr = (BigInteger) fois.readObject();
+        r = (BigInteger) fois.readObject();
+      } catch (ClassNotFoundException e) {
+        throw new IOException("Received an unknown class type", e);
+      }
       fois.close();
 
       oos.writeObject(C);
@@ -106,8 +114,14 @@ public class NPOTSender extends Sender {
     }
   }
 
-  private void step1() throws Exception {
-    BigInteger[] pk0 = (BigInteger[]) ois.readObject();
+  private void step1() throws IOException {
+    BigInteger[] pk0;
+    try {
+      pk0 = (BigInteger[]) ois.readObject();
+    } catch (ClassNotFoundException e) {
+      throw new IOException("Received an unknown class type", e);
+    }
+
     BigInteger[] pk1 = new BigInteger[numOfPairs];
     BigInteger[][] msg = new BigInteger[numOfPairs][2];
 

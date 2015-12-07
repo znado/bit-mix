@@ -3,6 +3,7 @@
 package util;
 
 import java.io.DataInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -17,7 +18,7 @@ public class Utils {
   /*
    * Write the least significant n bytes of the BigInteger m to os. (Serialization)
    */
-  public static void writeBigInteger(BigInteger m, int n, OutputStream os) throws Exception {
+  public static void writeBigInteger(BigInteger m, int n, OutputStream os) throws IOException {
     byte[] temp = new byte[n];
     BigInteger mask = BigInteger.valueOf(0xFF);
 
@@ -33,7 +34,7 @@ public class Utils {
   /*
    * Read a BigInteger of n bytes from "is", which is written with writeBigInteger. (Deserialization)
    */
-  public static BigInteger readBigInteger(int n, InputStream is) throws Exception {
+  public static BigInteger readBigInteger(int n, InputStream is) throws IOException {
     DataInputStream dis = new DataInputStream(is);
     BigInteger ret = BigInteger.ZERO;
 
@@ -49,7 +50,7 @@ public class Utils {
     return ret;
   }
 
-  public static void writeBigInteger(BigInteger m, ObjectOutputStream oos) throws Exception {
+  public static void writeBigInteger(BigInteger m, ObjectOutputStream oos) throws IOException {
     byte[] bytes = m.toByteArray();
     oos.writeInt(bytes.length);
     oos.write(bytes);
@@ -58,7 +59,7 @@ public class Utils {
   /*
    * Read a BigInteger of n bytes from "is", which is written with writeBigInteger. (Deserialization)
    */
-  public static BigInteger readBigInteger(ObjectInputStream ois) throws Exception {
+  public static BigInteger readBigInteger(ObjectInputStream ois) throws IOException {
     DataInputStream dis = new DataInputStream(ois);
     int length = ois.readInt();
     byte[] bytes = new byte[length];
@@ -67,7 +68,7 @@ public class Utils {
     return new BigInteger(bytes);
   }
 
-  public static void writeBigIntegerArray(BigInteger[] arr, int n, ObjectOutputStream oos) throws Exception {
+  public static void writeBigIntegerArray(BigInteger[] arr, int n, ObjectOutputStream oos) throws IOException {
     int length = arr.length;
     oos.writeInt(length);
 
@@ -78,7 +79,7 @@ public class Utils {
     oos.flush();
   }
 
-  public static BigInteger[] readBigIntegerArray(int n, ObjectInputStream ois) throws Exception {
+  public static BigInteger[] readBigIntegerArray(int n, ObjectInputStream ois) throws IOException {
     int length = ois.readInt();
     BigInteger[] ret = new BigInteger[length];
 

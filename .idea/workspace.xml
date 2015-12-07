@@ -2,44 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f6986a66-fecd-4926-87ef-3a411f0a483d" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\nschank\Documents\course\CSCI2951e\proj\src\circuit\core\XOR_2L_L.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\nschank\Documents\course\CSCI2951e\proj\src\circuit\core\XOR_L_1.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\nschank\Documents\course\CSCI2951e\proj\src\main\ProgCommon.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/arith/ADD_2L_L.java" afterPath="$PROJECT_DIR$/src/circuit/arith/ADD_2L_L.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/arith/ADD_2L_Lplus1.java" afterPath="$PROJECT_DIR$/src/circuit/arith/ADD_2L_Lplus1.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/core/bool/ADD_3_2.java" afterPath="$PROJECT_DIR$/src/circuit/core/bool/ADD_3_2.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/core/bool/AND_2_1.java" afterPath="$PROJECT_DIR$/src/circuit/core/bool/AND_2_1.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/Circuit.java" afterPath="$PROJECT_DIR$/src/circuit/Circuit.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/CompositeCircuit.java" afterPath="$PROJECT_DIR$/src/circuit/CompositeCircuit.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/Connection.java" afterPath="$PROJECT_DIR$/src/main/Connection.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/wrap/EXP_STEP.java" afterPath="$PROJECT_DIR$/src/main/wrap/EXP_STEP.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/arith/GT_2L_1.java" afterPath="$PROJECT_DIR$/src/circuit/arith/GT_2L_1.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/core/bool/GT_3_1.java" afterPath="$PROJECT_DIR$/src/circuit/core/bool/GT_3_1.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/mod/MOD_ADD1_2N_N.java" afterPath="$PROJECT_DIR$/src/circuit/mod/MOD_ADD1_2N_N.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/mod/MOD_ADD_4N_N.java" afterPath="$PROJECT_DIR$/src/circuit/mod/MOD_ADD_4N_N.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/mod/MOD_COND_ADD_4Nplus1_N.java" afterPath="$PROJECT_DIR$/src/circuit/mod/MOD_COND_ADD_4Nplus1_N.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/mod/MOD_DOUBLE_3N_N.java" afterPath="$PROJECT_DIR$/src/circuit/mod/MOD_DOUBLE_3N_N.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/mod/MOD_MULT_4N_N.java" afterPath="$PROJECT_DIR$/src/circuit/mod/MOD_MULT_4N_N.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/mod/MOD_SQUARE_3N_N.java" afterPath="$PROJECT_DIR$/src/circuit/mod/MOD_SQUARE_3N_N.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/mod/MOD_SUB_MULT_4Nplus1_N.java" afterPath="$PROJECT_DIR$/src/circuit/mod/MOD_SUB_MULT_4Nplus1_N.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/core/MUX_2Lplus1_L.java" afterPath="$PROJECT_DIR$/src/circuit/core/MUX_2Lplus1_L.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/core/bool/MUX_3_1.java" afterPath="$PROJECT_DIR$/src/circuit/core/bool/MUX_3_1.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/core/bool/OR_2_1.java" afterPath="$PROJECT_DIR$/src/circuit/core/bool/OR_2_1.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/core/OR_L_1.java" afterPath="$PROJECT_DIR$/src/circuit/core/OR_L_1.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/AdditionServer.java" afterPath="$PROJECT_DIR$/src/main/AdditionServer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/crypto/ot/NPOTReceiver.java" afterPath="$PROJECT_DIR$/src/crypto/ot/NPOTReceiver.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/crypto/ot/NPOTSender.java" afterPath="$PROJECT_DIR$/src/crypto/ot/NPOTSender.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/crypto/ot/OTExtReceiver.java" afterPath="$PROJECT_DIR$/src/crypto/ot/OTExtReceiver.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/crypto/ot/OTExtSender.java" afterPath="$PROJECT_DIR$/src/crypto/ot/OTExtSender.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/ProgClient.java" afterPath="$PROJECT_DIR$/src/main/ProgClient.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/ProgServer.java" afterPath="$PROJECT_DIR$/src/main/ProgServer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/Program.java" afterPath="$PROJECT_DIR$/src/main/Program.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/wrap/RUN_ADD.java" afterPath="$PROJECT_DIR$/src/main/wrap/RUN_ADD.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/wrap/RUN_ADD1.java" afterPath="$PROJECT_DIR$/src/main/wrap/RUN_ADD1.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/wrap/RUN_COND_ADD.java" afterPath="$PROJECT_DIR$/src/main/wrap/RUN_COND_ADD.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/wrap/RUN_DOUBLE.java" afterPath="$PROJECT_DIR$/src/main/wrap/RUN_DOUBLE.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/wrap/RUN_EXP.java" afterPath="$PROJECT_DIR$/src/main/wrap/RUN_EXP.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/wrap/RUN_MULT.java" afterPath="$PROJECT_DIR$/src/main/wrap/RUN_MULT.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/wrap/RUN_SQUARE.java" afterPath="$PROJECT_DIR$/src/main/wrap/RUN_SQUARE.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/core/bool/SimpleCircuit_2_1.java" afterPath="$PROJECT_DIR$/src/circuit/core/bool/SimpleCircuit_2_1.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/State.java" afterPath="$PROJECT_DIR$/src/circuit/State.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/TransitiveObservable.java" afterPath="$PROJECT_DIR$/src/circuit/TransitiveObservable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/Wire.java" afterPath="$PROJECT_DIR$/src/circuit/Wire.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/core/bool/XOR_2_1.java" afterPath="$PROJECT_DIR$/src/circuit/core/bool/XOR_2_1.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/crypto/ot/Receiver.java" afterPath="$PROJECT_DIR$/src/crypto/ot/Receiver.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/crypto/ot/Sender.java" afterPath="$PROJECT_DIR$/src/crypto/ot/Sender.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/util/Utils.java" afterPath="$PROJECT_DIR$/src/util/Utils.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="bit-mix.iws" />
@@ -64,11 +37,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Program.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Program.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/Program.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.82814616" vertical-offset="0" max-vertical-offset="833">
-              <caret line="36" column="36" selection-start-line="36" selection-start-column="36" selection-end-line="36" selection-end-column="36" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="26" max-vertical-offset="833">
+              <caret line="39" column="29" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="29" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProgClient.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/ProgClient.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="26" max-vertical-offset="765">
+              <caret line="5" column="26" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProgServer.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/ProgServer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.70464134" vertical-offset="111" max-vertical-offset="850">
+              <caret line="36" column="3" selection-start-line="36" selection-start-column="3" selection-end-line="36" selection-end-column="3" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -95,13 +90,10 @@
         <option value="$PROJECT_DIR$/src/net/ProtocolRunner.java" />
         <option value="$PROJECT_DIR$/src/net/Protocol.java" />
         <option value="$PROJECT_DIR$/src/net/AbstractProtocolServer.java" />
-        <option value="$PROJECT_DIR$/src/main/ProgClient.java" />
         <option value="$PROJECT_DIR$/src/circuit/State.java" />
         <option value="$PROJECT_DIR$/src/circuit/TransitiveObservable.java" />
         <option value="$PROJECT_DIR$/src/circuit/Wire.java" />
         <option value="$PROJECT_DIR$/src/circuit/core/bool/AND_2_1.java" />
-        <option value="$PROJECT_DIR$/src/main/Program.java" />
-        <option value="$PROJECT_DIR$/src/main/ProgServer.java" />
         <option value="$PROJECT_DIR$/src/circuit/Circuit.java" />
         <option value="$PROJECT_DIR$/src/main/Connection.java" />
         <option value="$PROJECT_DIR$/src/circuit/CompositeCircuit.java" />
@@ -124,6 +116,16 @@
         <option value="$PROJECT_DIR$/src/circuit/mod/MOD_MULT_4N_N.java" />
         <option value="$PROJECT_DIR$/src/circuit/mod/MOD_SQUARE_3N_N.java" />
         <option value="$PROJECT_DIR$/src/circuit/mod/MOD_SUB_MULT_4Nplus1_N.java" />
+        <option value="$PROJECT_DIR$/src/crypto/ot/OTExtSender.java" />
+        <option value="$PROJECT_DIR$/src/crypto/ot/Receiver.java" />
+        <option value="$PROJECT_DIR$/src/crypto/ot/NPOTReceiver.java" />
+        <option value="$PROJECT_DIR$/src/crypto/ot/Sender.java" />
+        <option value="$PROJECT_DIR$/src/crypto/ot/NPOTSender.java" />
+        <option value="$PROJECT_DIR$/src/main/ProgServer.java" />
+        <option value="$PROJECT_DIR$/src/util/Utils.java" />
+        <option value="$PROJECT_DIR$/src/main/Program.java" />
+        <option value="$PROJECT_DIR$/src/crypto/ot/OTExtReceiver.java" />
+        <option value="$PROJECT_DIR$/src/main/ProgClient.java" />
       </list>
     </option>
   </component>
@@ -230,6 +232,10 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="util" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -264,6 +270,60 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="proj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="proj" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="proj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="proj" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="crypto" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="proj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="proj" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="crypto" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ot" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -443,7 +503,11 @@
       <created>1449450469730</created>
       <updated>1449450469730</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Cleanup of the library's actually godawful server/client code">
+      <created>1449453496058</created>
+      <updated>1449453496058</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -488,6 +552,8 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
@@ -498,74 +564,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/Program.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="799">
-          <caret line="20" column="3" selection-start-line="20" selection-start-column="3" selection-end-line="20" selection-end-column="3" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/ProgServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="1462">
-          <caret line="18" column="22" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/ProgClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="476" max-vertical-offset="1224">
-          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/circuit/arith/ADD_2L_L.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="1088">
-          <caret line="10" column="41" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/Program.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="799">
-          <caret line="20" column="3" selection-start-line="20" selection-start-column="3" selection-end-line="20" selection-end-column="3" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/ProgServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="1462">
-          <caret line="18" column="22" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/ProgClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="1224">
-          <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cs2951e/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="1360">
@@ -625,7 +623,7 @@
         <state vertical-scroll-proportion="0.27604872" vertical-offset="0" max-vertical-offset="1819">
           <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -638,30 +636,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/ProgServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5629229" vertical-offset="94" max-vertical-offset="833">
-          <caret line="30" column="17" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/Connection.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7239513" vertical-offset="247" max-vertical-offset="1054">
           <caret line="46" column="15" selection-start-line="46" selection-start-column="15" selection-end-line="46" selection-end-column="15" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/ProgClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3328823" vertical-offset="247" max-vertical-offset="986">
-          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -880,9 +858,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.35588634" vertical-offset="1726" max-vertical-offset="2669">
           <caret line="135" column="5" selection-start-line="135" selection-start-column="5" selection-end-line="135" selection-end-column="5" />
-          <folding>
-            <element signature="class#OSocket#0;class#TransitiveObservable#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -902,26 +878,100 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/crypto/ot/OTExtReceiver.java">
+    <entry file="file://$PROJECT_DIR$/src/crypto/ot/Receiver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.7253045" vertical-offset="655" max-vertical-offset="1394">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.39106902" vertical-offset="0" max-vertical-offset="739">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/crypto/ot/OTExtSender.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16102841" vertical-offset="0" max-vertical-offset="1190">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        <state vertical-scroll-proportion="1.4952638" vertical-offset="0" max-vertical-offset="1258">
+          <caret line="76" column="15" selection-start-line="76" selection-start-column="15" selection-end-line="76" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/crypto/ot/Sender.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.55209744" vertical-offset="0" max-vertical-offset="739">
+          <caret line="27" column="41" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/crypto/ot/NPOTReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5060893" vertical-offset="272" max-vertical-offset="1564">
+          <caret line="44" column="41" selection-start-line="44" selection-start-column="41" selection-end-line="47" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/crypto/ot/NPOTSender.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.0933695" vertical-offset="357" max-vertical-offset="2295">
+          <caret line="123" column="4" selection-start-line="123" selection-start-column="4" selection-end-line="123" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/crypto/ot/BitMatrix.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16102841" vertical-offset="0" max-vertical-offset="799">
+          <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.7253045" vertical-offset="0" max-vertical-offset="1547">
+          <caret line="81" column="97" selection-start-line="81" selection-start-column="97" selection-end-line="81" selection-end-column="97" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_05/src.zip!/java/lang/AutoCloseable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3328823" vertical-offset="213" max-vertical-offset="1377">
+          <caret line="50" column="17" selection-start-line="50" selection-start-column="17" selection-end-line="50" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/crypto/ot/OTExtReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.56427604" vertical-offset="723" max-vertical-offset="1462">
+          <caret line="26" column="8" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/ProgClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="26" max-vertical-offset="765">
+          <caret line="5" column="26" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/Program.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.82814616" vertical-offset="0" max-vertical-offset="833">
-          <caret line="36" column="36" selection-start-line="36" selection-start-column="36" selection-end-line="36" selection-end-column="36" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="94" max-vertical-offset="833">
+          <caret line="39" column="29" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/ProgServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.70464134" vertical-offset="111" max-vertical-offset="850">
+          <caret line="36" column="3" selection-start-line="36" selection-start-column="3" selection-end-line="36" selection-end-column="3" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

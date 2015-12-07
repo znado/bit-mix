@@ -2,6 +2,7 @@
 
 package crypto.ot;
 
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.math.BigInteger;
@@ -22,9 +23,9 @@ public abstract class Sender {
     oos = out;
   }
 
-  public void execProtocol(BigInteger[][] msgPairs) throws Exception {
+  public void execProtocol(BigInteger[][] msgPairs) throws IOException {
     if (msgPairs.length != numOfPairs) {
-      throw new Exception("Message pair length error: " +
+      throw new IllegalArgumentException("Message pair length error: " +
           msgPairs.length + " != " + numOfPairs);
     }
 

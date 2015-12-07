@@ -3,8 +3,10 @@
 package crypto.ot;
 
 import crypto.Cipher;
+import main.Connection;
 import util.Utils;
 
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.math.BigInteger;
@@ -22,13 +24,17 @@ public class OTExtSender extends Sender {
   private BigInteger s;
   private BigInteger[] keys;
 
-  public OTExtSender(int numOfPairs, int msgBitLength, ObjectInputStream in, ObjectOutputStream out) throws Exception {
+  public OTExtSender(int numOfPairs, int msgBitLength, Connection connection) throws IOException {
+    this(numOfPairs, msgBitLength, connection.getOis(), connection.getOos());
+  }
+
+  public OTExtSender(int numOfPairs, int msgBitLength, ObjectInputStream in, ObjectOutputStream out) throws IOException {
     super(numOfPairs, msgBitLength, in, out);
 
     initialize();
   }
 
-  public void execProtocol(BigInteger[][] msgPairs) throws Exception {
+  public void execProtocol(BigInteger[][] msgPairs) throws IOException {
     BigInteger[][] cphPairs = (BigInteger[][]) ois.readObject();
     int bytelength;
 
@@ -58,7 +64,7 @@ public class OTExtSender extends Sender {
     oos.flush();
   }
 
-  private void initialize() throws Exception {
+  private void initialize() throws IOException {
     oos.writeInt(SecurityParameter.k1);
     oos.writeInt(SecurityParameter.k2);
     oos.writeInt(msgBitLength);

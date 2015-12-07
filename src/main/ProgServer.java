@@ -36,9 +36,10 @@ public abstract class ProgServer extends Program implements AutoCloseable {
     return Connection.serverInstance(sock.accept());
   }
 
-  protected void initializeOT() throws Exception {
-    otNumOfPairs = ProgCommon.ois.readInt();
-
-    snder = new OTExtSender(otNumOfPairs, otMsgBitLength, ProgCommon.ois, ProgCommon.oos);
+  @Override
+  protected void initializeOT(Connection connection) throws IOException {
+    otNumOfPairs = connection.getOis()
+        .readInt();
+    snder = new OTExtSender(otNumOfPairs, otMsgBitLength, connection);
   }
 }

@@ -29,7 +29,7 @@ public abstract class Program {
     interpretResult();
   }
 
-  protected abstract void initializeOT();
+  protected abstract void initializeOT(Connection connection) throws IOException;
 
   protected abstract void interpretResult();
 
@@ -37,7 +37,7 @@ public abstract class Program {
     try (Connection connection = connect()) {
       List<Circuit> circuits = createCircuits();
       buildCircuits(circuits, connection);
-      initializeOT();
+      initializeOT(connection);
       execute();
     }
   }

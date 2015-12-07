@@ -2,6 +2,7 @@
 
 package crypto.ot;
 
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.math.BigInteger;
@@ -21,7 +22,7 @@ public abstract class Receiver {
     oos = out;
   }
 
-  public void execProtocol(BigInteger choices) throws Exception {
+  public void execProtocol(BigInteger choices) throws IOException {
     this.choices = choices;
   }
 

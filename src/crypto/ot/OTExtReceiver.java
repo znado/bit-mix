@@ -3,8 +3,10 @@
 package crypto.ot;
 
 import crypto.Cipher;
+import main.Connection;
 import util.Utils;
 
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.math.BigInteger;
@@ -22,13 +24,17 @@ public class OTExtReceiver extends Receiver {
   private BitMatrix T;
   private BigInteger[][] keyPairs;
 
-  public OTExtReceiver(int numOfChoices, ObjectInputStream in, ObjectOutputStream out) throws Exception {
+  public OTExtReceiver(int numOfChoices, Connection connection) throws IOException {
+    this(numOfChoices, connection.getOis(), connection.getOos());
+  }
+
+  public OTExtReceiver(int numOfChoices, ObjectInputStream in, ObjectOutputStream out) throws IOException {
     super(numOfChoices, in, out);
 
     initialize();
   }
 
-  public void execProtocol(BigInteger choices) throws Exception {
+  public void execProtocol(BigInteger choices) throws IOException {
     super.execProtocol(choices);
 
     BigInteger[][] msgPairs = new BigInteger[k1][2];
@@ -62,7 +68,7 @@ public class OTExtReceiver extends Receiver {
     }
   }
 
-  private void initialize() throws Exception {
+  private void initialize() throws IOException {
     k1 = ois.readInt();
     k2 = ois.readInt();
     msgBitLength = ois.readInt();
