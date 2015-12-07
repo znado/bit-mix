@@ -16,10 +16,11 @@ import java.util.concurrent.TimeUnit;
 // singleton wrapper for wallet
 public class MixerWallet {
     private Wallet wallet;
+    private File walletFile;
     private PeerGroup peerGroup;
 
     public MixerWallet(NetworkParameters networkParams) {
-        File walletFile = new File(Config.WALLET_SAVE_FILE + "-" + Config.CLIENT_PORT);
+        walletFile = new File(Config.WALLET_SAVE_FILE + "-" + Config.CLIENT_PORT);
         if(!walletFile.exists()) {
             wallet = new Wallet(networkParams);
             try {
@@ -95,5 +96,14 @@ public class MixerWallet {
 
     public void commitTx(Transaction tx) {
         wallet.commitTx(tx);
+    }
+
+    public void save() {
+        try {
+            wallet.saveToFile(walletFile);
+        } catch (IOException e) {
+            System.out.println("Error manually saving wallet to disk");
+            e.printStackTrace();
+        }
     }
 }

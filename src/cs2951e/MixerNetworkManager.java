@@ -2,6 +2,8 @@ package cs2951e;
 
 import com.google.common.base.Optional;
 import org.bitcoinj.core.*;
+import org.bitcoinj.script.Script;
+import org.bitcoinj.script.ScriptBuilder;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,10 +19,9 @@ public class MixerNetworkManager {
     private Random rng;
     private MixerWallet wallet;
     private ECKey sigKey;
-    private Address shuffleAddress;
-    private int mixAmount;
     private NetworkParameters networkParams;
-
+    private int mixAmount;
+    private List<>
 
     private HashMap<MixerNetworkAddress, Void> peersList;
 
@@ -33,8 +34,8 @@ public class MixerNetworkManager {
     public MixerNetworkManager(NetworkParameters params, MixerWallet wallet, ECKey sigKey, int mixAmount) {
         this.wallet = wallet;
         this.sigKey = sigKey;
-        this.mixAmount = mixAmount;
         this.networkParams = params;
+        this.mixAmount = mixAmount;
 
         rng = new Random();
         peersList = new HashMap<>();
@@ -80,16 +81,6 @@ public class MixerNetworkManager {
             System.out.println("Network manager error parsing server join response peers list: " + joinResponse);
             e.printStackTrace();
         }
-    }
-
-
-    public void setShuffleAddress(Address shuffleAddress) {
-        this.shuffleAddress = shuffleAddress;
-    }
-
-    public Transaction addShuffleOutput(Transaction tx) {
-        tx.addOutput(Coin.valueOf(mixAmount), shuffleAddress);
-        return tx;
     }
 
 
@@ -176,17 +167,48 @@ public class MixerNetworkManager {
         return randomAvailablePeers;
     }
 
+    public Optional<Transaction> sendToPeerToAddInput(MixerNetworkAddress peerAddress, Transaction mixingTransaction) {
+        try {
+            Socket querySocket = new Socket();
+            querySocket.connect(new InetSocketAddress(peerAddress.getIpAddress(), peerAddress.getPort()), Config.PEER_TIMEOUT_MS);
+            DataOutputStream outToPeer = new DataOutputStream(querySocket.getOutputStream());
+            BufferedReader inFromPeer = new BufferedReader(new InputStreamReader(querySocket.getInputStream()));
+            outToPeer.writeBytes("{" +
+                    "'action' : 'addInput'," +
+                    "'mixingTx' : '" + Util.bytesToHex(mixingTransaction.bitcoinSerialize()) + "'" +
+                    "}\n");
+            JSONObject responseJson = new JSONObject(inFromPeer.readLine());
+            return Optional.of(new Transaction(networkParams, Util.hexToBytes(responseJson.getString("multisigTx"))));
+        } catch (SocketTimeoutException e) {
+            System.out.println("Getting output from peer timed out.");
+            e.printStackTrace();
+            peersList.remove(peerAddress);
+        } catch (ConnectException e) {
+            System.out.println("Error connecting to peer while getting output: " + peerAddress);
+        } catch (IOException e) {
+            System.out.println("Error with I/O while getting output from peer.");
+            e.printStackTrace();
+        } catch (JSONException e) {
+            System.out.println("Malformed response during peer output retrieval.");
+            e.printStackTrace();
+        }
+        return Optional.absent();
+    }
 
-    public Optional<Transaction> sendToPeerToGetOutput(MixerNetworkAddress peerAddress, Transaction tx) {
+    public Optional<ECKey.ECDSASignature> sendToPeerToGetSig(MixerNetworkAddress peerAddress, Transaction multisigTx, Transaction mixingTx) {
         try {
             Socket querySocket = new Socket();
             querySocket.connect(new InetSocketAddress(peerAddress.getIpAddress(), peerAddress.getPort()), Config.PEER_TIMEOUT_MS);
             DataOutputStream outToPeer = new DataOutputStream(querySocket.getOutputStream());
             BufferedReader inFromPeer = new BufferedReader(new InputStreamReader(querySocket.getInputStream()));
             // send peer query message and check for response
-            outToPeer.writeBytes("{'action' : 'getOutput', 'tx' : '" + Util.bytesToHex(tx.bitcoinSerialize()) + "'}\n");
+            outToPeer.writeBytes("{" +
+                    "'action' : 'sign'," +
+                    "'multisigTx' : '" + Util.bytesToHex(multisigTx.bitcoinSerialize()) + "'," +
+                    "'mixingTx' : '" + Util.bytesToHex(mixingTx.bitcoinSerialize()) + "'" +
+                    "}\n");
             JSONObject responseJson = new JSONObject(inFromPeer.readLine());
-            return Optional.of(new Transaction(networkParams, Util.hexToBytes(responseJson.getString("tx"))));
+            return Optional.of(ECKey.ECDSASignature.decodeFromDER(Util.hexToBytes(responseJson.getString("sig"))));
         } catch (SocketTimeoutException e) {
             System.out.println("Getting output from peer timed out.");
             e.printStackTrace();
@@ -237,6 +259,7 @@ public class MixerNetworkManager {
     private String generateResponse(String request) {
         try {
             JSONObject requestJson = new JSONObject(request);
+            String response;
             switch (requestJson.getString("action")) {
                 case "query":
                     if(canMix) {
@@ -249,14 +272,24 @@ public class MixerNetworkManager {
                     } else {
                         return "{'available' : false}";
                     }
-                case "getOutput":
-                    Transaction tx = new Transaction(networkParams, Util.hexToBytes(requestJson.getString("tx")));
-                    int txFee = 1000;
-                    Coin amount1 = Coin.valueOf(this.mixAmount - txFee);
-                    tx.addOutput(amount1, shuffleAddress);
-                    String json = "{'error' : false, 'tx' : '" + Util.bytesToHex(tx.bitcoinSerialize()) + "'}";
-                    System.out.println(json);
-                    return json;
+                case "addInput":
+                    Transaction multiSigOutputTx = new Transaction(networkParams, Util.hexToBytes(requestJson.getString("multisigTx")));
+                    Script script = ScriptBuilder.createMultiSigOutputScript(peersList.size(), keys);
+                    Coin amount = Coin.valueOf(mixAmount);
+                    multiSigOutputTx.addOutput(amount, script);
+                    response = "{'error' : false, 'multisigTx' : '" + Util.bytesToHex(multiSigOutputTx.bitcoinSerialize()) + "'}";
+                    System.out.println(response);
+                    return response;
+                case "sign":
+                    Transaction multiSigOutputTransaction = new Transaction(networkParams, Util.hexToBytes(requestJson.getString("multisigTx")));
+                    Transaction mixingTransaction = new Transaction(networkParams, Util.hexToBytes(requestJson.getString("mixingTx")));
+                    TransactionOutput multisigOutput = multiSigOutputTransaction.getOutput(0);
+                    Script multisigScript = multisigOutput.getScriptPubKey();
+                    Sha256Hash sighash = mixingTransaction.hashForSignature(0, multisigScript, Transaction.SigHash.ALL, false);
+                    ECKey.ECDSASignature signature = sigKey.sign(sighash);
+                    response = "{'error' : false, 'sig' : '" + Util.bytesToHex(signature.encodeToDER()) + "'}";
+                    System.out.println(response);
+                    return response;
             }
         } catch (JSONException e) {
             String err = "P2P server error parsing client JSON message.";

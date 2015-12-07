@@ -1,6 +1,9 @@
 package cs2951e;
 
+import org.bitcoinj.core.*;
+
 import java.io.*;
+import java.util.List;
 
 public class Util {
     public static String generateError(String msg) {
@@ -30,21 +33,5 @@ public class Util {
                     + Character.digit(s.charAt(i+1), 16));
         }
         return data;
-    }
-
-    public static String toObjectString(Serializable o) throws IOException {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ObjectOutputStream oos = new ObjectOutputStream( baos );
-        oos.writeObject(o);
-        oos.close();
-        return bytesToHex(baos.toByteArray());
-    }
-
-    public static Object fromObjectString(String s) throws IOException, ClassNotFoundException {
-        byte[] data = hexToBytes(s);
-        ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(data));
-        Object o  = ois.readObject();
-        ois.close();
-        return o;
     }
 }
