@@ -21,7 +21,6 @@ public class MixerNetworkManager {
     private ECKey sigKey;
     private NetworkParameters networkParams;
     private int mixAmount;
-    private List<>
 
     private HashMap<MixerNetworkAddress, Void> peersList;
 
@@ -111,20 +110,17 @@ public class MixerNetworkManager {
     public ArrayList<MixerNetworkClient> findMixingPeers(int numPeersNeeded) {
         ArrayList<MixerNetworkClient> randomAvailablePeers = new ArrayList<>();
         ArrayList<MixerNetworkAddress> allPeers = new ArrayList<>(peersList.keySet());
-        Set<Integer> failedIndexes = new LinkedHashSet<>();
-        Set<Integer> usedIndexes = new LinkedHashSet<>();
+        Set<Integer> triedIndexes = new LinkedHashSet<>();
         int originalPeerCount = peersList.size();
         if(originalPeerCount < numPeersNeeded) {
             return null;
         }
         while (randomAvailablePeers.size() < numPeersNeeded) {
             Integer next = rng.nextInt(allPeers.size());
-            if(usedIndexes.contains(next)) {
+            if(triedIndexes.contains(next)) {
                 continue;
             }
-            System.out.println("next = " + next + ", peersList = " + Arrays.toString(allPeers.toArray()));
             MixerNetworkAddress peerNetworkAddress = allPeers.get(next);
-            System.out.println("QUERYING " + peerNetworkAddress);
             Optional<String> peerQueryResult = addPeer(peerNetworkAddress);
             if (peerQueryResult.isPresent()) {
                 try {
@@ -139,15 +135,12 @@ public class MixerNetworkManager {
                                                     peerResult.getString("bitcoinAddress")),
                                             ECKey.fromPublicOnly(Util.hexToBytes(peerResult.getString("pubKey"))),
                                             peerNetworkAddress));
-                            usedIndexes.add(next);
                         } catch (AddressFormatException e) {
                             System.out.println("Invalid peer bitcoin address.");
                             e.printStackTrace();
                         }
                     } else {
-                        System.out.println("peer unavailable");
-                        failedIndexes.add(next);
-                        if (failedIndexes.size() > originalPeerCount - numPeersNeeded) {
+                        if (triedIndexes.size() > originalPeerCount - numPeersNeeded) {
                             return null;
                         }
                     }
@@ -156,28 +149,30 @@ public class MixerNetworkManager {
                     e.printStackTrace();
                 }
             } else {
-                failedIndexes.add(next);
-                peersList.remove(peerNetworkAddress);
-                allPeers.remove(peerNetworkAddress);
-                if (failedIndexes.size() > originalPeerCount - numPeersNeeded) {
+                if (triedIndexes.size() > originalPeerCount - numPeersNeeded) {
                     return null;
                 }
             }
+            triedIndexes.add(next);
         }
         return randomAvailablePeers;
     }
 
-    public Optional<Transaction> sendToPeerToAddInput(MixerNetworkAddress peerAddress, Transaction mixingTransaction) {
+    public Optional<Transaction> sendToPeerToAddChangeOutputs(MixerNetworkAddress peerAddress, Transaction mixingTransaction, long fakeCoins) {
         try {
             Socket querySocket = new Socket();
             querySocket.connect(new InetSocketAddress(peerAddress.getIpAddress(), peerAddress.getPort()), Config.PEER_TIMEOUT_MS);
             DataOutputStream outToPeer = new DataOutputStream(querySocket.getOutputStream());
             BufferedReader inFromPeer = new BufferedReader(new InputStreamReader(querySocket.getInputStream()));
             outToPeer.writeBytes("{" +
-                    "'action' : 'addInput'," +
+                    "'action' : 'addChangeOutputs'," +
+                    "'fakeCoins' : " + fakeCoins + "," +
                     "'mixingTx' : '" + Util.bytesToHex(mixingTransaction.bitcoinSerialize()) + "'" +
                     "}\n");
             JSONObject responseJson = new JSONObject(inFromPeer.readLine());
+            if(responseJson.getBoolean("error")) {
+                return Optional.absent();
+            }
             return Optional.of(new Transaction(networkParams, Util.hexToBytes(responseJson.getString("multisigTx"))));
         } catch (SocketTimeoutException e) {
             System.out.println("Getting output from peer timed out.");
@@ -195,20 +190,21 @@ public class MixerNetworkManager {
         return Optional.absent();
     }
 
-    public Optional<ECKey.ECDSASignature> sendToPeerToGetSig(MixerNetworkAddress peerAddress, Transaction multisigTx, Transaction mixingTx) {
+    public Optional<Transaction> sendToPeerToSignInputs(MixerNetworkAddress peerAddress, Transaction tx) {
         try {
             Socket querySocket = new Socket();
             querySocket.connect(new InetSocketAddress(peerAddress.getIpAddress(), peerAddress.getPort()), Config.PEER_TIMEOUT_MS);
             DataOutputStream outToPeer = new DataOutputStream(querySocket.getOutputStream());
             BufferedReader inFromPeer = new BufferedReader(new InputStreamReader(querySocket.getInputStream()));
-            // send peer query message and check for response
             outToPeer.writeBytes("{" +
-                    "'action' : 'sign'," +
-                    "'multisigTx' : '" + Util.bytesToHex(multisigTx.bitcoinSerialize()) + "'," +
-                    "'mixingTx' : '" + Util.bytesToHex(mixingTx.bitcoinSerialize()) + "'" +
+                    "'action' : 'signInputs'," +
+                    "'tx' : '" + Util.bytesToHex(tx.bitcoinSerialize()) + "'" +
                     "}\n");
             JSONObject responseJson = new JSONObject(inFromPeer.readLine());
-            return Optional.of(ECKey.ECDSASignature.decodeFromDER(Util.hexToBytes(responseJson.getString("sig"))));
+            if(responseJson.getBoolean("error")) {
+                return Optional.absent();
+            }
+            return Optional.of(new Transaction(networkParams, Util.hexToBytes(responseJson.getString("tx"))));
         } catch (SocketTimeoutException e) {
             System.out.println("Getting output from peer timed out.");
             e.printStackTrace();
@@ -224,8 +220,6 @@ public class MixerNetworkManager {
         }
         return Optional.absent();
     }
-
-
 
     // RUN ON A BACKGROUND THREAD
     public void run() {
@@ -272,23 +266,26 @@ public class MixerNetworkManager {
                     } else {
                         return "{'available' : false}";
                     }
-                case "addInput":
-                    Transaction multiSigOutputTx = new Transaction(networkParams, Util.hexToBytes(requestJson.getString("multisigTx")));
-                    Script script = ScriptBuilder.createMultiSigOutputScript(peersList.size(), keys);
-                    Coin amount = Coin.valueOf(mixAmount);
-                    multiSigOutputTx.addOutput(amount, script);
-                    response = "{'error' : false, 'multisigTx' : '" + Util.bytesToHex(multiSigOutputTx.bitcoinSerialize()) + "'}";
-                    System.out.println(response);
-                    return response;
-                case "sign":
-                    Transaction multiSigOutputTransaction = new Transaction(networkParams, Util.hexToBytes(requestJson.getString("multisigTx")));
+                case "addChangeOutputs":
                     Transaction mixingTransaction = new Transaction(networkParams, Util.hexToBytes(requestJson.getString("mixingTx")));
-                    TransactionOutput multisigOutput = multiSigOutputTransaction.getOutput(0);
-                    Script multisigScript = multisigOutput.getScriptPubKey();
-                    Sha256Hash sighash = mixingTransaction.hashForSignature(0, multisigScript, Transaction.SigHash.ALL, false);
-                    ECKey.ECDSASignature signature = sigKey.sign(sighash);
-                    response = "{'error' : false, 'sig' : '" + Util.bytesToHex(signature.encodeToDER()) + "'}";
-                    System.out.println(response);
+                    int fakeCoins = requestJson.getInt("fakeCoins");
+                    System.out.println("RECEIVED TO ADD INPUT TO: " + mixingTransaction + " with " + fakeCoins + " fake coin val");
+                    Wallet.SendRequest walletRequest = Wallet.SendRequest.forTx(mixingTransaction);
+                    walletRequest.shuffleOutputs = false;
+                    if(!wallet.completeTx(walletRequest, Coin.valueOf(fakeCoins))) {
+                        return generateResponse("Insufficient peer coins.");
+                    }
+                    TransactionOutput changeOutput = walletRequest.tx.getOutput(walletRequest.tx.getOutputs().size() - 1);
+                    System.out.println("tx changeOutput: " + changeOutput);
+                    response = "{'error' : false, 'multisigTx' : '" + Util.bytesToHex(walletRequest.tx.bitcoinSerialize()) + "'}";
+                    return response;
+                case "signInputs":
+                    Transaction mixingTx = new Transaction(networkParams, Util.hexToBytes(requestJson.getString("tx")));
+                    Wallet.SendRequest req = Wallet.SendRequest.forTx(mixingTx);
+                    req.shuffleOutputs = false;
+                    req.signInputs = false;
+                    wallet.signTx(req);
+                    response = "{'error' : false, 'tx' : '" + Util.bytesToHex(req.tx.bitcoinSerialize()) + "'}";
                     return response;
             }
         } catch (JSONException e) {

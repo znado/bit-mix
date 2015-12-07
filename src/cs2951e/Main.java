@@ -51,7 +51,7 @@ public class Main {
         //System.out.println("Amount of BTC to mix (in satoshi): [100]\r\n");
         // in satoshi's (0.00000001 BTC)
         int fee = 1000;
-        int mixAmount = 15460 - fee;//Double.parseDouble(terminalInput.nextLine());
+        int mixAmount = 15460 + 8000;//Double.parseDouble(terminalInput.nextLine());
 
 
 
@@ -69,8 +69,6 @@ public class Main {
         }
 
         mixer.mix();
-
-
 
         mixer.stop();
     }

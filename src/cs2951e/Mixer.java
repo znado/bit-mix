@@ -2,22 +2,14 @@ package cs2951e;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
-import com.google.common.util.concurrent.ListenableFuture;
 import com.mysql.fabric.xmlrpc.base.Array;
 import org.bitcoinj.core.*;
-import org.bitcoinj.crypto.TransactionSignature;
-import org.bitcoinj.script.Script;
 import org.bitcoinj.script.ScriptBuilder;
-import org.bitcoinj.store.UnreadableWalletException;
-import org.spongycastle.math.ec.ECPoint;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
 
 // the main class for the actual mixer
 public class Mixer {
@@ -34,7 +26,7 @@ public class Mixer {
         this.sigKey = new ECKey();
         this.mixAmount = mixAmount;
 
-        networkManager = new MixerNetworkManager(networkParams, wallet, this.sigKey);
+        networkManager = new MixerNetworkManager(networkParams, wallet, this.sigKey, mixAmount);
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -59,95 +51,77 @@ public class Mixer {
                 peersList.get(1).getBitcoinReceiveAddress(),
                 wallet.currentReceiveAddress());
 
-        // test simple send
-//        Wallet.SendRequest request = Wallet.SendRequest.to(peersList.get(0).getBitcoinReceiveAddress(), Coin.valueOf(mixAmount));
-//        wallet.completeTx(request);
-//        wallet.commitTx(request.tx);
-//        wallet.save();
-//        ListenableFuture<Transaction> future = wallet.broadcastTransaction(request.tx);
-//        try {
-//            future.get();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        } catch (ExecutionException e) {
-//            e.printStackTrace();
-//        }
-
-        // multi sig multi spend transaction
-
-        // the input keys array
-        ArrayList<ECKey> keys = new ArrayList<>(peersList.size());
-        keys.add(sigKey);
-        for(int i=0; i<peersList.size(); i++) {
-            MixerNetworkClient peer = peersList.get(i);
-            keys.add(peer.getPubkey());
-        }
-
-        // add our multisig output to the builder transaction
-        Transaction multiSigOutputTransaction = new Transaction(networkParams);
-        Script script = ScriptBuilder.createMultiSigOutputScript(peersList.size(), keys);
-        Coin amount = Coin.valueOf(mixAmount);
-        multiSigOutputTransaction.addOutput(amount, script);
-
-
-        // send to each peer so they can add their inputs
-        for(int i=0; i<peersList.size(); i++) {
-            MixerNetworkClient peer = peersList.get(i);
-            System.out.println("to get intput, sending transaction to: " + peer.getPublicNetworkAddress().getPort());
-            Optional<Transaction> optionalPeerSig = networkManager.sendToPeerToAddInput(peer.getPublicNetworkAddress(), multiSigOutputTransaction);
-            if(optionalPeerSig.isPresent()) {
-                multiSigOutputTransaction = optionalPeerSig.get();
-                System.out.println("got sig!: " + peerSig);
-            } else {
-                System.out.println("didnt get sig :(");
-            }
-        }
-
-        TransactionOutput multisigOutput = multiSigOutputTransaction.getOutput(0);
-        Script multisigScript = multisigOutput.getScriptPubKey();
-
         Transaction mixingTransaction = new Transaction(networkParams);
-        for(Address destination : mixingDestinations) {
+        // add the outputs
+        for(org.bitcoinj.core.Address destination : mixingDestinations) {
             mixingTransaction.addOutput(Coin.valueOf(mixAmount), destination);
         }
-        TransactionInput mixingInput = mixingTransaction.addInput(multisigOutput);
-        ArrayList<TransactionSignature> sigs = new ArrayList<>(peersList.size());
-        Sha256Hash sighash = mixingTransaction.hashForSignature(0, multisigScript, Transaction.SigHash.ALL, false);
-        ECKey.ECDSASignature signature = sigKey.sign(sighash);
-        sigs.add(new TransactionSignature(signature, Transaction.SigHash.ALL, false));
+        Wallet.SendRequest request = Wallet.SendRequest.forTx(mixingTransaction);
+        request.shuffleOutputs = false;
+//        request.signInputs = false;
+        if(!wallet.completeTx(request, Coin.valueOf(mixAmount*peersList.size()))) {
+            return;
+        }
+        TransactionOutput changeOutput = request.tx.getOutput(request.tx.getOutputs().size() - 1);
 
-        // send to each peer so they can sign the outputs
+        long changeCoins = changeOutput.getValue().longValue();
+
+        int prevOutTxCount = request.tx.getOutputs().size();
+
+        // send to each peer so they can add their change outputs
         for(int i=0; i<peersList.size(); i++) {
             MixerNetworkClient peer = peersList.get(i);
-            System.out.println("to get sig, sending transaction to: " + peer.getPublicNetworkAddress().getPort());
-            Optional<ECKey.ECDSASignature> optionalPeerSig = networkManager.sendToPeerToGetSig(peer.getPublicNetworkAddress(), multiSigOutputTransaction, mixingTransaction);
+            System.out.println("to get change outputs, sending transaction to: " + peer.getPublicNetworkAddress().getPort());
+            Optional<Transaction> optionalPeerSig = networkManager.sendToPeerToAddChangeOutputs(peer.getPublicNetworkAddress(), request.tx, peersList.size()*mixAmount + changeCoins);
             if(optionalPeerSig.isPresent()) {
-                ECKey.ECDSASignature peerSig = optionalPeerSig.get();
-                System.out.println("got sig!: " + peerSig);
-                sigs.add(new TransactionSignature(peerSig, Transaction.SigHash.ALL, false));
+                request.tx = optionalPeerSig.get();
+                // only if we added another output (a change tx) should we increment our change tx value
+                if(prevOutTxCount != request.tx.getOutputs().size()){
+                    prevOutTxCount = request.tx.getOutputs().size();
+                    changeCoins += request.tx.getOutput(request.tx.getOutputs().size() - 1).getValue().longValue();
+                }
+                System.out.println("got tx!: " + request.tx);
             } else {
-                System.out.println("didnt get sig :(");
+                System.out.println("didnt get tx");
             }
         }
-        System.out.println(mixingTransaction);
+        System.out.println("added all outputs, need to add inputs now");
 
+        // add own inputs
+        wallet.signTx(request);
 
-        // actually add the signature inputs program as an input
-        Script inputScript = ScriptBuilder.createMultiSigInputScript(sigs);
-        mixingInput.setScriptSig(inputScript);
-        mixingInput.verify(multisigOutput);
+        // send for input signing
+        for(int i=0; i<peersList.size(); i++) {
+            MixerNetworkClient peer = peersList.get(i);
+            System.out.println("to get input, sending transaction to: " + peer.getPublicNetworkAddress().getPort());
+            Optional<Transaction> optionalPeerSig = networkManager.sendToPeerToSignInputs(peer.getPublicNetworkAddress(), request.tx);
+            if(optionalPeerSig.isPresent()) {
+                request.tx = optionalPeerSig.get();
+                // only if we added another output (a change tx) should we increment our change tx value
+                if(prevOutTxCount != request.tx.getOutputs().size()){
+                    prevOutTxCount = request.tx.getOutputs().size();
+                    changeCoins += request.tx.getOutput(request.tx.getOutputs().size() - 1).getValue().longValue();
+                }
+                System.out.println("got tx!: " + request.tx);
+            } else {
+                System.out.println("didnt get tx");
+            }
+        }
+        System.out.println("SIGNED INPUTS!:");
+        System.out.println(request.tx);
 
-        Wallet.SendRequest request = Wallet.SendRequest.forTx(mixingTransaction);
-        wallet.completeTx(request);
-        System.out.println("completed");
         try {
-            wallet.broadcastTransaction(request.tx).get();
+            System.out.println("BEFORE COMMIT: " + wallet);
+            wallet.commitTx(request.tx);
+            System.out.println("AFTER COMMIT: " + wallet);
+            Transaction output = wallet.broadcastTransaction(request.tx).get();
+            System.out.println("SENT TX: " + output);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        wallet.commitTx(request.tx);
+
         System.out.println("committed");
 
 
@@ -156,6 +130,7 @@ public class Mixer {
     }
 
     public void stop() {
+        wallet.stop();
         networkManager.stop();
     }
 }
