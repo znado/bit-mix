@@ -40,15 +40,13 @@ public class MOD_ADD1_2N_N extends CompositeCircuit {
     return 3 * i + 1;
   }
 
-  protected void createSubCircuits() throws Exception {
+  protected void createSubCircuits(final boolean isForGarbling) {
     for (int i = 0; i < bitLength; i++) {
       subCircuits[adder(i)] = new ADD_3_2();
       subCircuits[neq(i)] = new XOR_2_1();
-      subCircuits[diff(i)] = OR_2_1.newInstance();
+      subCircuits[diff(i)] = OR_2_1.newInstance(isForGarbling);
     }
     subCircuits[3 * bitLength] = new MUX_2Lplus1_L(bitLength);
-
-    super.createSubCircuits();
   }
 
   protected void connectWires() {

@@ -2,31 +2,20 @@
 
 package circuit;
 
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import main.Connection;
+
+import java.io.IOException;
 import java.math.BigInteger;
 
 
 public abstract class Circuit implements TransitiveObserver {
   public static final int LEFT_INPUT = 0;
   public static final int RIGHT_INPUT = 1;
-
-  public static boolean isForGarbling;
-
-  public Wire[] inputWires;
-  public Wire[] outputWires;
-
   protected int inDegree, outDegree;
-  protected String name;
-
-  public String toString() {
-    return name;
-  }
-
-  public static ObjectOutputStream oos = null;
-  public static ObjectInputStream ois = null;
-
   private int inputWireCount = 0;
+  public Wire[] inputWires;
+  protected String name;
+  public Wire[] outputWires;
 
   public Circuit(int inDegree, int outDegree, String name) {
     if (inDegree <= 0) {
@@ -44,34 +33,9 @@ public abstract class Circuit implements TransitiveObserver {
     outputWires = new Wire[outDegree];
   }
 
-  public static void setIOStream(ObjectInputStream ois, ObjectOutputStream oos) {
-    Circuit.ois = ois;
-    Circuit.oos = oos;
-  }
+  public abstract void build(Connection connection) throws IOException;
 
-  public abstract void build() throws Exception;
-
-  public Wire inputWire(int i) {
-    if (i < 0 || i >= this.inDegree) {
-      throw new IndexOutOfBoundsException("No such output wire: " + i);
-    }
-    return inputWires[i];
-  }
-
-  public Wire outputWire() {
-    if (this.outDegree != 1) {
-      throw new IllegalStateException("Should only call outputWire() if there is only one output, but there are " +
-          this.outDegree);
-    }
-    return outputWires[0];
-  }
-
-  public Wire outputWire(int i) {
-    if (i < 0 || i >= this.outDegree) {
-      throw new IndexOutOfBoundsException("No such output wire: " + i);
-    }
-    return outputWires[i];
-  }
+  protected abstract void compute();
 
   protected void createInputWires() {
     for (int i = 0; i < inDegree; i++) {
@@ -79,35 +43,13 @@ public abstract class Circuit implements TransitiveObserver {
     }
   }
 
-  public void startExecuting(int[] vals, boolean[] invd, BigInteger[] glbs) throws Exception {
-    if (vals.length != invd.length ||
-        invd.length != glbs.length ||
-        glbs.length != this.inDegree) {
-      throw new Exception("Unmatched number of input labels.");
-    }
+  protected abstract void execute();
 
-    for (int i = 0; i < this.inDegree; i++) {
-      inputWires[i].value = vals[i];
-      inputWires[i].invd = invd[i];
-      inputWires[i].setLabel(glbs[i]);
-      inputWires[i].setReady();
+  public Wire inputWire(int i) {
+    if (i < 0 || i >= this.inDegree) {
+      throw new IndexOutOfBoundsException("No such output wire: " + i);
     }
-  }
-
-  public State startExecuting(State s) {
-    if (s.getWidth() != this.inDegree) {
-      throw new IllegalArgumentException("Unmatched number of input labels: state had with " +
-          s.getWidth() + ", but circuit has in degree " + inDegree);
-    }
-
-    for (int i = 0; i < this.inDegree; i++) {
-      inputWires[i].value = s.wires[i].value;
-      inputWires[i].invd = s.wires[i].invd;
-      inputWires[i].setLabel(s.wires[i].lbl);
-      inputWires[i].setReady();
-    }
-
-    return State.fromWires(this.outputWires);
+    return inputWires[i];
   }
 
   public BigInteger interpretOutputELabels(BigInteger[] eLabels) {
@@ -137,6 +79,56 @@ public abstract class Circuit implements TransitiveObserver {
     return output;
   }
 
+  public Wire outputWire() {
+    if (this.outDegree != 1) {
+      throw new IllegalStateException(
+          "Should only call outputWire() if there is only one output, but there are " + this.outDegree);
+    }
+    return outputWires[0];
+  }
+
+  public Wire outputWire(int i) {
+    if (i < 0 || i >= this.outDegree) {
+      throw new IndexOutOfBoundsException("No such output wire: " + i);
+    }
+    return outputWires[i];
+  }
+
+  public void startExecuting(int[] vals, boolean[] invd, BigInteger[] glbs) {
+    if (vals.length != invd.length ||
+        invd.length != glbs.length ||
+        glbs.length != this.inDegree) {
+      throw new IllegalArgumentException("Unmatched number of input labels.");
+    }
+
+    for (int i = 0; i < this.inDegree; i++) {
+      inputWires[i].value = vals[i];
+      inputWires[i].invd = invd[i];
+      inputWires[i].setLabel(glbs[i]);
+      inputWires[i].setReady();
+    }
+  }
+
+  public State startExecuting(State s) {
+    if (s.getWidth() != this.inDegree) {
+      throw new IllegalArgumentException("Unmatched number of input labels: state had with " +
+          s.getWidth() + ", but circuit has in degree " + inDegree);
+    }
+
+    for (int i = 0; i < this.inDegree; i++) {
+      inputWires[i].value = s.wires[i].value;
+      inputWires[i].invd = s.wires[i].invd;
+      inputWires[i].setLabel(s.wires[i].lbl);
+      inputWires[i].setReady();
+    }
+
+    return State.fromWires(this.outputWires);
+  }
+
+  public String toString() {
+    return name;
+  }
+
   public void update(TransitiveObservable o, Object arg) {
     // What the shit are these arguments?
     inputWireCount++;
@@ -147,11 +139,4 @@ public abstract class Circuit implements TransitiveObserver {
       execute();
     }
   }
-
-  public int getInDegree() {
-    return inDegree;
-  }
-
-  abstract protected void compute();
-  abstract protected void execute();
 }

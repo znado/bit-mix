@@ -2,7 +2,6 @@
 
 package main.wrap;
 
-import circuit.mod.MOD_ADD_4N_N;
 import circuit.mod.MOD_DOUBLE_3N_N;
 import main.AdditionCommon;
 
@@ -15,10 +14,10 @@ import main.AdditionCommon;
 public class RUN_DOUBLE extends Wrapper {
   public static boolean wasRun = false;
 
-  protected void createSubCircuits() throws Exception {
+  protected void createSubCircuits(final boolean isForGarbling) throws Exception {
     subCircuits[0] = new MOD_DOUBLE_3N_N(AdditionCommon.BIT_LENGTH);
 
-    super.createSubCircuits();
+    super.createSubCircuits(isForGarbling);
   }
 
   protected void connectWires() {

@@ -2,7 +2,6 @@
 
 package main;
 
-import circuit.Circuit;
 import circuit.Wire;
 import crypto.ot.OTExtSender;
 import crypto.ot.Sender;
@@ -14,7 +13,6 @@ import java.net.ServerSocket;
 public abstract class ProgServer extends Program implements AutoCloseable {
 
   public static final int SERVER_PORT = 23456;             // server port number
-  private Connection connection;
   protected int otMsgBitLength = Wire.labelBitLength;
   protected int otNumOfPairs;
   protected Sender snder;
@@ -31,27 +29,16 @@ public abstract class ProgServer extends Program implements AutoCloseable {
   @Override
   public void close() throws Exception {
     sock.close();
-    connection.close();
   }
 
-  protected void createCircuits() throws Exception {
-    Circuit.isForGarbling = true;
-    Circuit.setIOStream(ProgCommon.ois, ProgCommon.oos);
-    for (int i = 0; i < ProgCommon.ccs.length; i++) {
-      ProgCommon.ccs[i].build();
-    }
+  @Override
+  public Connection connect() throws IOException {
+    return Connection.serverInstance(sock.accept());
   }
 
   protected void initializeOT() throws Exception {
     otNumOfPairs = ProgCommon.ois.readInt();
 
     snder = new OTExtSender(otNumOfPairs, otMsgBitLength, ProgCommon.ois, ProgCommon.oos);
-  }
-
-  @Override
-  public void run() throws Exception {
-    connection = new Connection(sock.accept());
-
-    super.run();
   }
 }

@@ -2,7 +2,6 @@
 
 package main.wrap;
 
-import circuit.mod.MOD_ADD_4N_N;
 import circuit.mod.MOD_COND_ADD_4Nplus1_N;
 import main.AdditionCommon;
 
@@ -15,10 +14,10 @@ import main.AdditionCommon;
 public class RUN_COND_ADD extends Wrapper {
   public static boolean wasRun = false;
 
-  protected void createSubCircuits() throws Exception {
+  protected void createSubCircuits(final boolean isForGarbling) throws Exception {
     subCircuits[0] = new MOD_COND_ADD_4Nplus1_N(AdditionCommon.BIT_LENGTH);
 
-    super.createSubCircuits();
+    super.createSubCircuits(isForGarbling);
   }
 
   protected void connectWires() {

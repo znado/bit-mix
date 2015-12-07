@@ -17,12 +17,10 @@ public class OR_L_1 extends CompositeCircuit {
     L = l;
   }
 
-  protected void createSubCircuits() throws Exception {
+  protected void createSubCircuits(final boolean isForGarbling) {
     for (int i = 0; i < L - 1; i++) {
-      subCircuits[i] = OR_2_1.newInstance();
+      subCircuits[i] = OR_2_1.newInstance(isForGarbling);
     }
-
-    super.createSubCircuits();
   }
 
   protected void connectWires() {

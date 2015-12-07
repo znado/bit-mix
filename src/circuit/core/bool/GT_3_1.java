@@ -9,26 +9,23 @@ import circuit.CompositeCircuit;
  * Fig. 6 of [KSS09]
  */
 public class GT_3_1 extends CompositeCircuit {
+  private final static int AND0 = 3;
+  public final static int C = 2;
+  public final static int X = 0;
   private final static int XOR0 = 0;
   private final static int XOR1 = 1;
   private final static int XOR2 = 2;
-  private final static int AND0 = 3;
-
-  public final static int X = 0;
   public final static int Y = 1;
-  public final static int C = 2;
 
   public GT_3_1() {
     super(3, 1, 4, "GT_3_1");
   }
 
-  protected void createSubCircuits() throws Exception {
+  protected void createSubCircuits(final boolean isForGarbling) {
     subCircuits[XOR0] = new XOR_2_1();
     subCircuits[XOR1] = new XOR_2_1();
     subCircuits[XOR2] = new XOR_2_1();
-    subCircuits[AND0] = AND_2_1.newInstance();
-
-    super.createSubCircuits();
+    subCircuits[AND0] = AND_2_1.newInstance(isForGarbling);
   }
 
   protected void connectWires() {

@@ -11,19 +11,44 @@ import java.net.Socket;
  * @version 1.1
  */
 public class Connection implements AutoCloseable {
-  private final ObjectInputStream ois = null;              // socket input stream
-  private final ObjectOutputStream oos = null;              // socket output stream
+  private final ObjectInputStream ois;              // socket input stream
+  private final ObjectOutputStream oos;              // socket output stream
   private final Socket sock;
+  private final boolean forGarbling;
 
-  public Connection(Socket sock) throws IOException {
+  public static Connection serverInstance(Socket sock) throws IOException {
+    return new Connection(sock, true);
+  }
+
+  public static Connection clientInstance(Socket sock) throws IOException {
+    return new Connection(sock, false);
+  }
+
+  private Connection(Socket sock, boolean forGarbling) throws IOException {
     this.sock = sock;
+    oos = new ObjectOutputStream(sock.getOutputStream());
+    ois = new ObjectInputStream(sock.getInputStream());
+    this.forGarbling = forGarbling;
+  }
 
-    ProgCommon.oos = new ObjectOutputStream(sock.getOutputStream());
-    ProgCommon.ois = new ObjectInputStream(sock.getInputStream());
+  public boolean isForGarbling() {
+    return forGarbling;
+  }
+
+  public ObjectOutputStream getOos() {
+    return oos;
+  }
+
+  public ObjectInputStream getOis() {
+    return ois;
+  }
+
+  public void flush() throws IOException {
+    oos.flush();
   }
 
   @Override
-  public void close() throws Exception {
+  public void close() throws IOException {
     sock.close();
     oos.close();
     ois.close();

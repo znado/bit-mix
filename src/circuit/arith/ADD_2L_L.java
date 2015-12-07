@@ -19,12 +19,18 @@ public class ADD_2L_L extends CompositeCircuit {
     L = l;
   }
 
-  protected void createSubCircuits() throws Exception {
+  public static int X(int i) {
+    return 2 * i;
+  }
+
+  public static int Y(int i) {
+    return 2 * i + 1;
+  }
+
+  protected void createSubCircuits(final boolean isForGarbling) {
     for (int i = 0; i < L; i++) {
       subCircuits[i] = new ADD_3_2();
     }
-
-    super.createSubCircuits();
   }
 
   protected void connectWires() {
@@ -47,13 +53,5 @@ public class ADD_2L_L extends CompositeCircuit {
   protected void fixInternalWires() {
     Wire internalWire = subCircuits[0].inputWires[ADD_3_2.CIN];
     internalWire.fixWire(0);
-  }
-
-  public static int X(int i) {
-    return 2*i;
-  }
-
-  public static int Y(int i) {
-    return 2*i + 1;
   }
 }

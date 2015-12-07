@@ -1,7 +1,6 @@
 package circuit.mod;
 
 import circuit.CompositeCircuit;
-import circuit.core.MUX_2Lplus1_L;
 
 
 /*
@@ -10,10 +9,13 @@ import circuit.core.MUX_2Lplus1_L;
  * Outputs the next accumulator
  */
 public class MOD_SUB_MULT_4Nplus1_N extends CompositeCircuit {
+  private static final int COND_ADD = 1;
+  private static final int DOUBLED_ACCUM = 0;
   private final int bitlength;
 
-  public static int Y_i() {
-    return 0;
+  public MOD_SUB_MULT_4Nplus1_N(int n) {
+    super(4 * n + 1, n, 2, "MOD_SUB_MULT_" + (4 * n + 1) + "_" + n);
+    bitlength = n;
   }
 
   public static int A(int i) {
@@ -24,27 +26,21 @@ public class MOD_SUB_MULT_4Nplus1_N extends CompositeCircuit {
     return 2 + 4 * i;
   }
 
-  public static int mMinusOne(int i) {
-    return 3 + 4 * i;
+  public static int Y_i() {
+    return 0;
   }
 
   public static int invM(int i) {
     return 4 + 4 * i;
   }
 
-  public MOD_SUB_MULT_4Nplus1_N(int n) {
-    super(4 * n + 1, n, 2, "MOD_SUB_MULT_" + (4 * n + 1) + "_" + n);
-    bitlength = n;
+  public static int mMinusOne(int i) {
+    return 3 + 4 * i;
   }
 
-  private static final int DOUBLED_ACCUM = 0;
-  private static final int COND_ADD = 1;
-
-  protected void createSubCircuits() throws Exception {
+  protected void createSubCircuits(final boolean isForGarbling) {
     subCircuits[DOUBLED_ACCUM] = new MOD_DOUBLE_3N_N(bitlength);
     subCircuits[COND_ADD] = new MOD_COND_ADD_4Nplus1_N(bitlength);
-
-    super.createSubCircuits();
   }
 
   protected void connectWires() {
@@ -53,7 +49,8 @@ public class MOD_SUB_MULT_4Nplus1_N extends CompositeCircuit {
       inputWires[mMinusOne(i)].connectTo(subCircuits[DOUBLED_ACCUM].inputWires, MOD_DOUBLE_3N_N.mMinusOne(i));
       inputWires[invM(i)].connectTo(subCircuits[DOUBLED_ACCUM].inputWires, MOD_DOUBLE_3N_N.invM(i));
 
-      subCircuits[DOUBLED_ACCUM].outputWires[i].connectTo(subCircuits[COND_ADD].inputWires, MOD_COND_ADD_4Nplus1_N.A(i));
+      subCircuits[DOUBLED_ACCUM].outputWires[i].connectTo(subCircuits[COND_ADD].inputWires,
+          MOD_COND_ADD_4Nplus1_N.A(i));
       inputWires[X(i)].connectTo(subCircuits[COND_ADD].inputWires, MOD_COND_ADD_4Nplus1_N.B(i));
       inputWires[invM(i)].connectTo(subCircuits[COND_ADD].inputWires, MOD_COND_ADD_4Nplus1_N.invM(i));
       inputWires[mMinusOne(i)].connectTo(subCircuits[COND_ADD].inputWires, MOD_COND_ADD_4Nplus1_N.mMinusOne(i));

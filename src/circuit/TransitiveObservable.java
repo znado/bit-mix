@@ -34,30 +34,9 @@ import java.util.List;
  */
 public class TransitiveObservable {
 
-  List<TransitiveObserver> observers = new ArrayList<TransitiveObserver>();
-
   boolean changed = false;
-
-  List<Socket> exports = new ArrayList<Socket>();
-
-  public static class Socket {
-    Wire[] wires;
-    int idx;
-
-    public Socket(Wire[] ws, int i) {
-      wires = ws;
-      idx = i;
-    }
-
-    public void updateSocket(Wire w) {
-      wires[idx] = w;
-    }
-
-    public boolean equals(Socket sock) {
-      return this == sock || sock != null && (wires == sock.wires) && (idx == sock.idx);
-
-    }
-  }
+  List<OSocket> exports = new ArrayList<OSocket>();
+  List<TransitiveObserver> observers = new ArrayList<TransitiveObserver>();
 
   /**
    * Constructs a new {@code Observable} object.
@@ -72,7 +51,7 @@ public class TransitiveObservable {
    * @param observer
    *     the Observer to add.
    */
-  public void addObserver(TransitiveObserver observer, Socket sock) {
+  public void addObserver(TransitiveObserver observer, OSocket sock) {
     if (observer == null) {
       throw new NullPointerException();
     }
@@ -106,7 +85,7 @@ public class TransitiveObservable {
    * @param observer
    *     the observer to remove.
    */
-  public synchronized void deleteObserver(TransitiveObserver observer, Socket sock) {
+  public synchronized void deleteObserver(TransitiveObserver observer, OSocket sock) {
     observers.remove(observer);
     exports.remove(sock);
   }
@@ -168,5 +147,24 @@ public class TransitiveObservable {
    */
   protected void setChanged() {
     changed = true;
+  }
+
+  public static class OSocket {
+    int idx;
+    Wire[] wires;
+
+    public OSocket(Wire[] ws, int i) {
+      wires = ws;
+      idx = i;
+    }
+
+    public boolean equals(OSocket sock) {
+      return this == sock || sock != null && (wires == sock.wires) && (idx == sock.idx);
+
+    }
+
+    public void updateSocket(Wire w) {
+      wires[idx] = w;
+    }
   }
 }

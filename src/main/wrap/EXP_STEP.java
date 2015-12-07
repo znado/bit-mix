@@ -34,12 +34,12 @@ public class EXP_STEP extends CompositeCircuit {
     return 0;
   }
 
-  protected void createSubCircuits() throws Exception {
+  protected void createSubCircuits(final boolean isForGarbling) throws Exception {
     subCircuits[SQUARE] = new MOD_SQUARE_3N_N(AdditionCommon.BIT_LENGTH);
     subCircuits[MULT] = new MOD_MULT_4N_N(AdditionCommon.BIT_LENGTH);
     subCircuits[SEL] = new MUX_2Lplus1_L(AdditionCommon.BIT_LENGTH);
 
-    super.createSubCircuits();
+    super.createSubCircuits(isForGarbling);
   }
 
   protected void connectWires() {

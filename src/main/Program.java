@@ -1,13 +1,27 @@
 package main;
 
+import circuit.Circuit;
+
+import java.io.IOException;
+import java.util.List;
+
+
 public abstract class Program {
-  protected abstract void createCircuits() throws Exception;
+  private void buildCircuits(List<Circuit> circuits, Connection connection) throws IOException {
+    for (Circuit circuit : circuits) {
+      circuit.build(connection);
+    }
+  }
 
-  protected abstract void execCircuit() throws Exception;
+  public abstract Connection connect() throws IOException;
 
-  protected abstract void execTransfer() throws Exception;
+  public abstract List<Circuit> createCircuits();
 
-  protected void execute() throws Exception {
+  protected abstract void execCircuit();
+
+  protected abstract void execTransfer();
+
+  protected void execute() {
     execTransfer();
 
     execCircuit();
@@ -15,13 +29,16 @@ public abstract class Program {
     interpretResult();
   }
 
-  protected abstract void initializeOT() throws Exception;
+  protected abstract void initializeOT();
 
-  protected abstract void interpretResult() throws Exception;
+  protected abstract void interpretResult();
 
-  public void run() throws Exception {
-    createCircuits();
-    initializeOT();
-    execute();
+  public final void run() throws IOException {
+    try (Connection connection = connect()) {
+      List<Circuit> circuits = createCircuits();
+      buildCircuits(circuits, connection);
+      initializeOT();
+      execute();
+    }
   }
 }

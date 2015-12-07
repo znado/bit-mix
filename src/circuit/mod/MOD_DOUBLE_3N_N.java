@@ -21,23 +21,25 @@ public class MOD_DOUBLE_3N_N extends CompositeCircuit {
     bitLength = n;
   }
 
-  private int fixedAdder(int i) {
-    return 2 * i;
+  public static int A(int i) {
+    return 3 * i;
   }
 
-  private int unfixedGt(int i) {
-    return 2 * i + 1;
+  public static int invM(int i) {
+    return 3 * i + 1;
   }
 
-  protected void createSubCircuits() throws Exception {
+  public static int mMinusOne(int i) {
+    return 3 * i + 2;
+  }
+
+  protected void createSubCircuits(final boolean isForGarbling) {
     for (int i = 0; i < bitLength; i++) {
       subCircuits[fixedAdder(i)] = new ADD_3_2();
       subCircuits[unfixedGt(i)] = new GT_3_1();
     }
-    subCircuits[2 * bitLength] = OR_2_1.newInstance();
+    subCircuits[2 * bitLength] = OR_2_1.newInstance(isForGarbling);
     subCircuits[2 * bitLength + 1] = new MUX_2Lplus1_L(bitLength);
-
-    super.createSubCircuits();
   }
 
   protected void connectWires() {
@@ -83,15 +85,11 @@ public class MOD_DOUBLE_3N_N extends CompositeCircuit {
         .fixWire(0);
   }
 
-  public static int A(int i) {
-    return 3 * i;
+  private int fixedAdder(int i) {
+    return 2 * i;
   }
 
-  public static int invM(int i) {
-    return 3 * i + 1;
-  }
-
-  public static int mMinusOne(int i) {
-    return 3 * i + 2;
+  private int unfixedGt(int i) {
+    return 2 * i + 1;
   }
 }

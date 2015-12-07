@@ -18,10 +18,10 @@ import circuit.core.bool.XOR_2_1;
  * @version 2.1
  */
 public class MOD_SQUARE_3N_N extends CompositeCircuit {
-  private static final boolean DEBUG_MODE = false;
   private static final int A2_1_2a = 6;
   private static final int A2_1_2b = 7;
   private static final int A2_1_3 = 5;
+  private static final boolean DEBUG_MODE = false;
   private static final int QN2_ADD1 = 4;
   private static final int QN2_DOUBLE_1 = 2;
   private static final int QN2_DOUBLE_2 = 3;
@@ -34,8 +34,7 @@ public class MOD_SQUARE_3N_N extends CompositeCircuit {
   private final int unsafeSubcircuitIndex;
 
   public MOD_SQUARE_3N_N(int n) {
-    super(3 * n, n, A2_1_2b + 1 + 2 * ((n - 3) / 2 - 1) + 4 * (n / 2 + 1),
-        "x^2 mod_" + (3 * n) + "_" + n);
+    super(3 * n, n, A2_1_2b + 1 + 2 * ((n - 3) / 2 - 1) + 4 * (n / 2 + 1), "x^2 mod_" + (3 * n) + "_" + n);
     if (n < 7) {
       throw new IllegalArgumentException("Bitlength must be at least 7 when squaring");
     }
@@ -161,7 +160,7 @@ public class MOD_SQUARE_3N_N extends CompositeCircuit {
     }
   }
 
-  protected void createSubCircuits() throws Exception {
+  protected void createSubCircuits(final boolean isForGarbling) {
     subCircuits[QN3_DOUBLE] = new MOD_DOUBLE_3N_N(bitLength);
     subCircuits[QN2_DOUBLE_1] = new MOD_DOUBLE_3N_N(bitLength);
     subCircuits[QN2_DOUBLE_2] = new MOD_DOUBLE_3N_N(bitLength);
@@ -169,9 +168,9 @@ public class MOD_SQUARE_3N_N extends CompositeCircuit {
     subCircuits[QN3_ADD1] = new MOD_ADD1_2N_N(bitLength);
     subCircuits[QN2_ADD1] = new MOD_ADD1_2N_N(bitLength);
 
-    subCircuits[A2_1_3] = AND_2_1.newInstance();
+    subCircuits[A2_1_3] = AND_2_1.newInstance(isForGarbling);
     subCircuits[A2_1_2a] = new XOR_2_1();
-    subCircuits[A2_1_2b] = AND_2_1.newInstance();
+    subCircuits[A2_1_2b] = AND_2_1.newInstance(isForGarbling);
 
     for (int k = 2; k <= maxSafeK; k++) {
       subCircuits[adder(k)] = new ADD_2L_L(2 * k + 2);
@@ -183,8 +182,6 @@ public class MOD_SQUARE_3N_N extends CompositeCircuit {
       subCircuits[firstDouble(k)] = new MOD_DOUBLE_3N_N(bitLength);
       subCircuits[secondDouble(k)] = new MOD_DOUBLE_3N_N(bitLength);
     }
-
-    super.createSubCircuits();
   }
 
   protected void connectWires() {
@@ -305,7 +302,8 @@ public class MOD_SQUARE_3N_N extends CompositeCircuit {
 
   protected void fixInternalWires() {
     // Fix the top bit of 2a_{n-1}
-    subCircuits[QN3_DOUBLE].inputWire(MOD_DOUBLE_3N_N.A(0)).fixWire(0);
+    subCircuits[QN3_DOUBLE].inputWire(MOD_DOUBLE_3N_N.A(0))
+        .fixWire(0);
     subCircuits[QN3_DOUBLE].inputWire(MOD_DOUBLE_3N_N.A(bitLength - 1))
         .fixWire(0);
     subCircuits[QN2_DOUBLE_1].inputWire(MOD_DOUBLE_3N_N.A(bitLength - 1))

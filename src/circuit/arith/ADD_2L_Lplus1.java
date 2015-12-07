@@ -19,12 +19,18 @@ public class ADD_2L_Lplus1 extends CompositeCircuit {
     L = l;
   }
 
-  protected void createSubCircuits() throws Exception {
+  public static int X(int i) {
+    return 2 * i + 1;
+  }
+
+  public static int Y(int i) {
+    return 2 * i;
+  }
+
+  protected void createSubCircuits(final boolean isForGarbling) {
     for (int i = 0; i < L; i++) {
       subCircuits[i] = new ADD_3_2();
     }
-
-    super.createSubCircuits();
   }
 
   protected void connectWires() {
@@ -48,28 +54,5 @@ public class ADD_2L_Lplus1 extends CompositeCircuit {
   protected void fixInternalWires() {
     Wire internalWire = subCircuits[0].inputWires[ADD_3_2.CIN];
     internalWire.fixWire(0);
-  }
-
-  public static int X(int i) {
-    return 2 * i + 1;
-  }
-
-  public static int Y(int i) {
-    return 2 * i;
-  }
-
-  /*
-   * Connect xWires[xStartPos...xStartPos+L] to the wires representing bits of X;
-   * yWires[yStartPos...yStartPos+L] to the wires representing bits of Y;
-   */
-  public void connectWiresToXY(Wire[] xWires, int xStartPos, Wire[] yWires, int yStartPos) throws Exception {
-    if (xStartPos + L > xWires.length || yStartPos + L > yWires.length) {
-      throw new Exception("Unmatched number of wires.");
-    }
-
-    for (int i = 0; i < L; i++) {
-      xWires[xStartPos + i].connectTo(inputWires, X(i));
-      yWires[yStartPos + i].connectTo(inputWires, Y(i));
-    }
   }
 }

@@ -11,6 +11,7 @@ import circuit.core.bool.MUX_3_1;
  * if C == 0, choose X; otherwise choose Y.
  */
 public class MUX_2Lplus1_L extends CompositeCircuit {
+  final int C;
   private final int L;
 
   public MUX_2Lplus1_L(int l) {
@@ -19,16 +20,22 @@ public class MUX_2Lplus1_L extends CompositeCircuit {
     C = 2 * L;
   }
 
-  public int getL() {
-    return L;
+  public static int C(int bitlength) {
+    return 2 * bitlength;
   }
 
-  protected void createSubCircuits() throws Exception {
+  public static int X(int i) {
+    return 2 * i + 1;
+  }
+
+  public static int Y(int i) {
+    return 2 * i;
+  }
+
+  protected void createSubCircuits(final boolean isForGarbling) {
     for (int i = 0; i < L; i++) {
       subCircuits[i] = new MUX_3_1();
     }
-
-    super.createSubCircuits();
   }
 
   protected void connectWires() {
@@ -44,18 +51,4 @@ public class MUX_2Lplus1_L extends CompositeCircuit {
       outputWires[i] = subCircuits[i].outputWires[0];
     }
   }
-
-  public static int X(int i) {
-    return 2 * i + 1;
-  }
-
-  public static int Y(int i) {
-    return 2 * i;
-  }
-
-  public static int C(int bitlength) {
-    return 2*bitlength;
-  }
-
-  final int C;
 }

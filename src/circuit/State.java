@@ -7,30 +7,14 @@ import java.math.BigInteger;
 
 public class State {
 
-  public static class StaticWire {
-    public int value = Wire.UNKNOWN_SIG;
-    public BigInteger lbl = null;
-    public boolean invd = false;
-
-    StaticWire() {}
-
-    public StaticWire(int v) {
-      value = v;
-    }
-
-    public StaticWire(BigInteger label) {
-      lbl = label;
-    }
-  }
-
-  public StaticWire wires[];
   public BigInteger plainValue = null;  // The non-negative integer the state object represents.
+  public StaticWire wires[];
 
   public State(StaticWire[] ws) {
     wires = ws;
 
-    for (int i = 0; i < ws.length; i++) {
-      if (ws[i].value == Wire.UNKNOWN_SIG) {
+    for (final StaticWire w : ws) {
+      if (w.value == Wire.UNKNOWN_SIG) {
         plainValue = null;
         return;
       }
@@ -59,17 +43,23 @@ public class State {
     plainValue = null;
   }
 
-  public static State flattenStateArray(State[] as) {
-    State res = new State(as.length * as[0].wires.length);
-    for (int i = 0; i < as.length; i++) {
-      for (int j = 0; j < as[0].wires.length; j++) {
-        res.wires[i * 8 + j] = new StaticWire();
-        res.wires[i * 8 + j].value = as[i].wires[j].value;
-        res.wires[i * 8 + j].lbl = as[i].wires[j].lbl;
-        res.wires[i * 8 + j].invd = as[i].wires[j].invd;
+  public static State concatenate(State s1, State s2) {
+    int width = s1.getWidth() + s2.getWidth();
+    State res = new State(width);
+    for (int i = 0; i < width; i++) {
+      if (i < s2.wires.length) {
+        res.wires[i] = s2.wires[i];
+      } else {
+        res.wires[i] = s1.wires[i - s2.wires.length];
       }
     }
 
+    if (s1.plainValue == null || s2.plainValue == null) {
+      res.plainValue = null;
+    } else {
+      res.plainValue = s1.plainValue.shiftLeft(s2.getWidth())
+          .xor(s2.plainValue);
+    }
     return res;
   }
 
@@ -85,16 +75,18 @@ public class State {
     return res;
   }
 
-  public static State fromWires(Wire[] ws) {
-    StaticWire[] swires = new StaticWire[ws.length];
-    for (int i = 0; i < ws.length; i++) {
-      swires[i] = new StaticWire();
-      swires[i].value = ws[i].value;
-      swires[i].lbl = ws[i].lbl;
-      swires[i].invd = ws[i].invd;
+  public static State flattenStateArray(State[] as) {
+    State res = new State(as.length * as[0].wires.length);
+    for (int i = 0; i < as.length; i++) {
+      for (int j = 0; j < as[0].wires.length; j++) {
+        res.wires[i * 8 + j] = new StaticWire();
+        res.wires[i * 8 + j].value = as[i].wires[j].value;
+        res.wires[i * 8 + j].lbl = as[i].wires[j].lbl;
+        res.wires[i * 8 + j].invd = as[i].wires[j].invd;
+      }
     }
 
-    return new State(swires);
+    return res;
   }
 
   public static State fromLabels(BigInteger[] lbs) {
@@ -106,21 +98,16 @@ public class State {
     return res;
   }
 
-  public int getWidth() {
-    return wires.length;
-  }
-
-  /*
-   * Return "true" ONLY IF it is CERTAIN that the value denoted
-   * by "this" object is larger than that denoted by "s". Namely, if
-   * "false" is returned, it is still possible that ("this" > "s").
-   */
-  public boolean largerThan(State s) {
-    if (plainValue != null && s.plainValue != null) {
-      return plainValue.compareTo(s.plainValue) > 0;
+  public static State fromWires(Wire[] ws) {
+    StaticWire[] swires = new StaticWire[ws.length];
+    for (int i = 0; i < ws.length; i++) {
+      swires[i] = new StaticWire();
+      swires[i].value = ws[i].value;
+      swires[i].lbl = ws[i].lbl;
+      swires[i].invd = ws[i].invd;
     }
 
-    return false; // this line should never be reached.
+    return new State(swires);
   }
 
   public static State signExtend(State s, int width) {
@@ -144,24 +131,8 @@ public class State {
     return res;
   }
 
-  public static State concatenate(State s1, State s2) {
-    int width = s1.getWidth() + s2.getWidth();
-    State res = new State(width);
-    for (int i = 0; i < width; i++) {
-      if (i < s2.wires.length) {
-        res.wires[i] = s2.wires[i];
-      } else {
-        res.wires[i] = s1.wires[i - s2.wires.length];
-      }
-    }
-
-    if (s1.plainValue == null || s2.plainValue == null) {
-      res.plainValue = null;
-    } else {
-      res.plainValue = s1.plainValue.shiftLeft(s2.getWidth())
-          .xor(s2.plainValue);
-    }
-    return res;
+  public int getWidth() {
+    return wires.length;
   }
 
   public BigInteger[] toLabels() {
@@ -170,6 +141,22 @@ public class State {
       res[i] = wires[i].lbl;
     }
     return res;
+  }
+
+  public static class StaticWire {
+    public boolean invd = false;
+    public BigInteger lbl = null;
+    public int value = Wire.UNKNOWN_SIG;
+
+    StaticWire() {}
+
+    public StaticWire(int v) {
+      value = v;
+    }
+
+    public StaticWire(BigInteger label) {
+      lbl = label;
+    }
   }
 }
 

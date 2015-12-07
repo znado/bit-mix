@@ -2,6 +2,9 @@
 
 package circuit;
 
+import main.Connection;
+
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,9 +21,11 @@ public abstract class CompositeCircuit extends Circuit {
     subCircuits = new Circuit[nSubCircuits];
   }
 
-  public void build() throws Exception {
+  @Override
+  public void build(Connection connection) throws IOException {
     createInputWires();
-    createSubCircuits();
+    createSubCircuits(connection.isForGarbling());
+    buildSubCircuits(connection);
     connectWires();
     defineOutputWires();
     fixInternalWires();
@@ -48,14 +53,15 @@ public abstract class CompositeCircuit extends Circuit {
     return true;
   }
 
-  protected void createSubCircuits() throws Exception {
+  protected void buildSubCircuits(Connection connection) throws IOException {
     for (int i = 0; i < nSubCircuits; i++) {
-      subCircuits[i].build();
+      subCircuits[i].build(connection);
     }
   }
 
-  abstract protected void connectWires() throws Exception;
-  abstract protected void defineOutputWires();
+  protected abstract void createSubCircuits(boolean isForGarbling);
+  protected abstract void connectWires();
+  protected abstract void defineOutputWires();
 
   protected void fixInternalWires() {}
 

@@ -10,9 +10,9 @@ import circuit.core.bool.OR_2_1;
 
 
 /**
- * Modular addition circuit which calculates A+B mod M, where M-1 must have its top bit set to 1.
- * Takes A (an n-bit integer less than M), B (an n-bit integer less than M),
- * M-1 (where M is an n-bit integer which is at least 2^(n-1)+1), and invM (n bits, -M mod 2^n)
+ * Modular addition circuit which calculates A+B mod M, where M-1 must have its top bit set to 1. Takes A (an n-bit
+ * integer less than M), B (an n-bit integer less than M), M-1 (where M is an n-bit integer which is at least
+ * 2^(n-1)+1), and invM (n bits, -M mod 2^n)
  */
 public class MOD_ADD_4N_N extends CompositeCircuit {
   private final int bitLength;
@@ -38,16 +38,14 @@ public class MOD_ADD_4N_N extends CompositeCircuit {
     return 4 * i + 3;
   }
 
-  protected void createSubCircuits() throws Exception {
+  protected void createSubCircuits(final boolean isForGarbling) {
     for (int i = 0; i < bitLength; i++) {
       subCircuits[unfixedAdder(i)] = new ADD_3_2();
       subCircuits[fixedAdder(i)] = new ADD_3_2();
       subCircuits[unfixedGt(i)] = new GT_3_1();
     }
-    subCircuits[3 * bitLength] = OR_2_1.newInstance();
+    subCircuits[3 * bitLength] = OR_2_1.newInstance(isForGarbling);
     subCircuits[3 * bitLength + 1] = new MUX_2Lplus1_L(bitLength);
-
-    super.createSubCircuits();
   }
 
   protected void connectWires() {

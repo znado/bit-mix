@@ -1,13 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f6986a66-fecd-4926-87ef-3a411f0a483d" name="Default" comment="Cleanup of the library's actually godawful server/client code">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/Connection.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/commons_io_1_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/ProgClient.java" afterPath="$PROJECT_DIR$/src/main/ProgClient.java" />
+    <list default="true" id="f6986a66-fecd-4926-87ef-3a411f0a483d" name="Default" comment="">
+      <change type="DELETED" beforePath="C:\Users\nschank\Documents\course\CSCI2951e\proj\src\circuit\core\XOR_2L_L.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\nschank\Documents\course\CSCI2951e\proj\src\circuit\core\XOR_L_1.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\nschank\Documents\course\CSCI2951e\proj\src\main\ProgCommon.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/arith/ADD_2L_L.java" afterPath="$PROJECT_DIR$/src/circuit/arith/ADD_2L_L.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/arith/ADD_2L_Lplus1.java" afterPath="$PROJECT_DIR$/src/circuit/arith/ADD_2L_Lplus1.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/core/bool/ADD_3_2.java" afterPath="$PROJECT_DIR$/src/circuit/core/bool/ADD_3_2.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/core/bool/AND_2_1.java" afterPath="$PROJECT_DIR$/src/circuit/core/bool/AND_2_1.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/Circuit.java" afterPath="$PROJECT_DIR$/src/circuit/Circuit.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/CompositeCircuit.java" afterPath="$PROJECT_DIR$/src/circuit/CompositeCircuit.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/Connection.java" afterPath="$PROJECT_DIR$/src/main/Connection.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/wrap/EXP_STEP.java" afterPath="$PROJECT_DIR$/src/main/wrap/EXP_STEP.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/arith/GT_2L_1.java" afterPath="$PROJECT_DIR$/src/circuit/arith/GT_2L_1.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/core/bool/GT_3_1.java" afterPath="$PROJECT_DIR$/src/circuit/core/bool/GT_3_1.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/mod/MOD_ADD1_2N_N.java" afterPath="$PROJECT_DIR$/src/circuit/mod/MOD_ADD1_2N_N.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/mod/MOD_ADD_4N_N.java" afterPath="$PROJECT_DIR$/src/circuit/mod/MOD_ADD_4N_N.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/mod/MOD_COND_ADD_4Nplus1_N.java" afterPath="$PROJECT_DIR$/src/circuit/mod/MOD_COND_ADD_4Nplus1_N.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/mod/MOD_DOUBLE_3N_N.java" afterPath="$PROJECT_DIR$/src/circuit/mod/MOD_DOUBLE_3N_N.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/mod/MOD_MULT_4N_N.java" afterPath="$PROJECT_DIR$/src/circuit/mod/MOD_MULT_4N_N.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/mod/MOD_SQUARE_3N_N.java" afterPath="$PROJECT_DIR$/src/circuit/mod/MOD_SQUARE_3N_N.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/mod/MOD_SUB_MULT_4Nplus1_N.java" afterPath="$PROJECT_DIR$/src/circuit/mod/MOD_SUB_MULT_4Nplus1_N.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/core/MUX_2Lplus1_L.java" afterPath="$PROJECT_DIR$/src/circuit/core/MUX_2Lplus1_L.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/core/bool/MUX_3_1.java" afterPath="$PROJECT_DIR$/src/circuit/core/bool/MUX_3_1.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/core/bool/OR_2_1.java" afterPath="$PROJECT_DIR$/src/circuit/core/bool/OR_2_1.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/core/OR_L_1.java" afterPath="$PROJECT_DIR$/src/circuit/core/OR_L_1.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/ProgServer.java" afterPath="$PROJECT_DIR$/src/main/ProgServer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/Program.java" afterPath="$PROJECT_DIR$/src/main/Program.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bit-mix.iml" afterPath="$PROJECT_DIR$/bit-mix.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/wrap/RUN_ADD.java" afterPath="$PROJECT_DIR$/src/main/wrap/RUN_ADD.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/wrap/RUN_ADD1.java" afterPath="$PROJECT_DIR$/src/main/wrap/RUN_ADD1.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/wrap/RUN_COND_ADD.java" afterPath="$PROJECT_DIR$/src/main/wrap/RUN_COND_ADD.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/wrap/RUN_DOUBLE.java" afterPath="$PROJECT_DIR$/src/main/wrap/RUN_DOUBLE.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/wrap/RUN_EXP.java" afterPath="$PROJECT_DIR$/src/main/wrap/RUN_EXP.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/wrap/RUN_MULT.java" afterPath="$PROJECT_DIR$/src/main/wrap/RUN_MULT.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/wrap/RUN_SQUARE.java" afterPath="$PROJECT_DIR$/src/main/wrap/RUN_SQUARE.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/core/bool/SimpleCircuit_2_1.java" afterPath="$PROJECT_DIR$/src/circuit/core/bool/SimpleCircuit_2_1.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/State.java" afterPath="$PROJECT_DIR$/src/circuit/State.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/TransitiveObservable.java" afterPath="$PROJECT_DIR$/src/circuit/TransitiveObservable.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/Wire.java" afterPath="$PROJECT_DIR$/src/circuit/Wire.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/circuit/core/bool/XOR_2_1.java" afterPath="$PROJECT_DIR$/src/circuit/core/bool/XOR_2_1.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="bit-mix.iws" />
@@ -31,7 +63,20 @@
     <favorites_list name="bit-mix" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="Program.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/Program.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.82814616" vertical-offset="0" max-vertical-offset="833">
+              <caret line="36" column="36" selection-start-line="36" selection-start-column="36" selection-end-line="36" selection-end-column="36" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -45,23 +90,40 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/src/circuit/mod/MOD_SUB_MULT_5Nplus1_N.java" />
-        <option value="$PROJECT_DIR$/src/circuit/mod/MOD_SUB_MULT_4Nplus1_N.java" />
-        <option value="$PROJECT_DIR$/src/circuit/mod/MOD_COND_ADD_4Nplus1_N.java" />
-        <option value="$PROJECT_DIR$/src/circuit/mod/MOD_SQUARE_3N_N.java" />
         <option value="$PROJECT_DIR$/src/circuit/mod/MOD_MULT_5N_N.java" />
-        <option value="$PROJECT_DIR$/src/circuit/mod/MOD_MULT_4N_N.java" />
-        <option value="$PROJECT_DIR$/src/circuit/mod/MOD_DOUBLE_3N_N.java" />
-        <option value="$PROJECT_DIR$/src/circuit/mod/MOD_ADD_4N_N.java" />
-        <option value="$PROJECT_DIR$/src/circuit/mod/MOD_ADD1_2N_N.java" />
-        <option value="$PROJECT_DIR$/src/circuit/arith/ADD_2L_L.java" />
         <option value="$PROJECT_DIR$/src/net/AbstractProgramClient.java" />
         <option value="$PROJECT_DIR$/src/net/ProtocolRunner.java" />
         <option value="$PROJECT_DIR$/src/net/Protocol.java" />
         <option value="$PROJECT_DIR$/src/net/AbstractProtocolServer.java" />
+        <option value="$PROJECT_DIR$/src/main/ProgClient.java" />
+        <option value="$PROJECT_DIR$/src/circuit/State.java" />
+        <option value="$PROJECT_DIR$/src/circuit/TransitiveObservable.java" />
+        <option value="$PROJECT_DIR$/src/circuit/Wire.java" />
+        <option value="$PROJECT_DIR$/src/circuit/core/bool/AND_2_1.java" />
         <option value="$PROJECT_DIR$/src/main/Program.java" />
         <option value="$PROJECT_DIR$/src/main/ProgServer.java" />
+        <option value="$PROJECT_DIR$/src/circuit/Circuit.java" />
         <option value="$PROJECT_DIR$/src/main/Connection.java" />
-        <option value="$PROJECT_DIR$/src/main/ProgClient.java" />
+        <option value="$PROJECT_DIR$/src/circuit/CompositeCircuit.java" />
+        <option value="$PROJECT_DIR$/src/circuit/core/bool/ADD_3_2.java" />
+        <option value="$PROJECT_DIR$/src/circuit/core/bool/GT_3_1.java" />
+        <option value="$PROJECT_DIR$/src/circuit/core/bool/MUX_3_1.java" />
+        <option value="$PROJECT_DIR$/src/circuit/core/bool/OR_2_1.java" />
+        <option value="$PROJECT_DIR$/src/circuit/core/bool/XOR_2_1.java" />
+        <option value="$PROJECT_DIR$/src/circuit/core/bool/SimpleCircuit_2_1.java" />
+        <option value="$PROJECT_DIR$/src/circuit/core/MUX_2Lplus1_L.java" />
+        <option value="$PROJECT_DIR$/src/circuit/core/OR_L_1.java" />
+        <option value="$PROJECT_DIR$/src/circuit/core/XOR_2L_L.java" />
+        <option value="$PROJECT_DIR$/src/circuit/arith/ADD_2L_L.java" />
+        <option value="$PROJECT_DIR$/src/circuit/arith/ADD_2L_Lplus1.java" />
+        <option value="$PROJECT_DIR$/src/circuit/arith/GT_2L_1.java" />
+        <option value="$PROJECT_DIR$/src/circuit/mod/MOD_ADD1_2N_N.java" />
+        <option value="$PROJECT_DIR$/src/circuit/mod/MOD_ADD_4N_N.java" />
+        <option value="$PROJECT_DIR$/src/circuit/mod/MOD_COND_ADD_4Nplus1_N.java" />
+        <option value="$PROJECT_DIR$/src/circuit/mod/MOD_DOUBLE_3N_N.java" />
+        <option value="$PROJECT_DIR$/src/circuit/mod/MOD_MULT_4N_N.java" />
+        <option value="$PROJECT_DIR$/src/circuit/mod/MOD_SQUARE_3N_N.java" />
+        <option value="$PROJECT_DIR$/src/circuit/mod/MOD_SUB_MULT_4Nplus1_N.java" />
       </list>
     </option>
   </component>
@@ -240,6 +302,7 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="LayoutCode.rearrangeEntries" value="true" />
   </component>
   <component name="RunManager" selected="Application.Main">
     <configuration default="false" name="Main" type="Application" factoryName="Application" temporary="true">
@@ -376,11 +439,16 @@
       <created>1445897825864</created>
       <updated>1445897825864</updated>
     </task>
+    <task id="LOCAL-00001" summary="Cleanup of the library's actually godawful server/client code">
+      <created>1449450469730</created>
+      <updated>1449450469730</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -398,13 +466,13 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.136875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.136875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32985657" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -430,19 +498,13 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/circuit/arith/ADD_2L_L.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="1088">
-          <caret line="10" column="41" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/Program.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="799">
           <caret line="20" column="3" selection-start-line="20" selection-start-column="3" selection-end-line="20" selection-end-column="3" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -453,14 +515,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/ProgCommon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="340">
-          <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -486,7 +540,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="799">
           <caret line="20" column="3" selection-start-line="20" selection-start-column="3" selection-end-line="20" selection-end-column="3" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -497,14 +553,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/ProgCommon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="340">
-          <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -525,83 +573,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/circuit/mod/MOD_SUB_MULT_4Nplus1_N.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.52469134" vertical-offset="272" max-vertical-offset="1224">
-          <caret line="32" column="3" selection-start-line="32" selection-start-column="3" selection-end-line="32" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/circuit/mod/MOD_COND_ADD_4Nplus1_N.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29905277" vertical-offset="0" max-vertical-offset="2176">
-          <caret line="18" column="3" selection-start-line="18" selection-start-column="3" selection-end-line="18" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cs2951e/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="1190">
           <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/circuit/mod/MOD_SQUARE_3N_N.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.8755075" vertical-offset="2236" max-vertical-offset="7242">
-          <caret line="55" column="33" selection-start-line="55" selection-start-column="33" selection-end-line="55" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/circuit/mod/MOD_MULT_4N_N.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2300406" vertical-offset="0" max-vertical-offset="1411">
-          <caret line="10" column="48" selection-start-line="10" selection-start-column="48" selection-end-line="10" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/circuit/mod/MOD_DOUBLE_3N_N.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34506088" vertical-offset="0" max-vertical-offset="1751">
-          <caret line="15" column="55" selection-start-line="15" selection-start-column="55" selection-end-line="15" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/circuit/mod/MOD_ADD_4N_N.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25304466" vertical-offset="0" max-vertical-offset="2006">
-          <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/circuit/mod/MOD_ADD1_2N_N.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.1962111" vertical-offset="859" max-vertical-offset="1598">
-          <caret line="46" column="22" selection-start-line="46" selection-start-column="22" selection-end-line="46" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/circuit/arith/ADD_2L_L.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1054">
-          <caret line="10" column="41" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/ProgCommon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1150203" vertical-offset="0" max-vertical-offset="739">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/circuit/Circuit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.4844384" vertical-offset="1955" max-vertical-offset="2737">
-          <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -629,36 +604,324 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/ProgServer.java">
+    <entry file="file://$PROJECT_DIR$/src/Test/TestAddingClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38477367" vertical-offset="0" max-vertical-offset="1054">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.20703654" vertical-offset="0" max-vertical-offset="739">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/circuit/TransitiveObserver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2300406" vertical-offset="0" max-vertical-offset="739">
+          <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/circuit/core/bool/AND_2_1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27604872" vertical-offset="0" max-vertical-offset="1819">
+          <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/Program.java">
+    <entry file="file://$PROJECT_DIR$/src/main/AdditionClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="739">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.16102841" vertical-offset="0" max-vertical-offset="1071">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/ProgServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5629229" vertical-offset="94" max-vertical-offset="833">
+          <caret line="30" column="17" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/Connection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1399177" vertical-offset="0" max-vertical-offset="629">
-          <caret line="4" column="34" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
-          <folding />
+        <state vertical-scroll-proportion="0.7239513" vertical-offset="247" max-vertical-offset="1054">
+          <caret line="46" column="15" selection-start-line="46" selection-start-column="15" selection-end-line="46" selection-end-column="15" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/ProgClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8744856" vertical-offset="136" max-vertical-offset="986">
+        <state vertical-scroll-proportion="0.3328823" vertical-offset="247" max-vertical-offset="986">
+          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/circuit/core/bool/E_AND_2_1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.39106902" vertical-offset="0" max-vertical-offset="739">
+          <caret line="21" column="10" selection-start-line="21" selection-start-column="10" selection-end-line="21" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/circuit/core/bool/E_OR_2_1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16102841" vertical-offset="0" max-vertical-offset="739">
+          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/circuit/core/bool/G_AND_2_1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.092016235" vertical-offset="0" max-vertical-offset="739">
+          <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/circuit/core/bool/G_OR_2_1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.092016235" vertical-offset="0" max-vertical-offset="739">
+          <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/circuit/core/bool/GT_3_1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3328823" vertical-offset="162" max-vertical-offset="901">
+          <caret line="24" column="64" selection-start-line="24" selection-start-column="64" selection-end-line="24" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/circuit/core/bool/MUX_3_1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8159675" vertical-offset="43" max-vertical-offset="782">
+          <caret line="38" column="3" selection-start-line="38" selection-start-column="3" selection-end-line="38" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/circuit/core/bool/OR_2_1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.17320703" vertical-offset="808" max-vertical-offset="1802">
+          <caret line="44" column="18" selection-start-line="44" selection-start-column="18" selection-end-line="44" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/circuit/core/bool/XOR_2_1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.0351827" vertical-offset="0" max-vertical-offset="1598">
+          <caret line="47" column="24" selection-start-line="47" selection-start-column="24" selection-end-line="47" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/circuit/core/bool/SimpleCircuit_2_1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.43707713" vertical-offset="0" max-vertical-offset="2482">
+          <caret line="27" column="33" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/circuit/core/MUX_2Lplus1_L.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.40189445" vertical-offset="281" max-vertical-offset="1020">
+          <caret line="35" column="9" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/circuit/core/OR_L_1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.41407308" vertical-offset="0" max-vertical-offset="739">
+          <caret line="19" column="63" selection-start-line="19" selection-start-column="63" selection-end-line="19" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/circuit/arith/ADD_2L_L.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.056833558" vertical-offset="281" max-vertical-offset="1020">
+          <caret line="21" column="63" selection-start-line="21" selection-start-column="63" selection-end-line="21" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/circuit/core/bool/ADD_3_2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6671177" vertical-offset="51" max-vertical-offset="1156">
           <caret line="33" column="3" selection-start-line="33" selection-start-column="3" selection-end-line="33" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/circuit/arith/ADD_2L_Lplus1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.34506088" vertical-offset="0" max-vertical-offset="1054">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/circuit/arith/GT_2L_1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27604872" vertical-offset="0" max-vertical-offset="986">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_05/src.zip!/java/lang/Exception.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3328823" vertical-offset="111" max-vertical-offset="1819">
+          <caret line="44" column="13" selection-start-line="44" selection-start-column="13" selection-end-line="44" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/circuit/mod/MOD_ADD1_2N_N.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.43707713" vertical-offset="0" max-vertical-offset="1564">
+          <caret line="23" column="17" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/circuit/mod/MOD_ADD_4N_N.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5751015" vertical-offset="187" max-vertical-offset="1904">
+          <caret line="40" column="64" selection-start-line="40" selection-start-column="64" selection-end-line="40" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/circuit/mod/MOD_COND_ADD_4Nplus1_N.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.59810555" vertical-offset="1377" max-vertical-offset="2142">
+          <caret line="60" column="59" selection-start-line="60" selection-start-column="59" selection-end-line="60" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/circuit/mod/MOD_DOUBLE_3N_N.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7361299" vertical-offset="0" max-vertical-offset="1649">
+          <caret line="36" column="65" selection-start-line="36" selection-start-column="65" selection-end-line="36" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/circuit/mod/MOD_MULT_4N_N.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.94316643" vertical-offset="0" max-vertical-offset="1377">
+          <caret line="41" column="63" selection-start-line="41" selection-start-column="63" selection-end-line="41" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/circuit/mod/MOD_SQUARE_3N_N.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.0243572" vertical-offset="3613" max-vertical-offset="7208">
+          <caret line="173" column="60" selection-start-line="173" selection-start-column="60" selection-end-line="173" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/circuit/mod/MOD_SUB_MULT_4Nplus1_N.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.98917454" vertical-offset="0" max-vertical-offset="1190">
+          <caret line="43" column="66" selection-start-line="43" selection-start-column="66" selection-end-line="43" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/circuit/Circuit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5629229" vertical-offset="1726" max-vertical-offset="2465">
+          <caret line="129" column="3" selection-start-line="129" selection-start-column="3" selection-end-line="129" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/circuit/CompositeCircuit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.63193506" vertical-offset="502" max-vertical-offset="1241">
+          <caret line="61" column="44" selection-start-line="61" selection-start-column="44" selection-end-line="61" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/circuit/State.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.082544" vertical-offset="0" max-vertical-offset="2618">
+          <caret line="134" column="24" selection-start-line="134" selection-start-column="24" selection-end-line="134" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/circuit/TransitiveObservable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35588634" vertical-offset="1726" max-vertical-offset="2669">
+          <caret line="135" column="5" selection-start-line="135" selection-start-column="5" selection-end-line="135" selection-end-column="5" />
+          <folding>
+            <element signature="class#OSocket#0;class#TransitiveObservable#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/circuit/Wire.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1150203" vertical-offset="221" max-vertical-offset="1513">
+          <caret line="19" column="33" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/crypto/Cipher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7699594" vertical-offset="1063" max-vertical-offset="1802">
+          <caret line="97" column="9" selection-start-line="97" selection-start-column="9" selection-end-line="97" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/crypto/ot/OTExtReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.7253045" vertical-offset="655" max-vertical-offset="1394">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/crypto/ot/OTExtSender.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16102841" vertical-offset="0" max-vertical-offset="1190">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/Program.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.82814616" vertical-offset="0" max-vertical-offset="833">
+          <caret line="36" column="36" selection-start-line="36" selection-start-column="36" selection-end-line="36" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

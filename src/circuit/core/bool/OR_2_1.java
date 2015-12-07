@@ -2,7 +2,6 @@
 
 package circuit.core.bool;
 
-import circuit.Circuit;
 import circuit.Wire;
 import crypto.Cipher;
 
@@ -14,12 +13,48 @@ public abstract class OR_2_1 extends SimpleCircuit_2_1 {
     super("OR_2_1");
   }
 
-  public static OR_2_1 newInstance() {
-    if (Circuit.isForGarbling) {
+  public static OR_2_1 newInstance(boolean isForGarbling) {
+    if (isForGarbling) {
       return new G_OR_2_1();
     } else {
       return new E_OR_2_1();
     }
+  }
+
+  protected boolean collapse() {
+    Wire inWireL = inputWires[0];
+    Wire inWireR = inputWires[1];
+    Wire outWire = outputWires[0];
+
+    if (inWireL.lbl.equals(inWireR.lbl)) {
+      if (inWireL.invd == inWireR.invd) {
+        outWire.invd = inWireL.invd;
+        outWire.setLabel(inWireL.lbl);
+      } else {
+        outWire.invd = false;
+        outWire.value = 1;
+      }
+
+      return true;
+    }
+
+    return false;
+  }
+
+  protected boolean shortCut() {
+    if (inputWires[0].value == 1) {
+      inputWires[0].value = Wire.UNKNOWN_SIG;
+      outputWires[0].value = 1;
+      return true;
+    }
+
+    if (inputWires[1].value == 1) {
+      inputWires[1].value = Wire.UNKNOWN_SIG;
+      outputWires[0].value = 1;
+      return true;
+    }
+
+    return false;
   }
 
   protected void compute() {
@@ -35,14 +70,14 @@ public abstract class OR_2_1 extends SimpleCircuit_2_1 {
     Wire outWire = outputWires[0];
 
     BigInteger[] labelL = {inWireL.lbl, Wire.conjugate(inWireL.lbl)};
-    if (inWireL.invd == true) {
+    if (inWireL.invd) {
       BigInteger tmp = labelL[0];
       labelL[0] = labelL[1];
       labelL[1] = tmp;
     }
 
     BigInteger[] labelR = {inWireR.lbl, Wire.conjugate(inWireR.lbl)};
-    if (inWireR.invd == true) {
+    if (inWireR.invd) {
       BigInteger tmp = labelR[0];
       labelR[0] = labelR[1];
       labelR[1] = tmp;
@@ -64,41 +99,5 @@ public abstract class OR_2_1 extends SimpleCircuit_2_1 {
     gtt[0 ^ cL][1 ^ cR] = lb[1];
     gtt[1 ^ cL][0 ^ cR] = lb[1];
     gtt[1 ^ cL][1 ^ cR] = lb[1];
-  }
-
-  protected boolean shortCut() {
-    if (inputWires[0].value == 1) {
-      inputWires[0].value = Wire.UNKNOWN_SIG;
-      outputWires[0].value = 1;
-      return true;
-    }
-
-    if (inputWires[1].value == 1) {
-      inputWires[1].value = Wire.UNKNOWN_SIG;
-      outputWires[0].value = 1;
-      return true;
-    }
-
-    return false;
-  }
-
-  protected boolean collapse() {
-    Wire inWireL = inputWires[0];
-    Wire inWireR = inputWires[1];
-    Wire outWire = outputWires[0];
-
-    if (inWireL.lbl.equals(inWireR.lbl)) {
-      if (inWireL.invd == inWireR.invd) {
-        outWire.invd = inWireL.invd;
-        outWire.setLabel(inWireL.lbl);
-      } else {
-        outWire.invd = false;
-        outWire.value = 1;
-      }
-
-      return true;
-    }
-
-    return false;
   }
 }

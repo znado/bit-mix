@@ -4,38 +4,33 @@ package circuit.core.bool;
 
 import circuit.Circuit;
 import circuit.CompositeCircuit;
-import circuit.core.bool.AND_2_1;
-import circuit.core.bool.XOR_2_1;
 
 
 /*
  * Fig. 2 of [KSS09]
  */
 public class ADD_3_2 extends CompositeCircuit {
+  private static final int AND0 = 4;
+  public final static int CIN = 2;
+  public final static int COUT = 1;
+  public final static int S = 0;
+  public final static int X = 0;
   private final static int XOR0 = 0;
   private final static int XOR1 = 1;
   private final static int XOR2 = 2;
   private final static int XOR3 = 3;
-  private final static int AND0 = 4;
-
-  public final static int X = 0;
   public final static int Y = 1;
-  public final static int CIN = 2;
-  public final static int S = 0;
-  public final static int COUT = 1;
 
   public ADD_3_2() {
     super(3, 2, 5, "ADD_3_2");
   }
 
-  protected void createSubCircuits() throws Exception {
+  protected void createSubCircuits(final boolean isForGarbling) {
     subCircuits[XOR0] = new XOR_2_1();
     subCircuits[XOR1] = new XOR_2_1();
     subCircuits[XOR2] = new XOR_2_1();
     subCircuits[XOR3] = new XOR_2_1();
-    subCircuits[AND0] = AND_2_1.newInstance();
-
-    super.createSubCircuits();
+    subCircuits[AND0] = AND_2_1.newInstance(isForGarbling);
   }
 
   protected void connectWires() {

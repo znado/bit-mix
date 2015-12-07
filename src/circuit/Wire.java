@@ -11,7 +11,7 @@ public class Wire extends TransitiveObservable {
 
   // These four fields are for garbling
   public static int K = 0;
-  private static SecureRandom rnd = new SecureRandom();
+  private static final SecureRandom rnd = new SecureRandom();
   public static final int labelBitLength = 80;
 
   public static final BigInteger R = new BigInteger(labelBitLength - 1, rnd);
@@ -58,7 +58,7 @@ public class Wire extends TransitiveObservable {
 
     for (int i = 0; i < w.observers.size(); i++) {
       TransitiveObserver ob = w.observers.get(i);
-      TransitiveObservable.Socket s = w.exports.get(i);
+      OSocket s = w.exports.get(i);
       this.addObserver(ob, s);
       s.updateSocket(this);
     }

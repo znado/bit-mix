@@ -45,9 +45,7 @@ public class XOR_2_1 extends SimpleCircuit_2_1 {
       outWire.value = Wire.UNKNOWN_SIG;
       outWire.setLabel(inWireL.lbl);
     } else {
-      if (collapse()) {
-
-      } else {
+      if (!collapse()) {
         BigInteger l = inWireL.lbl;
         BigInteger r = inWireR.lbl;
 
@@ -82,11 +80,11 @@ public class XOR_2_1 extends SimpleCircuit_2_1 {
     return false;
   }
 
+  protected void execYao() {}
+
   // Never used for XOR gate.
   protected boolean shortCut() {return false;}
 
   // Never used for XOR gate.
   protected void fillTruthTable() {}
-
-  protected void execYao() {}
 }

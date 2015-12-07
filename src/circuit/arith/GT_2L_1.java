@@ -18,12 +18,18 @@ public class GT_2L_1 extends CompositeCircuit {
     L = l;
   }
 
-  protected void createSubCircuits() throws Exception {
+  public static int X(int i) {
+    return 2 * i + 1;
+  }
+
+  public static int Y(int i) {
+    return 2 * i;
+  }
+
+  protected void createSubCircuits(final boolean isForGarbling) {
     for (int i = 0; i < L; i++) {
       subCircuits[i] = new GT_3_1();
     }
-
-    super.createSubCircuits();
   }
 
   protected void connectWires() {
@@ -44,13 +50,5 @@ public class GT_2L_1 extends CompositeCircuit {
   protected void fixInternalWires() {
     Wire internalWire = subCircuits[0].inputWires[GT_3_1.C];
     internalWire.fixWire(0);
-  }
-
-  public static int X(int i) {
-    return 2 * i + 1;
-  }
-
-  public static int Y(int i) {
-    return 2 * i;
   }
 }
