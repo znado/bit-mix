@@ -11,12 +11,10 @@ import java.math.BigInteger;
  */
 public class SecondProtocolServerInput {
   public final BigInteger modulus;
-  public final BigInteger g_ra;
   public final BigInteger secretRandom;
 
   private SecondProtocolServerInput(Builder b) {
     this.modulus = b.modulus;
-    this.g_ra = b.g_ra;
     this.secretRandom = b.secretRandom;
   }
 
@@ -26,7 +24,6 @@ public class SecondProtocolServerInput {
 
   public static final class Builder {
     private BigInteger modulus;
-    private BigInteger g_ra;
     private BigInteger secretRandom;
 
     public Builder() {
@@ -38,11 +35,6 @@ public class SecondProtocolServerInput {
       return this;
     }
 
-    public Builder setG_ra(final BigInteger g_ra) {
-      this.g_ra = g_ra;
-      return this;
-    }
-
     public Builder setSecretRandom(final BigInteger secretRandom) {
       this.secretRandom = secretRandom;
       return this;
@@ -50,7 +42,6 @@ public class SecondProtocolServerInput {
 
     public SecondProtocolServerInput build() {
       checkNotNull(modulus, "modulus");
-      checkNotNull(g_ra, "g_ra");
       checkNotNull(secretRandom, "secretRandom");
       return new SecondProtocolServerInput(this);
     }

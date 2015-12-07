@@ -63,6 +63,10 @@ public class State {
     return res;
   }
 
+  public BigInteger labelAt(int i) {
+    return wires[i].lbl;
+  }
+
   public static State extractState(State s, int start, int end) {
     State res = new State(end - start);
     for (int i = 0; i < end - start; i++) {

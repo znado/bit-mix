@@ -25,12 +25,12 @@ public class RUN_MULT extends CompositeCircuit {
     this.modulus = modulus;
   }
 
-  public static int X(int i) {
-    return 2*i;
+  public static int X(int bitLength, int i) {
+    return i;
   }
 
-  public static int Y(int i) {
-    return 2*i+1;
+  public static int Y(int bitLength, int i) {
+    return i + bitLength;
   }
 
   protected void createSubCircuits(final boolean isForGarbling) {
@@ -39,8 +39,8 @@ public class RUN_MULT extends CompositeCircuit {
 
   protected void connectWires() {
     for (int i = 0; i < bitLength; i++) {
-      inputWire(X(i)).connectTo(subCircuits[0].inputWires, MOD_MULT_4N_N.X(i));
-      inputWire(Y(i)).connectTo(subCircuits[0].inputWires, MOD_MULT_4N_N.Y(i));
+      inputWire(X(bitLength, i)).connectTo(subCircuits[0].inputWires, MOD_MULT_4N_N.X(i));
+      inputWire(Y(bitLength, i)).connectTo(subCircuits[0].inputWires, MOD_MULT_4N_N.Y(i));
     }
   }
 

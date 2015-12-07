@@ -19,14 +19,12 @@ import java.math.BigInteger;
 public class EXP_STEP extends CompositeCircuit {
   private final boolean first;
   private final int bitLength;
-  private final BigInteger base;
   private final BigInteger modulus;
 
-  public EXP_STEP(boolean first, int bitLength, BigInteger base, BigInteger modulus) {
-    super(first ? 1 : bitLength + 1, bitLength, 3, "EXP STEP");
+  public EXP_STEP(boolean first, int bitLength, BigInteger modulus) {
+    super(first ? bitLength + 1 : 2*bitLength + 1, bitLength, 3, "EXP STEP");
     this.first = first;
     this.bitLength = bitLength;
-    this.base = base;
     this.modulus = modulus;
   }
 
@@ -34,7 +32,11 @@ public class EXP_STEP extends CompositeCircuit {
   private static final int MULT = 1;
   private static final int SEL = 2;
 
-  public static int X(int i) {
+  public static int X(int bitLength, int i) {
+    return bitLength + i + 1;
+  }
+
+  public static int B(int bitLength, int i) {
     return i + 1;
   }
 
@@ -51,11 +53,13 @@ public class EXP_STEP extends CompositeCircuit {
   protected void connectWires() {
     for (int i = 0; i < bitLength; i++) {
       if (!first) {
-        inputWire(X(i)).connectTo(subCircuits[SQUARE].inputWires, MOD_SQUARE_3N_N.X(i));
+        inputWire(X(bitLength, i)).connectTo(subCircuits[SQUARE].inputWires, MOD_SQUARE_3N_N.X(i));
       }
       subCircuits[SQUARE].outputWire(i).connectTo(subCircuits[MULT].inputWires, MOD_MULT_4N_N.X(i));
       subCircuits[SQUARE].outputWire(i).connectTo(subCircuits[SEL].inputWires, MUX_2Lplus1_L.X(i));
       subCircuits[MULT].outputWire(i).connectTo(subCircuits[SEL].inputWires, MUX_2Lplus1_L.Y(i));
+
+      inputWire(B(bitLength, i)). connectTo(subCircuits[MULT].inputWires, MOD_MULT_4N_N.Y(i));
     }
     inputWire(Y()).connectTo(subCircuits[SEL].inputWires, MUX_2Lplus1_L.C(bitLength));
   }
@@ -80,9 +84,6 @@ public class EXP_STEP extends CompositeCircuit {
           .fixWire(modNeg.testBit(i) ? 1 : 0);
       subCircuits[MULT].inputWire(MOD_MULT_4N_N.invM(i))
           .fixWire(modNeg.testBit(i) ? 1 : 0);
-
-      subCircuits[MULT].inputWire(MOD_MULT_4N_N.Y(i))
-          .fixWire(base.testBit(i) ? 1 : 0);
 
       if (first) {
         subCircuits[SQUARE].inputWire(MOD_SQUARE_3N_N.X(i)).fixWire(i == 0 ? 1 : 0);

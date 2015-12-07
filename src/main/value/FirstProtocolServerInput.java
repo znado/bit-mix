@@ -9,15 +9,13 @@ import java.math.BigInteger;
  * @author nschank (Nicolas Schank)
  * @version 1.1
  */
-public class FirstProtocolInput {
+public class FirstProtocolServerInput {
   public final BigInteger modulus;
-  public final BigInteger g_rb;
   public final BigInteger secretRandom;
   public final BigInteger secretAddress;
 
-  private FirstProtocolInput(Builder b) {
+  private FirstProtocolServerInput(Builder b) {
     this.modulus = b.modulus;
-    this.g_rb = b.g_rb;
     this.secretAddress = b.secretAddress;
     this.secretRandom = b.secretRandom;
   }
@@ -28,7 +26,6 @@ public class FirstProtocolInput {
 
   public static final class Builder {
     private BigInteger modulus;
-    private BigInteger g_rb;
     private BigInteger secretRandom;
     private BigInteger secretAddress;
 
@@ -38,11 +35,6 @@ public class FirstProtocolInput {
 
     public Builder setModulus(final BigInteger modulus) {
       this.modulus = modulus;
-      return this;
-    }
-
-    public Builder setG_rb(final BigInteger g_rb) {
-      this.g_rb = g_rb;
       return this;
     }
 
@@ -56,12 +48,11 @@ public class FirstProtocolInput {
       return this;
     }
 
-    public FirstProtocolInput build() {
+    public FirstProtocolServerInput build() {
       checkNotNull(modulus, "modulus");
-      checkNotNull(g_rb, "g_rb");
       checkNotNull(secretAddress, "secretAddress");
       checkNotNull(secretRandom, "secretRandom");
-      return new FirstProtocolInput(this);
+      return new FirstProtocolServerInput(this);
     }
   }
 }

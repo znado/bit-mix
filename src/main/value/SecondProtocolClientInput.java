@@ -11,15 +11,13 @@ import java.math.BigInteger;
  */
 public class SecondProtocolClientInput {
   public final BigInteger modulus;
-  public final BigInteger g_ra;
-  public final BigInteger secretRandom;
+  public final BigInteger negGAC;
   public final BigInteger x_1;
   public final BigInteger x_2;
 
   private SecondProtocolClientInput(Builder b) {
     this.modulus = b.modulus;
-    this.g_ra = b.g_ra;
-    this.secretRandom = b.secretRandom;
+    this.negGAC = b.negGAC;
     this.x_1 = b.x_1;
     this.x_2 = b.x_2;
   }
@@ -30,8 +28,7 @@ public class SecondProtocolClientInput {
 
   public static final class Builder {
     private BigInteger modulus;
-    private BigInteger g_ra;
-    private BigInteger secretRandom;
+    private BigInteger negGAC;
     private BigInteger x_1;
     private BigInteger x_2;
 
@@ -44,13 +41,8 @@ public class SecondProtocolClientInput {
       return this;
     }
 
-    public Builder setG_ra(final BigInteger g_ra) {
-      this.g_ra = g_ra;
-      return this;
-    }
-
-    public Builder setSecretRandom(final BigInteger secretRandom) {
-      this.secretRandom = secretRandom;
+    public Builder setNegGAC(final BigInteger negGAC) {
+      this.negGAC = negGAC;
       return this;
     }
 
@@ -66,8 +58,7 @@ public class SecondProtocolClientInput {
 
     public SecondProtocolClientInput build() {
       checkNotNull(modulus, "modulus");
-      checkNotNull(g_ra, "g_ra");
-      checkNotNull(secretRandom, "secretRandom");
+      checkNotNull(negGAC, "negGAC");
       checkNotNull(x_1, "x_1");
       checkNotNull(x_2, "x_2");
       return new SecondProtocolClientInput(this);

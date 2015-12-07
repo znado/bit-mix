@@ -26,54 +26,41 @@ public final class SecondProtocol {
   }
 
   public static State execute(final List<Circuit> circuits, final State clientSide,
-      final State serverSide) {
-    BigInteger[] lbs = new BigInteger[BIT_LENGTH * 2];
-    BigInteger[] clbs = clientSide.toLabels();
-    BigInteger[] slbs = serverSide.toLabels();
+      final State rB) {
+    State base = State.extractState(clientSide, 0, BIT_LENGTH);
+    State x1 = State.extractState(clientSide, BIT_LENGTH, BIT_LENGTH*2);
+    State x2 = State.extractState(clientSide, BIT_LENGTH*2, BIT_LENGTH * 3);
 
-    // The lower BITLENGTH bits of each party are
+    State[] leftExp = new State[BIT_LENGTH];
     for (int i = 0; i < BIT_LENGTH; i++) {
-      lbs[RUN_MULT.X(i)] = clbs[i];
-      lbs[RUN_MULT.Y(i)] = slbs[i];
+      leftExp[i] = State.concatenate(State.extractState(rB, BIT_LENGTH - 1 - i, BIT_LENGTH - i), base);
     }
-    System.out.println("Calculating r_Br_C");
-    State multOut = circuits.get(MULT)
-        .startExecuting(State.fromLabels(lbs));
 
-    State expIn = State.extractState(multOut, BIT_LENGTH - 1, BIT_LENGTH);
     System.out.println("Calculating g^-r_Ar_Br_C");
-    State out = circuits.get(FIRST_EXP)
-        .startExecuting(expIn);
+    State invG = circuits.get(FIRST_EXP)
+        .startExecuting(leftExp[0]);
     System.out.println("Finished with bit 1 of " + BIT_LENGTH);
 
     for (int i = 1; i < BIT_LENGTH; i++) {
-      expIn = State.concatenate(State.extractState(multOut, BIT_LENGTH - 1 - i, BIT_LENGTH - i), out);
-      out = circuits.get(NORMAL_EXP)
+      State expIn = State.concatenate(leftExp[i], invG);
+      invG = circuits.get(NORMAL_EXP)
           .startExecuting(expIn);
       System.out.println("Finished with bit " + (i + 1) + " of " + BIT_LENGTH);
     }
 
-    BigInteger[] powLabels = out.toLabels();
-    for (int i = 0; i < BIT_LENGTH; i++) {
-      lbs[RUN_MULT.X(i)] = clbs[BIT_LENGTH+i];
-      lbs[RUN_MULT.Y(i)] = powLabels[i];
-    }
-    System.out.println("Calculating -Gx_1");
-    State x_A = circuits.get(MULT)
-        .startExecuting(State.fromLabels(lbs));
+    System.out.println("Calculating x_1/G");
+    State s_1 = circuits.get(MULT)
+        .startExecuting(State.concatenate(invG, x1));
 
-    // Y is kept the same
-    for (int i = 0; i < BIT_LENGTH; i++) {
-      lbs[RUN_MULT.X(i)] = clbs[2*BIT_LENGTH + i];
-    }
-    System.out.println("Calculating -Gx_2");
-    State x_C = circuits.get(MULT)
-        .startExecuting(State.fromLabels(lbs));
-    return State.concatenate(x_A, x_C);
+    System.out.println("Calculating x_2/G");
+    State s_2 = circuits.get(MULT)
+        .startExecuting(State.concatenate(invG, x2));
+
+    return State.concatenate(s_1, s_2);
   }
 
-  public static List<Circuit> getSecondProtocolCircuit(BigInteger modulus, BigInteger base) {
-    return Lists.newArrayList(new RUN_MULT(BIT_LENGTH, modulus), new EXP_STEP(true, BIT_LENGTH, base, modulus),
-        new EXP_STEP(false, BIT_LENGTH, base, modulus));
+  public static List<Circuit> getSecondProtocolCircuit(BigInteger modulus) {
+    return Lists.newArrayList(new RUN_MULT(BIT_LENGTH, modulus), new EXP_STEP(true, BIT_LENGTH, modulus),
+        new EXP_STEP(false, BIT_LENGTH, modulus));
   }
 }

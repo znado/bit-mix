@@ -21,12 +21,12 @@ public class SecondProtocolClient extends ProtocolClient<SecondProtocolClientInp
   @Override
   protected BigInteger convert(final SecondProtocolClientInput input) {
     return input.x_1.shiftLeft(SecondProtocol.BIT_LENGTH*2).add(input.x_2.shiftLeft(SecondProtocol.BIT_LENGTH)).add(
-        input.secretRandom);
+        input.negGAC);
   }
 
   @Override
   protected List<Circuit> createCircuits(final SecondProtocolClientInput input) {
-    return SecondProtocol.getSecondProtocolCircuit(input.modulus, input.g_ra.modInverse(input.modulus));
+    return SecondProtocol.getSecondProtocolCircuit(input.modulus);
   }
 
   @Override

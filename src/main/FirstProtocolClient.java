@@ -2,7 +2,7 @@ package main;
 
 import circuit.Circuit;
 import circuit.State;
-import main.value.FirstProtocolInput;
+import main.value.FirstProtocolClientInput;
 
 import java.io.IOException;
 import java.math.BigInteger;
@@ -13,19 +13,19 @@ import java.util.List;
  * @author nschank (Nicolas Schank)
  * @version 1.1
  */
-public class FirstProtocolClient extends ProtocolClient<FirstProtocolInput> {
+public class FirstProtocolClient extends ProtocolClient<FirstProtocolClientInput> {
   public FirstProtocolClient(final String serverIp, final int serverPort) throws IOException {
     super(serverIp, serverPort);
   }
 
   @Override
-  protected BigInteger convert(final FirstProtocolInput input) {
-    return input.secretAddress.shiftLeft(FirstProtocol.BIT_LENGTH).add(input.secretRandom);
+  protected BigInteger convert(final FirstProtocolClientInput input) {
+    return input.secretAddress.shiftLeft(FirstProtocol.BIT_LENGTH).add(input.gAB);
   }
 
   @Override
-  protected List<Circuit> createCircuits(final FirstProtocolInput input) {
-    return FirstProtocol.getFirstProtocolCircuit(input.modulus, input.g_rb);
+  protected List<Circuit> createCircuits(final FirstProtocolClientInput input) {
+    return FirstProtocol.getFirstProtocolCircuit(input.modulus);
   }
 
   @Override
@@ -35,7 +35,7 @@ public class FirstProtocolClient extends ProtocolClient<FirstProtocolInput> {
   }
 
   @Override
-  protected int inputLength(final FirstProtocolInput input) {
+  protected int inputLength(final FirstProtocolClientInput input) {
     return FirstProtocol.BIT_LENGTH * 2;
   }
 }

@@ -2,7 +2,8 @@ package main;
 
 import circuit.Circuit;
 import circuit.State;
-import main.value.FirstProtocolInput;
+import main.value.FirstProtocolClientInput;
+import main.value.FirstProtocolServerInput;
 import util.Pair;
 
 import java.io.IOException;
@@ -14,20 +15,20 @@ import java.util.List;
  * @author nschank (Nicolas Schank)
  * @version 1.1
  */
-public class FirstProtocolServer extends ProtocolServer<FirstProtocolInput, Pair<BigInteger, BigInteger>> {
+public class FirstProtocolServer extends ProtocolServer<FirstProtocolServerInput, Pair<BigInteger, BigInteger>> {
   public FirstProtocolServer(final int port) throws IOException {
     super(port);
   }
 
   @Override
-  protected BigInteger convert(final FirstProtocolInput input) {
+  protected BigInteger convert(final FirstProtocolServerInput input) {
     return input.secretAddress.shiftLeft(FirstProtocol.BIT_LENGTH)
         .add(input.secretRandom);
   }
 
   @Override
-  public List<Circuit> createCircuits(final FirstProtocolInput input) {
-    return FirstProtocol.getFirstProtocolCircuit(input.modulus, input.g_rb);
+  public List<Circuit> createCircuits(final FirstProtocolServerInput input) {
+    return FirstProtocol.getFirstProtocolCircuit(input.modulus);
   }
 
   @Override
@@ -37,7 +38,7 @@ public class FirstProtocolServer extends ProtocolServer<FirstProtocolInput, Pair
   }
 
   @Override
-  protected int inputLength(final FirstProtocolInput input) {
+  protected int inputLength(final FirstProtocolServerInput input) {
     return FirstProtocol.BIT_LENGTH * 2;
   }
 
