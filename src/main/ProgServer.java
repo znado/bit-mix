@@ -2,71 +2,36 @@
 
 package main;
 
-import crypto.ot.OTExtSender;
-import crypto.ot.Sender;
-import util.StopWatch;
 import circuit.Circuit;
 import circuit.Wire;
-import org.apache.commons.io.input.CountingInputStream;
-import org.apache.commons.io.output.CountingOutputStream;
+import crypto.ot.OTExtSender;
+import crypto.ot.Sender;
 
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.IOException;
 import java.net.ServerSocket;
-import java.net.Socket;
 
 
-public abstract class ProgServer extends Program {
+public abstract class ProgServer extends Program implements AutoCloseable {
 
-  final private int serverPort = 23456;             // server port number
-  private ServerSocket sock = null;              // original server socket
-  private Socket clientSocket = null;              // socket created by accept
-
-  protected Sender snder;
-  protected int otNumOfPairs;
+  public static final int SERVER_PORT = 23456;             // server port number
+  private Connection connection;
   protected int otMsgBitLength = Wire.labelBitLength;
+  protected int otNumOfPairs;
+  protected Sender snder;
+  private final ServerSocket sock;              // original server socket
 
-  public void run() throws Exception {
-    create_socket_and_listen();
-
-    super.run();
-
-    cleanup();
+  public ProgServer() throws IOException {
+    this(SERVER_PORT);
   }
 
-  protected void init() throws Exception {
-    Program.iterCount = ProgCommon.ois.readInt();
-    super.init();
+  public ProgServer(int port) throws IOException {
+    sock = new ServerSocket(port);
   }
 
-  private void create_socket_and_listen() throws Exception {
-    sock = new ServerSocket(serverPort);            // create socket and bind to port
-    System.out.println("waiting for client to connect");
-    clientSocket = sock.accept();                   // wait for client to connect
-    System.out.println("client has connected");
-
-    CountingOutputStream cos = new CountingOutputStream(clientSocket.getOutputStream());
-    CountingInputStream cis = new CountingInputStream(clientSocket.getInputStream());
-
-    ProgCommon.oos = new ObjectOutputStream(cos);
-    ProgCommon.ois = new ObjectInputStream(cis);
-
-    StopWatch.cos = cos;
-    StopWatch.cis = cis;
-  }
-
-  private void cleanup() throws Exception {
-    ProgCommon.oos.close();                          // close everything
-    ProgCommon.ois.close();
-    clientSocket.close();
+  @Override
+  public void close() throws Exception {
     sock.close();
-  }
-
-  protected void initializeOT() throws Exception {
-    otNumOfPairs = ProgCommon.ois.readInt();
-
-    snder = new OTExtSender(otNumOfPairs, otMsgBitLength, ProgCommon.ois, ProgCommon.oos);
-    StopWatch.taskTimeStamp("OT preparation");
+    connection.close();
   }
 
   protected void createCircuits() throws Exception {
@@ -75,7 +40,18 @@ public abstract class ProgServer extends Program {
     for (int i = 0; i < ProgCommon.ccs.length; i++) {
       ProgCommon.ccs[i].build();
     }
+  }
 
-    StopWatch.taskTimeStamp("circuit preparation");
+  protected void initializeOT() throws Exception {
+    otNumOfPairs = ProgCommon.ois.readInt();
+
+    snder = new OTExtSender(otNumOfPairs, otMsgBitLength, ProgCommon.ois, ProgCommon.oos);
+  }
+
+  @Override
+  public void run() throws Exception {
+    connection = new Connection(sock.accept());
+
+    super.run();
   }
 }

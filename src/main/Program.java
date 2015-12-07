@@ -1,28 +1,11 @@
-// Copyright (C) 2010 by Yan Huang <yhuang@virginia.edu>
-
 package main;
 
 public abstract class Program {
-  public static int iterCount;
+  protected abstract void createCircuits() throws Exception;
 
-  public void run() throws Exception {
-    init();
+  protected abstract void execCircuit() throws Exception;
 
-    for (int i = 0; i < iterCount; i++) {
-      execute();
-      verify_result();
-    }
-  }
-
-  protected void init() throws Exception {
-    createCircuits();
-
-    initializeOT();
-  }
-
-  abstract protected void createCircuits() throws Exception;
-
-  abstract protected void initializeOT() throws Exception;
+  protected abstract void execTransfer() throws Exception;
 
   protected void execute() throws Exception {
     execTransfer();
@@ -32,11 +15,13 @@ public abstract class Program {
     interpretResult();
   }
 
-  abstract protected void execTransfer() throws Exception;
+  protected abstract void initializeOT() throws Exception;
 
-  abstract protected void execCircuit() throws Exception;
+  protected abstract void interpretResult() throws Exception;
 
-  abstract protected void interpretResult() throws Exception;
-
-  abstract protected void verify_result() throws Exception;
+  public void run() throws Exception {
+    createCircuits();
+    initializeOT();
+    execute();
+  }
 }

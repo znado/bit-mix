@@ -2,49 +2,35 @@
 
 package main;
 
+import circuit.Circuit;
 import crypto.ot.OTExtReceiver;
 import crypto.ot.Receiver;
 import util.StopWatch;
-import circuit.Circuit;
 
+import java.io.IOException;
 import java.net.Socket;
 
 
-public abstract class ProgClient extends Program {
+public abstract class ProgClient extends Program implements AutoCloseable {
 
-  public static String serverIPname = "localhost";             // server IP name
-  private final int serverPort = 23456;                   // server port number
-  private Socket sock = null;                    // Socket object for communicating
+  public static final String DEFAULT_SERVER_IP = "localhost";             // server IP name
+  public static final int DEFAULT_SERVER_PORT = 23456;                   // server port number
+  private final Connection connection;
 
   protected int otNumOfPairs;
   protected Receiver rcver;
 
-  public void run() throws Exception {
-    create_socket_and_connect();
-
-    super.run();
-
-    cleanup();
+  public ProgClient() throws IOException {
+    this(DEFAULT_SERVER_IP, DEFAULT_SERVER_PORT);
   }
 
-  protected void init() throws Exception {
-    System.out.println(Program.iterCount);
-    ProgCommon.oos.writeInt(Program.iterCount);
-    ProgCommon.oos.flush();
-
-    super.init();
+  public ProgClient(String serverIp, int serverPort) throws IOException {
+    this.connection = new Connection(new Socket(serverIp, serverPort));
   }
 
-  private void create_socket_and_connect() throws Exception {
-    sock = new Socket(serverIPname, serverPort);          // create socket and connect
-    ProgCommon.oos = new java.io.ObjectOutputStream(sock.getOutputStream());
-    ProgCommon.ois = new java.io.ObjectInputStream(sock.getInputStream());
-  }
-
-  private void cleanup() throws Exception {
-    ProgCommon.oos.close();                                                   // close everything
-    ProgCommon.ois.close();
-    sock.close();
+  @Override
+  public void close() throws Exception {
+    connection.close();
   }
 
   protected void createCircuits() throws Exception {
