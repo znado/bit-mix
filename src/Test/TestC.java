@@ -15,7 +15,7 @@ import java.util.Random;
 
 class TestC {
   public static final BigInteger r_C = new BigInteger(FirstProtocol.BIT_LENGTH, new Random(102)).mod(TestConstants.m);
-  public static final BigInteger s_C = BigInteger.valueOf(12);
+  public static final BigInteger s_C = BigInteger.valueOf(1);
 
   public static void main(String[] args) throws Exception {
     FirstProtocolServer server = new FirstProtocolServer(1234);

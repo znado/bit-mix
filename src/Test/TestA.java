@@ -14,7 +14,7 @@ import java.util.Random;
  */
 public class TestA {
   public static final BigInteger r_A = new BigInteger(FirstProtocol.BIT_LENGTH, new Random(101)).mod(TestConstants.m);
-  public static final BigInteger s_A = BigInteger.valueOf(15);
+  public static final BigInteger s_A = BigInteger.valueOf(3000000000L);
 
   public static void main(String[] args) throws Exception {
     FirstProtocolClient client = new FirstProtocolClient("localhost", 1234);

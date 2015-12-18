@@ -43,9 +43,11 @@ public final class SecondProtocol {
 
     for (int i = 1; i < BIT_LENGTH; i++) {
       State expIn = State.concatenate(leftExp[i], invG);
+      long time = System.currentTimeMillis();
       invG = circuits.get(NORMAL_EXP)
           .startExecuting(expIn);
-      System.out.println("Finished with bit " + (i + 1) + " of " + BIT_LENGTH);
+      long duration = System.currentTimeMillis() - time;
+      System.out.println("Finished with bit " + (i + 1) + " of " + BIT_LENGTH + " (" + duration + " ms)");
     }
 
     System.out.println("Calculating x_1/G");

@@ -13,7 +13,7 @@ import java.util.Random;
 
 class TestB {
   public static final BigInteger r_B = new BigInteger(SecondProtocol.BIT_LENGTH, new Random(103)).mod(TestConstants.m);
-  public static final BigInteger s_B = BigInteger.valueOf(50);
+  public static final BigInteger s_B = BigInteger.valueOf(17);
 
   public static void main(String[] args) throws Exception {
     SecondProtocolServer server = new SecondProtocolServer(2345);

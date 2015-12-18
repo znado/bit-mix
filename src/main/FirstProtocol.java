@@ -16,7 +16,7 @@ import java.util.List;
  * @version 1.1
  */
 public final class FirstProtocol {
-  public static final int BIT_LENGTH = 50;//162;
+  public static final int BIT_LENGTH = 162;
   private static final int FIRST_EXP = 1;
   private static final int MULT = 0;
   private static final int NORMAL_EXP = 2;
@@ -45,9 +45,11 @@ public final class FirstProtocol {
 
     for (int i = 1; i < BIT_LENGTH; i++) {
       State expIn = State.concatenate(leftExp[i], G);
+      long time = System.currentTimeMillis();
       G = circuits.get(NORMAL_EXP)
           .startExecuting(expIn);
-      System.out.println("Finished with bit " + (i + 1) + " of " + BIT_LENGTH);
+      long duration = System.currentTimeMillis() - time;
+      System.out.println("Finished with bit " + (i + 1) + " of " + BIT_LENGTH + " (" + duration + " ms)");
     }
 
     System.out.println("Calculating Gs_A");
