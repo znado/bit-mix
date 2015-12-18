@@ -25,11 +25,6 @@ public class MixerPeerServer {
     public MixerPeerServer() {
         peerList = new HashMap<>();
 
-        peerList.put(new MixerNetworkAddress("127.0.0.1", 6868), null);
-//        peerList.put(new MixerNetworkAddress("127.0.0.1", 16868), null);
-        peerList.put(new MixerNetworkAddress("127.0.0.1", 26868), null);
-        peerList.put(new MixerNetworkAddress("127.0.0.1", 13308), null);
-
         try {
             serverSocket = new ServerSocket(Config.SERVER_PORT);
         } catch (IOException e) {
